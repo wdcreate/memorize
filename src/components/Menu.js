@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Route, Routes, Outlet} from "react-router-dom";
 import Home from "../pages/Home";
-import Profile from "../pages/Profile";
+import Saved from "../pages/Saved";
 import AddCard from "../pages/AddCard";
 import './styles/Menu.css'
 import Layout from './Layout';
@@ -15,7 +15,7 @@ class Menu extends Component {
               <Route path="/" element={<Layout />}>
                   <Route index element={<Home />}/>
                   <Route path="addcard" element={<AddCard />}/>
-                  <Route path="profile" element={<Profile />}/>
+                  <Route path="saved" element={<Saved />}/>
               </Route>
             </Routes>
             <div>

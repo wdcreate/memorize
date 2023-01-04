@@ -1,8 +1,7 @@
-.menu{
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    position: absolute;
+.menu-inner{
+    width: 100%;
+    position: fixed;
+    height: 50px;
     bottom: 0;
     left: 50%;
     transform: translate(-50%);
@@ -10,8 +9,16 @@
     -moz-transform: translate(-50%);
     -ms-transform: translate(-50%);
     -o-transform: translate(-50%);
-    background-color: rgb(179, 179, 179);
-    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+.menu{
+    margin: 5px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    background-color: rgb(218, 218, 218);
     width: 70%;
     min-width: 310px;
     border-radius: 20px;
@@ -20,16 +27,9 @@
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
 }
-
 .menu a{
     color: inherit;
     padding: 10px 30px;
     cursor: pointer;
     text-decoration: none;
-}
-.back-btn{
-    border: none;
-    background-color: transparent;
-    outline: none;
-    cursor: pointer;
 }

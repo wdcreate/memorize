@@ -5,9 +5,15 @@ class AddCard extends Component {
     return (
       <div>
         <h2>AddCard</h2>
-        <p>The easiest thing to do is post on
-        our <a href="http://forum.kirupa.com">forums</a>.
-        </p>
+        <div className="add-inner">
+          <form>
+            <input type="text" placeholder="write your word"/>
+            <input type="text" placeholder="write translate"/>
+            <textarea placeholder="place for your notes"></textarea>
+            <button type="submit">Save</button>
+            <button type="reset">Reset</button>
+          </form>
+        </div>
       </div>
     );
   }
