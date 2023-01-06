@@ -9,10 +9,9 @@ class Home extends Component {
         <h2>Home</h2>
         <div className='home-inner'>
         <div className='home-stat'>
-          <p>Saved words: <span>13</span></p>
+          <p>Saved words: <span>{this.props.num}</span></p>
           <div className="home-random">
             <p>Your today's random word:</p>
-            <p>Hello</p>
           </div>
           <Link className="home-btn" to="/saved">See all</Link>
 

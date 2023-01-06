@@ -72,8 +72,17 @@
   width: 40%;
   min-width: 100px;
   max-width: 300px;
+  display: flex;
+  justify-content: space-between;
 }
 .saved-card p{
   padding: 0;
   margin: 0;
+}
+.saved-card .btn-block{
+  display: flex;
+  flex-direction: column;
+}
+.saved-card button{
+  margin-bottom: 5px;
 }

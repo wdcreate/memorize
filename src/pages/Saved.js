@@ -1,20 +1,24 @@
 import  {React, Component} from "react";
-import { SavedList } from "../components/SavedList";
 
 class Saved extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      data : SavedList,
-     }
-  }
+  removePeople(e) {
+    this.setState({data: this.props.data.filter(function(card) { 
+        return card !== e.target.value 
+    })});
+}
   render() { 
-   const sl = this.state.data.map((sl) => {
+   const sl = this.props.data.map((sl, i) => {
       return (
-        <div className="saved-card">
+        <div className="saved-card" key={i}>
+          <div className='content'>
             <p>{sl.word}</p>           
             <p>{sl.translate}</p>           
             <p>{sl.note}</p>           
+          </div>
+          <div className='btn-block'>
+            <button className='delete-btn'>delete</button>
+            <button className='redo-btn'>redo</button>
+          </div>
         </div>
       )
     });
