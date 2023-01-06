@@ -35,8 +35,13 @@ class Menu extends Component {
       temp.push(post)
       return{data: temp}
     })
-    console.log(this.state.data)
   }
+  deletePost =(id)=>{
+    this.setState({
+      data : this.state.data.filter((el)=> el.id !== id)
+    })
+  }
+
   render() {
     return (
           <div className="content">
@@ -44,7 +49,7 @@ class Menu extends Component {
               <Route path="/" element={<Layout />}>
                   <Route index element={<Home data={this.state.data} num={this.state.data.length}/>}/>
                   <Route path="addcard" element={<AddCard onChangeWord={this.onChangeWord} onChangeNote={this.onChangeNote} onChangeTranslate={this.onChangeTranslate} onSubmit={this.onSubmit} />}/>
-                  <Route path="saved" element={<Saved data={this.state.data}/>}/>
+                  <Route path="saved" element={<Saved data={this.state.data} del={this.deletePost}/>}/>
               </Route>
             </Routes>
             <div>
