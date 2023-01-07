@@ -20,7 +20,7 @@ export const SavedList = [
       note: 'say say3'
     },
     {
-      word: 'hello4',
+      word: 'Sarah',
       translate: 'привет4',
       note: 'say say4'
     },

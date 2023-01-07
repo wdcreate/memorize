@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link} from "react-router-dom";
 
- 
 class Home extends Component {
   
   render() {
@@ -31,21 +30,10 @@ class Home extends Component {
         </div> : <div> You dont have any saved word.
         <Link className="main-btn" to="/addcard">Save your first word</Link>
           </div>}
-        
-          
         </div>
-        
       </div>
     );
   }
 }
  
 export default Home;
-/*
-
-<div className="saved-card" key={rn}>
-  <p>{sl.word}</p>
-  <p>{sl.translate}</p>
-  <p>{sl.note}</p>
-</div>
-*/

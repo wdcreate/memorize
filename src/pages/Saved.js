@@ -32,9 +32,9 @@ class Saved extends Component {
     return (
       <div>
         <h2>Saved list</h2>
+        <h3 onClick={()=>this.props.onSearchF('hel')}>111</h3>
         <div className="saved-inner">
           {dataLength>=1 ? <div className="saved-list">{sl}</div> : <Link className="main-btn" to="/addcard">Save your first word</Link>}
-          
         </div>
       </div>
     );
