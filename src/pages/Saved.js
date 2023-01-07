@@ -1,4 +1,5 @@
 import { React, Component } from "react";
+import {Link } from "react-router-dom";
 
 class Saved extends Component {
   render() {
@@ -6,7 +7,6 @@ class Saved extends Component {
       return (
         <div className="saved-card" key={id}>
           <div className="content">
-            <p>{id}</p>
             <p>{sl.word}</p>
             <p>{sl.translate}</p>
             <p>{sl.note}</p>
@@ -28,11 +28,13 @@ class Saved extends Component {
         </div>
       );
     });
+   let dataLength = this.props.data.length
     return (
       <div>
         <h2>Saved list</h2>
         <div className="saved-inner">
-          <div className="saved-list">{sl}</div>
+          {dataLength>=1 ? <div className="saved-list">{sl}</div> : <Link className="main-btn" to="/addcard">Save your first word</Link>}
+          
         </div>
       </div>
     );

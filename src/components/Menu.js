@@ -13,6 +13,7 @@ class Menu extends Component {
     translate: '',
     note: '',
     data: SavedList,
+    warn: false
   }
   onChangeWord = (event)=>{
     this.setState({word:event.target.value})
@@ -25,20 +26,32 @@ class Menu extends Component {
   }
   onSubmit = (e) =>{
     e.preventDefault()
-    const post = {
-      word: this.state.word,
-      translate: this.state.translate,
-      note: this.state.note,
+    let rw = this.state.word.replace(/\s/g,'')
+    let rt = this.state.translate.replace(/\s/g,'')
+    if (rw.length >=1 && rt.length >=1){
+      this.setState({warn: false})
+      const post = {
+        word: this.state.word,
+        translate: this.state.translate,
+        note: this.state.note,
+      }
+      this.setState((state)=>{
+        const temp =[...state.data]
+        temp.push(post)
+        return{data: temp}
+      })
+      this.setState({
+          word: '',
+          translate: '',
+          note: '',    
+      })
+    }else{
+      this.setState({warn: true})
     }
-    this.setState((state)=>{
-      const temp =[...state.data]
-      temp.push(post)
-      return{data: temp}
-    })
   }
   deletePost =(id)=>{
     this.setState({
-      data : this.state.data.filter((el)=> el.id !== id)
+      data : this.state.data.filter((el, ind)=> ind !== id)
     })
   }
 
@@ -48,7 +61,7 @@ class Menu extends Component {
             <Routes>
               <Route path="/" element={<Layout />}>
                   <Route index element={<Home data={this.state.data} num={this.state.data.length}/>}/>
-                  <Route path="addcard" element={<AddCard onChangeWord={this.onChangeWord} onChangeNote={this.onChangeNote} onChangeTranslate={this.onChangeTranslate} onSubmit={this.onSubmit} />}/>
+                  <Route path="addcard" element={<AddCard onChangeWord={this.onChangeWord} onChangeNote={this.onChangeNote} onChangeTranslate={this.onChangeTranslate} onSubmit={this.onSubmit} word={this.state.word} translate={this.state.translate} note={this.state.note} warn={this.state.warn}  />}/>
                   <Route path="saved" element={<Saved data={this.state.data} del={this.deletePost}/>}/>
               </Route>
             </Routes>

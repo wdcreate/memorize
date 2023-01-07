@@ -2,7 +2,7 @@
     width: 100%;
     position: fixed;
     height: 50px;
-    bottom: 0;
+    bottom: 10px;
     left: 50%;
     transform: translate(-50%);
     -webkit-transform: translate(-50%);

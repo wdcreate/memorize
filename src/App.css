@@ -69,11 +69,20 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  width: 40%;
+  width: 100%;
   min-width: 100px;
   max-width: 300px;
   display: flex;
   justify-content: space-between;
+}
+.saved-card.hr-card{
+  background: rgb(55, 178, 226);
+  justify-content: center;
+  padding: 20px 0;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
 }
 .saved-card p{
   padding: 0;
@@ -85,4 +94,53 @@
 }
 .saved-card button{
   margin-bottom: 5px;
+}
+.add-inner form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+}
+.add-inner form > *{
+  margin-bottom: 10px;
+}
+.add-inner textarea,
+.add-inner input{
+  padding: 10px;
+  outline: none;
+}
+.add-inner .btn-block{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-inner .btn-block button{
+  width: 45%;
+  display: block;
+  padding: 10px;
+  outline: none;
+  background-color: #f0f8ff;
+  border: 1px solid rgb(230, 230, 230);
+}
+.add-inner .warn{
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px 0;
+  background: rgb(255, 0, 0);
+}
+.main-btn{
+  background: rgb(110, 117, 211);
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  padding: 13px 0;
+  margin: 10px auto;
+  width: 300px;
+}
+.home-random{
+  text-align: center;
 }
