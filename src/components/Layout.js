@@ -1,10 +1,10 @@
 import { Outlet, NavLink } from "react-router-dom";
 import Header from "./Header";
 
-const Layout = () => {
+const Layout = ({searchBlock, onSearch, data}) => {
   return (
     <>
-      <Header />
+      <Header sblock={searchBlock} onS ={onSearch} data={data}/>
       <div className="menu-inner">
         <ul className="menu">
           <li>

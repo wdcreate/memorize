@@ -8,12 +8,18 @@ import Layout from "./Layout";
 import { SavedList } from "./SavedList";
 
 class Menu extends Component {
+  constructor(props) {
+    super(props);
+    this.onSearchF = this.onSearchF.bind(this)
+  }
+  
   state = {
     word: "",
     translate: "",
     note: "",
     data: SavedList,
     warn: false,
+    searchBlock: false,
   };
   onChangeWord = (event) => {
     this.setState({ word: event.target.value });
@@ -54,25 +60,20 @@ class Menu extends Component {
       data: this.state.data.filter((el, ind) => ind !== id),
     });
   };
-  //search
-  //search
-  //search
   onSearchF = (keyword) => {
     const filtered = this.state.data.filter((entry) =>
       Object.values(entry).some(
         (val) => typeof val === "string" && val.includes(keyword)
       )
     );
-
     console.log(keyword);
     console.log(filtered);
   };
-
   render() {
     return (
       <div className="content">
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout searchBlock={this.state.searchBlock} onSearch={()=>this.onSearchF()}/>}>
             <Route
               index
               element={
@@ -96,7 +97,7 @@ class Menu extends Component {
             />
             <Route
               path="saved"
-              element={<Saved data={this.state.data} del={this.deletePost} onSearchF={this.onSearchF}/>}
+              element={<Saved data={this.state.data}  del={this.deletePost} ons={this.onSearchF}/>}
             />
           </Route>
         </Routes>

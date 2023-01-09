@@ -1,17 +1,21 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   let navigate = useNavigate();
   let location = useLocation();
   let sb = location.pathname.includes("/saved");
   let sBlock;
   let df;
+
+
   if (sb) {
     df = "header-inner df";
     sBlock = (
+      <div>
       <Link className="search" to="/">
         Search
       </Link>
+      </div>
     );
   } else {
     df = "header-inner";
