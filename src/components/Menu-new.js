@@ -3,6 +3,7 @@ import { Route, Routes, Outlet } from "react-router-dom";
 import Home from "../pages/Home";
 import Saved from "../pages/Saved";
 import AddCard from "../pages/AddCard";
+import Search from "../pages/Search";
 import "./styles/Menu.css";
 import Layout from "./Layout";
 import { SavedList } from "./SavedList";
@@ -11,6 +12,7 @@ function Menu() {
     const [word, setWord] = useState('');
     const [translate, setTranslate] = useState('');
     const [note, setNote] = useState('');
+    let [searchInput, setSearchInput] = useState('');
     const [data, setData] = useState(SavedList);
     const [warn, setWarn] = useState(false);
     const [filteredData, setFilteredData] = useState([]);
@@ -48,17 +50,27 @@ function Menu() {
      const deletePost =(id)=>{
        setData(data.filter((el, ind)=>(ind !==id)))
      }
+     const resetForm =()=>{
+      setSearchInput('')
+      setFilteredData('')
+
+     }
      let filtered
      const onSearchF = (keyword) => {
         filtered = data.filter((entry) =>
           Object.values(entry).some(
             (val) => typeof val === "string" && val.toLowerCase().includes(keyword.toLowerCase())
-          )
-        );
-        setFilteredData(filtered)
-        console.log(keyword);
-        console.log(filtered);
+            )
+          );
+          if(keyword.length >0){
+            setFilteredData(filtered)
+            setSearchInput(keyword)
+          }else{
+            setFilteredData('')
+            setSearchInput('')
+          }
       };
+
     return(
        <div className="content">
         <Routes>
@@ -86,7 +98,11 @@ function Menu() {
             />
             <Route
               path="saved"
-              element={<Saved data={data}  del={deletePost} ons={onSearchF} filtered={filteredData}/>}
+              element={<Saved data={data}  del={deletePost} />}
+            />
+            <Route
+              path="search"
+              element={<Search data={data} resetForm={resetForm} del={deletePost} ons={onSearchF} filtered={filteredData} searchInput={searchInput}/>}
             />
           </Route>
         </Routes>
@@ -96,4 +112,4 @@ function Menu() {
       </div>
     )
 }
-export default Menu
+export default Menu;

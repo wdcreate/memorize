@@ -32,4 +32,14 @@
     padding: 10px 30px;
     cursor: pointer;
     text-decoration: none;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+}
+.menu a.active{
+    color: #fff;
+    background: rgb(112, 112, 112);
+    font-weight: 700;
 }

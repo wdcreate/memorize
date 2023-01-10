@@ -1,7 +1,7 @@
 import { React} from "react";
 import {Link } from "react-router-dom";
 
-function Saved({data, ons, del, filtered}) {
+function Saved({data, del}) {
     const dt = data
     const sl = dt.map((sl, id) => {
         return (
@@ -32,21 +32,8 @@ function Saved({data, ons, del, filtered}) {
     return(
         <div>
           <div className="sec-menu">
-            <h2>Saved list</h2>
-          <input type="text" placeholder="search" onChange={(e)=>ons(e.target.value)}/>
+            <h2>Saved list</h2>          
           </div>
-      <div className="filtered">
-      {filtered.length ? (
-        <ul style={{ maxHeight: '250px', overflowY: 'scroll' }}>
-          {filtered.map((item, i) => (
-            <li key={i}>{item.word}</li>
-          ))}
-        </ul>
-      ) : (
-        <div>No data found</div>
-      )}
-      <button onClick={()=>console.log(filtered)}>1111</button>
-      </div>
         <div className="saved-inner">
           {dataLength>=1 ? <div className="saved-list">{sl}</div> : <Link className="main-btn" to="/addcard">Save your first word</Link>}
         </div>

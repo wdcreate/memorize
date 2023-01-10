@@ -104,6 +104,38 @@
 .add-inner form > *{
   margin-bottom: 10px;
 }
+.search-page form{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 500px;
+  
+}
+.search-list{
+  padding: 0;
+  margin: 0;
+}
+.search-list li{
+  border: 1px solid rgb(219, 219, 219);
+  background-color: rgb(220, 233, 245);
+  list-style: none;
+  padding: 20px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  margin-bottom: 5px;
+}
+.search-page input{
+  width: 90%;
+  display: block;
+}
+.search-page input,
 .add-inner textarea,
 .add-inner input{
   padding: 10px;
@@ -143,4 +175,10 @@
 }
 .home-random{
   text-align: center;
+}
+.search-page form{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 500px;
 }

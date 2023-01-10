@@ -7,9 +7,6 @@ class Home extends Component {
    const rnf=()=>{
        let rn = Math.floor(Math.random()*this.props.num)
        let hr = this.props.data[rn]
-       console.log(hr.word)
-       console.log(hr.translate)
-       console.log(hr.note)
        return (
          <div className="saved-card hr-card">
            <p>{hr.word}</p>
