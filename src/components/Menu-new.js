@@ -15,8 +15,8 @@ function Menu() {
     let [searchInput, setSearchInput] = useState('');
     const [data, setData] = useState(SavedList);
     const [warn, setWarn] = useState(false);
+    //const [editp, setEditp] = useState(false);
     const [filteredData, setFilteredData] = useState([]);
-    //const [searchBlock, setSearchBlock] = useState(false);
     const onChangeWord = (event) => {
         setWord(event.target.value);
       };
@@ -50,11 +50,14 @@ function Menu() {
      const deletePost =(id)=>{
        setData(data.filter((el, ind)=>(ind !==id)))
      }
+     
+     
      const resetForm =()=>{
       setSearchInput('')
       setFilteredData('')
 
      }
+     
      let filtered
      const onSearchF = (keyword) => {
         filtered = data.filter((entry) =>
@@ -70,7 +73,7 @@ function Menu() {
             setSearchInput('')
           }
       };
-
+      
     return(
        <div className="content">
         <Routes>
@@ -98,7 +101,7 @@ function Menu() {
             />
             <Route
               path="saved"
-              element={<Saved data={data}  del={deletePost} />}
+              element={<Saved data={data} del={deletePost} e/>}
             />
             <Route
               path="search"

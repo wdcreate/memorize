@@ -2,7 +2,8 @@ import { React} from "react";
 import {Link } from "react-router-dom";
 
 function Saved({data, del}) {
-    const dt = data
+ 
+  const dt = data
     const sl = dt.map((sl, id) => {
         return (
           <div className="saved-card" key={id}>
@@ -19,7 +20,7 @@ function Saved({data, del}) {
               >
                 delete
               </button>
-              <button
+              <button 
                 className="redo-btn"
               >
                 redo
@@ -29,6 +30,7 @@ function Saved({data, del}) {
         );
       });
     let dataLength = data.length
+   
     return(
         <div>
           <div className="sec-menu">
@@ -37,7 +39,22 @@ function Saved({data, del}) {
         <div className="saved-inner">
           {dataLength>=1 ? <div className="saved-list">{sl}</div> : <Link className="main-btn" to="/addcard">Save your first word</Link>}
         </div>
+        <div className="edit">
+          
+          
+        </div>
       </div>
     )
 }
 export default Saved
+
+/*
+{editp? <form >
+          <input  type="text" placeholder="write your word"/>
+            <input  type="text" placeholder="write translate"/>
+            <textarea  placeholder="place for your notes"></textarea>
+            <button type="submit" >new post</button>
+          </form> : ''}
+          
+
+*/
