@@ -1,60 +1,47 @@
-import { React} from "react";
-import {Link } from "react-router-dom";
+import React from "react";
+//import {Link } from "react-router-dom";
+import SavedData from "../components/SavedData";
 
-function Saved({data, del}) {
- 
-  const dt = data
-    const sl = dt.map((sl, id) => {
-        return (
-          <div className="saved-card" key={id}>
-            <div className="content">
-              <p>{sl.word}</p>
-              <p>{sl.translate}</p>
-              <p>{sl.note}</p>
-            </div>
-            <div className="btn-block">
-              <button
-                onClick={() => del(id)}
-                type="button"
-                className="delete-btn"
-              >
-                delete
-              </button>
-              <button 
-                className="redo-btn"
-              >
-                redo
-              </button>
-            </div>
-          </div>
-        );
-      });
-    let dataLength = data.length
-   
-    return(
-        <div>
-          <div className="sec-menu">
-            <h2>Saved list</h2>          
-          </div>
-        <div className="saved-inner">
-          {dataLength>=1 ? <div className="saved-list">{sl}</div> : <Link className="main-btn" to="/addcard">Save your first word</Link>}
+
+function Saved({data, setData}) {
+
+  function editData(id, newWord, newTranslate, newNote) {
+
+    const editedDataList = data.map((card) => {
+      if (id === card.id) {
+        return { ...card, name: newWord, translate: newTranslate, note: newNote };
+      }
+      return card;
+    });
+    setData(editedDataList);
+  }
+  function deletePost(id) {
+    const remainingTasks = data.filter((card) => id !== card.id);
+    setData(remainingTasks);
+  }
+    const dataList = data.map((card) => (
+      <SavedData
+        id={card.id}
+        key={card.id}
+        word={card.word}
+        translate={card.translate}
+        note={card.note}
+        editData={editData}
+        del={deletePost}
+      />
+    ));
+
+  return(
+      <div>
+        <div className="sec-menu">
+          <h2>Saved list</h2>          
         </div>
-        <div className="edit">
-          
-          
-        </div>
+      <div className="saved-inner">
+        {dataList}
       </div>
-    )
-}
-export default Saved
+    </div>
+  )
+  }
 
-/*
-{editp? <form >
-          <input  type="text" placeholder="write your word"/>
-            <input  type="text" placeholder="write translate"/>
-            <textarea  placeholder="place for your notes"></textarea>
-            <button type="submit" >new post</button>
-          </form> : ''}
-          
+export default Saved;
 
-*/

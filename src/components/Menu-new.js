@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Saved from "../pages/Saved";
 import AddCard from "../pages/AddCard";
 import Search from "../pages/Search";
+//import SavedData from "../components/SavedData";
 import "./styles/Menu.css";
 import Layout from "./Layout";
 import { SavedList } from "./SavedList";
@@ -17,6 +18,11 @@ function Menu() {
     const [warn, setWarn] = useState(false);
     //const [editp, setEditp] = useState(false);
     const [filteredData, setFilteredData] = useState([]);
+
+      
+  
+   
+
     const onChangeWord = (event) => {
         setWord(event.target.value);
       };
@@ -33,6 +39,7 @@ function Menu() {
         if (rw.length >= 1 && rt.length >= 1) {
           setWarn(false);
           const post = {
+            id: `#ea-${data.length+1}`,
             word: word,
             translate: translate,
             note: note,
@@ -47,11 +54,7 @@ function Menu() {
             setWarn(true);
         }
       };
-     const deletePost =(id)=>{
-       setData(data.filter((el, ind)=>(ind !==id)))
-     }
-     
-     
+
      const resetForm =()=>{
       setSearchInput('')
       setFilteredData('')
@@ -101,11 +104,11 @@ function Menu() {
             />
             <Route
               path="saved"
-              element={<Saved data={data} del={deletePost} e/>}
+              element={<Saved data={data}  setData={setData}/>}
             />
             <Route
               path="search"
-              element={<Search data={data} resetForm={resetForm} del={deletePost} ons={onSearchF} filtered={filteredData} searchInput={searchInput}/>}
+              element={<Search data={data} resetForm={resetForm}  ons={onSearchF} filtered={filteredData} searchInput={searchInput}/>}
             />
           </Route>
         </Routes>
