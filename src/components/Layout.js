@@ -8,13 +8,22 @@ const Layout = ({searchBlock, onSearch, data}) => {
       <div className="menu-inner">
         <ul className="menu">
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">
+            <img src="./assets/home.svg" alt="Home" />
+
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/addcard">+</NavLink>
+            <NavLink to="/addcard">
+            <img src="./assets/add-btn.svg" alt="Add word" />
+
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/saved">Saved</NavLink>
+            <NavLink to="/saved">
+            <img src="./assets/saved.svg" alt="Saved list" />
+
+            </NavLink>
           </li>
         </ul>
       </div>

@@ -1,32 +1,32 @@
 export const SavedList = [
     {
       id: '#ea-1',
-      word: 'hello',
-      translate: 'привет',
+      word: 'apple',
+      translate: 'яблоко',
       note: 'say say'
     },
     {
       id: '#ea-2',
-      word: 'hello1',
+      word: 'window',
       translate: 'привет1',
       note: 'say say1'
     },
     {
       id: '#ea-3',
-      word: 'hello2',
-      translate: 'привет2',
+      word: 'mouse',
+      translate: 'мышь',
       note: 'say say2'
     },
     {
       id: '#ea-4',
-      word: 'hello3',
-      translate: 'привет3',
+      word: 'cup',
+      translate: 'чашка',
       note: 'say say3'
     },
     {
       id: '#ea-5',
-      word: 'Sarah',
-      translate: 'привет4',
+      word: 'tree',
+      translate: 'дерево',
       note: 'say say4'
     },
   ]

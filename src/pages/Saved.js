@@ -1,5 +1,5 @@
 import React from "react";
-//import {Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import SavedData from "../components/SavedData";
 
 
@@ -37,8 +37,9 @@ function Saved({data, setData}) {
           <h2>Saved list</h2>          
         </div>
       <div className="saved-inner">
-        {dataList}
+        {data.length>=1 ? <div className="saved-list">{dataList}</div> : <Link className="main-btn" to="/addcard">Save your first word</Link>}
       </div>
+      
     </div>
   )
   }

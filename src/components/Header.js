@@ -14,7 +14,8 @@ function Header(props) {
     sBlock = (
       <div>
       <Link className="search" to="/search">
-        Search
+      <img src="./assets/search.svg" alt="Search" />
+
       </Link>
       </div>
     );
@@ -30,10 +31,11 @@ function Header(props) {
             navigate(-1);
           }}
         >
-          Back
+         <img src="./assets/left-arrow.svg" alt="Back" />
+
         </button>
         <Link className="logo" to="/">
-          Englio
+          <img src="./logo.png" alt="Englio" />
         </Link>
         {sBlock}
       </div>

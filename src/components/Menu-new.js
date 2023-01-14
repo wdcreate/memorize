@@ -58,7 +58,11 @@ function Menu() {
      const resetForm =()=>{
       setSearchInput('')
       setFilteredData('')
-
+     }
+     const resetFormAdd=()=>{
+      setWord('');
+          setTranslate('');
+          setNote('');
      }
      
      let filtered
@@ -99,6 +103,7 @@ function Menu() {
                   translate={translate}
                   note={note}
                   warn={warn}
+                  resetFormAdd={resetFormAdd}
                 />
               }
             />
