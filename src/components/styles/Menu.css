@@ -42,8 +42,9 @@
     display: flex;
     align-items: center;
 }
-.menu a.active img{
-    fill: #000;
-   
+.menu a.active svg{
+    fill: #ffffff;
+    stroke: rgb(0, 0, 0);
 }
+
 

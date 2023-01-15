@@ -34,15 +34,18 @@ function Saved({data, setData}) {
   return(
       <div>
         <div className="sec-menu">
-          <h2>Saved list</h2>          
         </div>
       <div className="saved-inner">
-        {data.length>=1 ? <div className="saved-list">{dataList}</div> : <Link className="main-btn" to="/addcard">Save your first word</Link>}
+        {data.length>=1 ? <div className="saved-list">{dataList}</div> : <div className="oops-section">
+              <img src="../assets/oops.png" alt="Oops..." />
+            <Link className="main-btn" to="/addcard">
+              Add first word
+            </Link>
+            </div>}
       </div>
       
     </div>
   )
   }
-
 export default Saved;
 

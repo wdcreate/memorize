@@ -29,7 +29,7 @@ export default function SavedData({id, word, translate, note, del, editData}) {
   }
 
   const editingTemplate = (
-    <form className="saved-card" onSubmit={handleSubmit}>
+    <form className="saved-card " onSubmit={handleSubmit}>
       <div className="form-group">
         <input
           id={id}
@@ -57,45 +57,46 @@ export default function SavedData({id, word, translate, note, del, editData}) {
 
         <button
           type="button"
-          className="btn todo-cancel"
+          className="form-btn"
           onClick={() => setEditing(false)}
         >
-          Cancel
+      <img src="../assets/cancel.svg" alt="Cancel" />
+
         </button>
-        <button type="submit" className="btn btn__primary todo-edit">
-          Save
+        <button type="submit" className="form-btn">
+        <img src="../assets/check.svg" alt="Save" />
         </button>
       </div>
     </form>
   );
 
   const viewTemplate = (
-    <div className="saved-card ">
+    <div className="saved-card">
       <div className="saved-info">
-          <label className="todo-label" >
+          <label className="saved-card-word" >
             {word}
           </label>
-          <label className="todo-label" >
+          <label className="saved-card-translate" >
             {translate}
           </label>
-          <label className="todo-label" >
+          <label className="saved-card-note" >
             {note}
           </label>
         </div>
         <div className="btn-block">
         <button
           type="button"
-          className="btn"
+          className="form-btn"
           onClick={() => setEditing(true)}
           >
-            Edit 
+            <img src="../assets/edit.svg" alt="Edit" />
           </button>
           <button
                 onClick={() => del(id)}
                 type="button"
-                className="delete-btn"
+                className="delete-btn form-btn"
               >
-                delete
+            <img src="../assets/del.svg" alt="Delete" />
               </button>
         </div>
     </div>

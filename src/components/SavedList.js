@@ -8,7 +8,7 @@ export const SavedList = [
     {
       id: '#ea-2',
       word: 'window',
-      translate: 'привет1',
+      translate: 'окно',
       note: 'say say1'
     },
     {

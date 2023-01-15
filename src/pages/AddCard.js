@@ -3,7 +3,6 @@ import React from "react";
 function AddCard(props) {
   return (
     <div>
-      <h2>AddCard</h2>
       <div className="add-inner">
         <form onSubmit={props.onSubmit}>
           <input onChange={props.onChangeWord} value={props.word} type="text" placeholder="write your word"/>

@@ -1,103 +1,119 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Route, Routes, Outlet } from "react-router-dom";
 import Home from "../pages/Home";
 import Saved from "../pages/Saved";
 import AddCard from "../pages/AddCard";
+import Search from "../pages/Search";
+//import SavedData from "../components/SavedData";
 import "./styles/Menu.css";
 import Layout from "./Layout";
 import { SavedList } from "./SavedList";
 
-class Menu extends Component {
-  constructor(props) {
-    super(props);
-    this.onSearchF = this.onSearchF.bind(this)
-  }
+function Menu() {
+    const [word, setWord] = useState('');
+    const [translate, setTranslate] = useState('');
+    const [note, setNote] = useState('');
+    let [searchInput, setSearchInput] = useState('');
+    const [data, setData] = useState(SavedList);
+    const [warn, setWarn] = useState(false);
+    //const [editp, setEditp] = useState(false);
+    const [filteredData, setFilteredData] = useState([]);
+
+      
   
-  state = {
-    word: "",
-    translate: "",
-    note: "",
-    data: SavedList,
-    warn: false,
-    searchBlock: false,
-  };
-  onChangeWord = (event) => {
-    this.setState({ word: event.target.value });
-  };
-  onChangeTranslate = (event) => {
-    this.setState({ translate: event.target.value });
-  };
-  onChangeNote = (event) => {
-    this.setState({ note: event.target.value });
-  };
-  onSubmit = (e) => {
-    e.preventDefault();
-    let rw = this.state.word.replace(/\s/g, "");
-    let rt = this.state.translate.replace(/\s/g, "");
-    if (rw.length >= 1 && rt.length >= 1) {
-      this.setState({ warn: false });
-      const post = {
-        word: this.state.word,
-        translate: this.state.translate,
-        note: this.state.note,
+   
+
+    const onChangeWord = (event) => {
+        setWord(event.target.value);
       };
-      this.setState((state) => {
-        const temp = [...state.data];
-        temp.push(post);
-        return { data: temp };
-      });
-      this.setState({
-        word: "",
-        translate: "",
-        note: "",
-      });
-    } else {
-      this.setState({ warn: true });
-    }
-  };
-  deletePost = (id) => {
-    this.setState({
-      data: this.state.data.filter((el, ind) => ind !== id),
-    });
-  };
-  onSearchF = (keyword) => {
-    const filtered = this.state.data.filter((entry) =>
-      Object.values(entry).some(
-        (val) => typeof val === "string" && val.includes(keyword)
-      )
-    );
-    console.log(keyword);
-    console.log(filtered);
-  };
-  render() {
-    return (
-      <div className="content">
+     const onChangeTranslate = (event) => {
+        setTranslate(event.target.value);
+      };
+       const onChangeNote = (event) => {
+        setNote(event.target.value );
+      };
+     const onSubmit = (e) => {
+        e.preventDefault();
+        let rw = word.replace(/\s/g, "");
+        let rt = translate.replace(/\s/g, "");
+        if (rw.length >= 1 && rt.length >= 1) {
+          setWarn(false);
+          const post = {
+            id: `#ea-${data.length+1}`,
+            word: word,
+            translate: translate,
+            note: note,
+          };
+          let temp = [...data];
+          temp.push(post);
+          setData(temp);
+          setWord('');
+          setTranslate('');
+          setNote('');
+        } else {
+            setWarn(true);
+        }
+      };
+
+     const resetForm =()=>{
+      setSearchInput('')
+      setFilteredData('')
+     }
+     const resetFormAdd=()=>{
+      setWord('');
+          setTranslate('');
+          setNote('');
+     }
+     
+     let filtered
+     const onSearchF = (keyword) => {
+        filtered = data.filter((entry) =>
+          Object.values(entry).some(
+            (val) => typeof val === "string" && val.toLowerCase().includes(keyword.toLowerCase())
+            )
+          );
+          if(keyword.length >0){
+            setFilteredData(filtered)
+            setSearchInput(keyword)
+          }else{
+            setFilteredData('')
+            setSearchInput('')
+          }
+      };
+      
+    return(
+       <div className="content">
         <Routes>
-          <Route path="/" element={<Layout searchBlock={this.state.searchBlock} onSearch={()=>this.onSearchF()}/>}>
+          <Route path="/" element={<Layout onSearch={()=>onSearchF()} data={data}/>}>
             <Route
               index
               element={
-                <Home data={this.state.data} num={this.state.data.length} />
+                <Home data={data} num={data.length} />
               }
             />
             <Route
               path="addcard"
               element={
                 <AddCard
-                  onChangeWord={this.onChangeWord}
-                  onChangeNote={this.onChangeNote}
-                  onChangeTranslate={this.onChangeTranslate}
-                  onSubmit={this.onSubmit}
-                  word={this.state.word}
-                  translate={this.state.translate}
-                  note={this.state.note}
-                  warn={this.state.warn}
+                  onChangeWord={onChangeWord}
+                  onChangeNote={onChangeNote}
+                  onChangeTranslate={onChangeTranslate}
+                  onSubmit={onSubmit}
+                  word={word}
+                  translate={translate}
+                  note={note}
+                  warn={warn}
+                  resetFormAdd={resetFormAdd}
                 />
               }
             />
             <Route
               path="saved"
-              element={<Saved data={this.state.data}  del={this.deletePost} ons={this.onSearchF}/>}
+              element={<Saved data={data}  setData={setData}/>}
+            />
+            <Route
+              path="search"
+              element={<Search data={data} resetForm={resetForm}  ons={onSearchF} filtered={filteredData} searchInput={searchInput}/>}
             />
           </Route>
         </Routes>
@@ -105,7 +121,6 @@ class Menu extends Component {
           <Outlet />
         </div>
       </div>
-    );
-  }
+    )
 }
 export default Menu;

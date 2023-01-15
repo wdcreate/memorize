@@ -1,29 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 
 function Home({ data, num }) {
-  const rnf = () => {
-    let rn = Math.floor(Math.random() * num);
+  let rn = Math.floor(Math.random() * num);
+  const [randomNum, setRandomNum] = useState(rn);
+  const clickRandom = ()=>{
+    rn = randomNum
+    setRandomNum(Math.floor(Math.random() * num))
+    console.log(randomNum);
+  }
+    const rnf = () => {
     let hr = data[rn];
     return (
-      <div className="saved-card hr-card">
+      <div className="hr-card">
         <p className="randomword">{hr.word}</p>
-        <p className="randomtranslate">{hr.translate}</p>
+        <p  className="randomtranslate">{hr.translate}</p>
       </div>
     );
   };
 
   return (
     <div>
-      <h2>Home</h2>
       <div className="home-inner">
         {num >= 1 ? (
           <div className="home-stat">
-            <p>
-              Saved words: <span>{num}</span>
+            <p className='saved-stat'>
+              Saved words: <span>{num}w</span>
             </p>
              
-            <div className="home-random">{rnf()}</div>
+            <div onClick={()=>clickRandom()} className="home-random">{rnf()}</div>
             <Link className="home-btn main-btn" to="/saved">
               See all
             </Link>
@@ -31,13 +36,15 @@ function Home({ data, num }) {
         ) : (
           <div>
             {" "}
-            You dont have any saved word.
+            <div className="oops-section">
+              <img src="../assets/oops.png" alt="Oops..." />
             <Link className="main-btn" to="/addcard">
-              Save your first word
+              Add first word
             </Link>
+            </div>
           </div>
         )}
-      </div>
+      </div> 
     </div>
   );
 }
