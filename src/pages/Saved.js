@@ -9,11 +9,12 @@ function Saved({data, setData}) {
 
     const editedDataList = data.map((card) => {
       if (id === card.id) {
-        return { ...card, name: newWord, translate: newTranslate, note: newNote };
+        return { ...card, word: newWord, translate: newTranslate, note: newNote };
       }
       return card;
     });
     setData(editedDataList);
+    
   }
   function deletePost(id) {
     const remainingTasks = data.filter((card) => id !== card.id);

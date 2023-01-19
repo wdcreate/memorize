@@ -19,10 +19,6 @@ function Menu() {
     //const [editp, setEditp] = useState(false);
     const [filteredData, setFilteredData] = useState([]);
 
-      
-  
-   
-
     const onChangeWord = (event) => {
         setWord(event.target.value);
       };
@@ -80,6 +76,7 @@ function Menu() {
             setSearchInput('')
           }
       };
+      
       
     return(
        <div className="content">

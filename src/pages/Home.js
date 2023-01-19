@@ -25,7 +25,7 @@ function Home({ data, num }) {
         {num >= 1 ? (
           <div className="home-stat">
             <p className='saved-stat'>
-              Saved words: <span>{num}w</span>
+              Saved words: <span>{num}</span>
             </p>
              
             <div onClick={()=>clickRandom()} className="home-random">{rnf()}</div>

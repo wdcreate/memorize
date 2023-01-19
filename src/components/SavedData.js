@@ -7,7 +7,7 @@ export default function SavedData({id, word, translate, note, del, editData}) {
   const [newTranslate, setNewTranslate] = useState('');
   const [newNote, setNewNote] = useState('');
   function handleChangeWord(e) {
-    setNewWord(e.target.value);
+    setNewWord(e.target.value)
   }
   function handleChangeTranslate(e) {
     setNewTranslate(e.target.value);
@@ -15,7 +15,6 @@ export default function SavedData({id, word, translate, note, del, editData}) {
   function handleChangeNote(e) {
     setNewNote(e.target.value);
   }
-
   function handleSubmit(e) {
     e.preventDefault();
     if (!newWord.trim() || !newTranslate.trim()|| !newNote.trim()) {
@@ -27,9 +26,9 @@ export default function SavedData({id, word, translate, note, del, editData}) {
     setNewNote("");
     setEditing(false);
   }
-
+  
   const editingTemplate = (
-    <form className="saved-card " onSubmit={handleSubmit}>
+    <form className="saved-card" onSubmit={handleSubmit}>
       <div className="form-group">
         <input
           id={id}
@@ -54,14 +53,11 @@ export default function SavedData({id, word, translate, note, del, editData}) {
         />
       </div>
       <div className="btn-group">
-
         <button
           type="button"
           className="form-btn"
-          onClick={() => setEditing(false)}
-        >
+          onClick={() => setEditing(false)}>
       <img src="../assets/cancel.svg" alt="Cancel" />
-
         </button>
         <button type="submit" className="form-btn">
         <img src="../assets/check.svg" alt="Save" />
