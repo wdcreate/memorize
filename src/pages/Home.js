@@ -1,38 +1,43 @@
-import React, {useState} from "react";
+import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 
+const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 function Home({ data, num }) {
-  let rn = Math.floor(Math.random() * num);
-  const [randomNum, setRandomNum] = useState(rn);
-  const clickRandom = ()=>{
-    rn = randomNum
-    setRandomNum(Math.floor(Math.random() * num))
-    console.log(randomNum);
-  }
-    const rnf = () => {
-    let hr = data[rn];
-    return (
-      <div className="hr-card">
-        <p className="randomword">{hr.word}</p>
-        <p  className="randomtranslate">{hr.translate}</p>
-      </div>
-    );
+  const [newArr, setNewArr] = useState(shuffle([...data]));
+  const [i, setI] = useState(0);
+
+  const randomCard = useMemo(() => {
+    if (!newArr || i < 0 || i >= newArr.length) return undefined;
+    return newArr[i];
+  }, [newArr, i]);
+
+  const randomizeCard = () => {
+    if (i < newArr.length - 1) {
+      setI(i + 1);
+    } else {
+      setNewArr(shuffle([...data]));
+      setI(0);
+    }
   };
 
   return (
     <div>
       <div className="home-inner">
-        {num >= 1 ? (
+        {num >= 1 && randomCard ? (
           <div className="home-stat">
             <p className='saved-stat'>
               Saved words: <span>{num}</span>
             </p>
-             
-            <div onClick={()=>clickRandom()} className="home-random">{rnf()}</div>
+            <div onClick={randomizeCard} className="home-random">
+              <div className="hr-card">
+                <p className="randomword">{randomCard.word}</p>
+                <p className="randomtranslate">{randomCard.translate}</p>
+              </div>
+            </div>
             <Link className="home-btn main-btn" to="/saved">
               See all
             </Link>
-          </div> 
+          </div>
         ) : (
           <div>
             {" "}
@@ -44,7 +49,7 @@ function Home({ data, num }) {
             </div>
           </div>
         )}
-      </div> 
+      </div>
     </div>
   );
 }

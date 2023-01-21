@@ -3,27 +3,15 @@ import React, { useState } from "react";
 
 export default function SavedData({id, word, translate, note, del, editData}) {
   const [isEditing, setEditing] = useState(false);
-  const [newWord, setNewWord] = useState('');
-  const [newTranslate, setNewTranslate] = useState('');
-  const [newNote, setNewNote] = useState('');
-  function handleChangeWord(e) {
-    setNewWord(e.target.value)
-  }
-  function handleChangeTranslate(e) {
-    setNewTranslate(e.target.value);
-  }
-  function handleChangeNote(e) {
-    setNewNote(e.target.value);
-  }
+  const [newWord, setNewWord] = useState(word);
+  const [newTranslate, setNewTranslate] = useState(translate);
+  const [newNote, setNewNote] = useState(note);
   function handleSubmit(e) {
     e.preventDefault();
     if (!newWord.trim() || !newTranslate.trim()|| !newNote.trim()) {
       return;
     }
     editData(id, newWord, newTranslate, newNote);
-    setNewWord("");
-    setNewTranslate("");
-    setNewNote("");
     setEditing(false);
   }
   
@@ -34,22 +22,25 @@ export default function SavedData({id, word, translate, note, del, editData}) {
           id={id}
           className="card-text"
           type="text"
-          value={newWord || word}
-          onChange={handleChangeWord}
+          placeholder='word place'
+          defaultValue={newWord || word}
+          onChange={(e)=>setNewWord(e.target.value)}
         />
         <input
           id={id}
           className="card-text"
           type="text"
-          value={newTranslate || translate}
-          onChange={handleChangeTranslate}
+          placeholder='translate place'
+          defaultValue={newTranslate || translate}
+          onChange={(e)=>setNewTranslate(e.target.value)}
         />
         <input
           id={id}
           className="card-text"
           type="text"
-          value={newNote || note}
-          onChange={handleChangeNote}
+          placeholder='note place'
+          defaultValue={newNote || note}
+          onChange={(e)=>setNewNote(e.target.value)}
         />
       </div>
       <div className="btn-group">

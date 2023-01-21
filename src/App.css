@@ -194,7 +194,7 @@ margin: 30px 0 50px 0;
   margin-bottom: 10px;
   width: 100%;
   max-width: 500px;
-  
+  margin-top: 30px;
 }
 .search-list{
   padding: 0;
@@ -215,17 +215,14 @@ margin: 30px 0 50px 0;
   -o-border-radius: 5px;
   margin-bottom: 5px;
 }
-.search-page input{
-  width: 90%;
-  display: block;
-}
+
 .search-page input,
 .add-inner textarea,
 .add-inner input{
   padding: 10px;
   outline: none;
   border: none;
-  border-bottom: 1px solid #000;
+  border: 1px solid rgb(100, 100, 100);
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -278,12 +275,7 @@ margin: 30px 0 50px 0;
 .home-random{
   text-align: center;
 }
-.search-page form{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 500px;
-}
+
 .form-btn{
   padding: 5px;
   outline: none;
@@ -297,7 +289,7 @@ margin: 30px 0 50px 0;
 }
 .form-btn:hover{
   border-radius:5px;
-  background: rgb(197, 197, 197);
+  background: rgb(103, 188, 245);
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
   -ms-border-radius:5px;
@@ -320,6 +312,8 @@ margin: 30px 0 50px 0;
   height: 300px;
   margin-bottom: 60px;
 }
+
+
 @media(max-width: 980px){
   .saved-list{
     grid-template-columns: 1fr 1fr;

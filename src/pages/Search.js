@@ -1,20 +1,16 @@
 import { React } from "react";
 
-function Search({ data, ons, del, filtered, searchInput, resetForm }) {
+function Search({ data, ons, del, filtered, searchInput }) {
   return (
     <div className="search-page">
       <div className="sec-menu">
-        <h2>Search list</h2>
-        <form>
+        <form >
           <input
             type="text"
             value={searchInput}
             placeholder="search"
             onChange={(e) => ons(e.target.value)}
           />
-          <button onClick={resetForm} type="reset">
-            reset
-          </button>
         </form>
       </div>
       <div className="filtered">
