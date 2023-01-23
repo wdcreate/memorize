@@ -13,11 +13,13 @@ function Saved({data, setData}) {
       }
       return card;
     });
+    localStorage.setItem('langCards', JSON.stringify(editedDataList))
     setData(editedDataList);
     
   }
   function deletePost(id) {
     const remainingTasks = data.filter((card) => id !== card.id);
+    localStorage.setItem('langCards', JSON.stringify(remainingTasks))
     setData(remainingTasks);
   }
     const dataList = data.map((card) => (

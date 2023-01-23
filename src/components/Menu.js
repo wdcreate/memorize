@@ -13,7 +13,7 @@ function Menu() {
     const [translate, setTranslate] = useState('');
     const [note, setNote] = useState('');
     let [searchInput, setSearchInput] = useState('');
-    const [data, setData] = useState(SavedList);
+    const [data, setData] = useState(JSON.parse(localStorage.getItem('langCards')) ||SavedList);
     const [warn, setWarn] = useState(false);
     const [filteredData, setFilteredData] = useState([]);
 
@@ -40,6 +40,7 @@ function Menu() {
           };
           let temp = [...data];
           temp.push(post);
+          localStorage.setItem('langCards', JSON.stringify(temp))
           setData(temp);
           setWord('');
           setTranslate('');
