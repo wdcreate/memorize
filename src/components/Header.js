@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-
+//import AuthForm from '../pages/AuthForm'
 function Header(props) {
   let navigate = useNavigate();
   let location = useLocation();
@@ -15,7 +15,6 @@ function Header(props) {
       <div>
       <Link className="search" to="/search">
       <img src="./assets/search.svg" alt="Search" />
-
       </Link>
       </div>
     );
@@ -38,9 +37,14 @@ function Header(props) {
           <img src="./logo.png" alt="Englio" />
         </Link>
         {sBlock}
+      <Link to="/login">
+        log in
+      </Link>
+      <Link to="/signup">
+        sign up
+      </Link>
       </div>
     </header>
   );
 }
-
 export default Header;

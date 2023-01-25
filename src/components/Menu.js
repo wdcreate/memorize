@@ -4,10 +4,14 @@ import Home from "../pages/Home";
 import Saved from "../pages/Saved";
 import AddCard from "../pages/AddCard";
 import Search from "../pages/Search";
-import "./styles/Menu.css";
+import Account from '../pages/Account'
+import Login from '../pages/Login'
+import SignUp from '../pages/SignUp'
 import Layout from "./Layout";
 import { SavedList } from "./SavedList";
-
+import { AuthContextProvider } from '../context/AuthContext';
+import ProtectedRoute from './ProtectedRoute';
+import "./styles/Menu.css";
 function Menu() {
     const [word, setWord] = useState('');
     const [translate, setTranslate] = useState('');
@@ -73,6 +77,7 @@ function Menu() {
       
     return(
        <div className="content">
+      <AuthContextProvider>
         <Routes>
           <Route path="/" element={<Layout onSearch={()=>onSearchF()} data={data}/>}>
             <Route
@@ -105,8 +110,23 @@ function Menu() {
               path="search"
               element={<Search data={data}  ons={onSearchF} filtered={filteredData} searchInput={searchInput}/>}
             />
+            <Route
+              path="account"
+              element={<ProtectedRoute>
+                <Account />
+              </ProtectedRoute>}
+            />
+            <Route
+              path="signup"
+              element={<SignUp />}
+            />
+            <Route
+              path="login"
+              element={<Login />}
+            />
           </Route>
         </Routes>
+        </AuthContextProvider>
         <div>
           <Outlet />
         </div>
