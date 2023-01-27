@@ -10,28 +10,23 @@ import {
 
 export default function Saved({ data, setData }) {
 
-  function editData(id, newWord, newTranslate, newNote) {
-    const editedDataList = async (card) => {
-      if (id === card.id) {
-        return {
-          ...card,
-          word: newWord,
-          translate: newTranslate,
-          note: newNote,
-        };
-      }
-      let newFields = {
-          word: newWord,
-          translate: newTranslate,
-          note: newNote,
-      }
-      await updateDoc(doc(db, "langcards-db", id), newFields);
-      return card;
+const editData = async (id, newWord, newTranslate, newNote) => {
+  const editedDataList = await Promise.all(data.map(async (card) => {
+    let newFields = {
+      word: newWord,
+      translate: newTranslate,
+      note: newNote,
     };
-      console.log(data)
-      console.log(editedDataList)
-    setData(editedDataList);
-  } 
+
+    if (id === card.id) {
+      return { ...card, ...newFields };
+    }
+    await updateDoc(doc(db, "langcards-db", id), newFields);
+    return card;
+  }));
+
+  setData(editedDataList);
+};
 
   const deletePost = async (id) => {
     await deleteDoc(doc(db, "langcards-db", id));
