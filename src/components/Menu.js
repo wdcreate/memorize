@@ -9,10 +9,17 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Layout from "./Layout";
 //import { SavedList } from "./SavedList";
-import { AuthContextProvider } from "../context/AuthContext";
+import { UserAuth } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import { db } from "../firebase";
-import { query, collection, onSnapshot, addDoc } from "firebase/firestore";
+import {
+  query,
+  collection,
+  onSnapshot,
+  addDoc,
+  //getDocs,
+  //where,
+} from "firebase/firestore";
 import "./styles/Menu.css";
 
 function Menu() {
@@ -23,19 +30,24 @@ function Menu() {
   const [data, setData] = useState([]);
   const [warn, setWarn] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
-  useEffect(() => {
-    const q = query(collection(db, "langcards-db"));
+  //const user = auth.currentUser;
+  const {user} = UserAuth()
+
+useEffect(() => {
+  const q = query(collection(db, "langcards-db"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let wordsArr = [];
-      querySnapshot.forEach((doc) => {
-        wordsArr.push({ ...doc.data(), id: doc.id });
-      });
-      setData(wordsArr);
+    let wordsArr = [];
+    querySnapshot.forEach((doc) => {
+      wordsArr.push({ ...doc.data(), id: doc.id });
     });
-    return () => unsubscribe();
-  }, []);
+    setData(wordsArr);
+  });
+  return () => unsubscribe();
+}, []);
+
   const onChangeWord = (event) => {
     setWord(event.target.value);
+    console.log(user.uid)
   };
   const onChangeTranslate = (event) => {
     setTranslate(event.target.value);
@@ -53,8 +65,8 @@ function Menu() {
         word: word,
         translate: translate,
         note: note,
+        author: user.uid,
       });
-      console.log(word, translate, note)
       setWord("");
       setTranslate("");
       setNote("");
@@ -62,8 +74,6 @@ function Menu() {
       setWarn(true);
     }
   };
-
-
   const resetFormAdd = () => {
     setWord("");
     setTranslate("");
@@ -89,7 +99,6 @@ function Menu() {
 
   return (
     <div className="content">
-      <AuthContextProvider>
         <Routes>
           <Route
             path="/"
@@ -139,7 +148,6 @@ function Menu() {
             <Route path="login" element={<Login />} />
           </Route>
         </Routes>
-      </AuthContextProvider>
       <div>
         <Outlet />
       </div>

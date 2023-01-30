@@ -8,8 +8,8 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-export default function Saved({ data, setData }) {
-
+export default function Saved({ data, setData, }) {
+  
 const editData = async (id, newWord, newTranslate, newNote) => {
   const editedDataList = await Promise.all(data.map(async (card) => {
     let newFields = {
@@ -24,7 +24,6 @@ const editData = async (id, newWord, newTranslate, newNote) => {
     await updateDoc(doc(db, "langcards-db", id), newFields);
     return card;
   }));
-
   setData(editedDataList);
 };
 

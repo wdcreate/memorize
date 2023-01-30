@@ -22,10 +22,10 @@ const Signup = () => {
   };
 
   return (
-    <div >
+    <div className='auth-form login-form'>
       <div>
         <h1 >Sign up for a free account</h1>
-        <p className='py-2'>
+        <p className='intro'>
           Already have an account yet?{' '}
           <Link to='/' className='underline'>
             Sign in.
@@ -38,17 +38,18 @@ const Signup = () => {
           <input
             onChange={(e) => setEmail(e.target.value)}
             type='email'
+            placeholder='place for email'
           />
         </div>
         <div >
           <label >Password</label>
           <input
             onChange={(e) => setPassword(e.target.value)}
-          
+            placeholder='place for password'
             type='password'
           />
         </div>
-        <button >
+        <button type='button' className='main-btn'>
           Sign Up
         </button>
       </form>

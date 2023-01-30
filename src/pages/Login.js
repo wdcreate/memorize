@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserAuth } from '../context/AuthContext';
+import {UserAuth} from '../context/AuthContext';
 
 const Signin = () => {
   const [email, setEmail] = useState('');
@@ -8,6 +8,7 @@ const Signin = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { signIn } = UserAuth();
+  const { user } = UserAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,17 +16,20 @@ const Signin = () => {
     try {
       await signIn(email, password)
       navigate('/account')
+      console.log(user)
+      
     } catch (e) {
       setError(e.message)
       console.log(e.message)
+      console.log(error)
     }
   };
 
   return (
-    <div >
-      <div>
+    <div className='auth-form login-form'>
+      <div >
         <h1 >Sign in to your account</h1>
-        <p>
+        <p className='intro'>
           Don't have an account yet?{' '}
           <Link to='/signup' className='underline'>
             Sign up.
@@ -35,13 +39,13 @@ const Signin = () => {
       <form onSubmit={handleSubmit}>
         <div >
           <label >Email Address</label>
-          <input onChange={(e) => setEmail(e.target.value)}  type='email' />
+          <input onChange={(e) => setEmail(e.target.value)}  type='email' placeholder='place for email'/>
         </div>
         <div >
           <label >Password</label>
-          <input onChange={(e) => setPassword(e.target.value)} type='password' />
+          <input onChange={(e) => setPassword(e.target.value)} type='password' placeholder='place for password'/>
         </div>
-        <button >
+        <button type='button' className='main-btn'>
           Sign In
         </button>
       </form>

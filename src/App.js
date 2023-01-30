@@ -1,13 +1,17 @@
 import Menu from './components/Menu'
+import { AuthContextProvider} from "./context/AuthContext";
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <div className="container">
-        <Menu />
+    <AuthContextProvider>
+      <div className="App">
+          <div className="container">
+            <Menu />
+          </div>
       </div>
-    </div>
+    </AuthContextProvider>
   );
 }
 

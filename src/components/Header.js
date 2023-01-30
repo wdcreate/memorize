@@ -1,12 +1,18 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-//import AuthForm from '../pages/AuthForm'
+import { UserAuth } from "../context/AuthContext";
+//import { useEffect } from "react";
+
+
 function Header(props) {
+  //const user = auth.currentUser;
   let navigate = useNavigate();
   let location = useLocation();
   let sb = location.pathname.includes("/saved"  );
   let ss = location.pathname.includes("/search" );
   let sBlock;
   let df;
+  const {user} = UserAuth()
+
 
 
   if (sb || ss) {
@@ -21,6 +27,7 @@ function Header(props) {
   } else {
     df = "header-inner";
   }
+
   return (
     <header className="header">
       <div className={df}>
@@ -31,18 +38,22 @@ function Header(props) {
           }}
         >
          <img src="./assets/left-arrow.svg" alt="Back" />
-
         </button>
         <Link className="logo" to="/">
           <img src="./logo.png" alt="Englio" />
         </Link>
         {sBlock}
-      <Link to="/login">
+       {!user ? 
+       <div className='header-links'><Link to="/login">
         log in
       </Link>
+      
       <Link to="/signup">
         sign up
-      </Link>
+      </Link></div> : <Link className='account-link' to="/account">
+        Account
+      </Link>}
+      
       </div>
     </header>
   );
