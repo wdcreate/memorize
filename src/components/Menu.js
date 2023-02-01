@@ -11,7 +11,9 @@ import Layout from "./Layout";
 //import { SavedList } from "./SavedList";
 import { UserAuth } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
-import { db } from "../firebase";
+//import { AuthContextProvider} from "../context/AuthContext";
+
+import { db} from "../firebase";
 import {
   query,
   collection,
@@ -97,6 +99,7 @@ useEffect(() => {
     }
   };
 
+  //<AuthContextProvider>
   return (
     <div className="content">
         <Routes>
@@ -155,3 +158,4 @@ useEffect(() => {
   );
 }
 export default Menu;
+   //</AuthContextProvider>

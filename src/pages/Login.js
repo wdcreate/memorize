@@ -16,12 +16,12 @@ const Signin = () => {
     try {
       await signIn(email, password)
       navigate('/account')
-      console.log(user)
+      //console.log(user)
       
     } catch (e) {
       setError(e.message)
       console.log(e.message)
-      console.log(error)
+      //console.log(error)
     }
   };
 
@@ -45,7 +45,7 @@ const Signin = () => {
           <label >Password</label>
           <input onChange={(e) => setPassword(e.target.value)} type='password' placeholder='place for password'/>
         </div>
-        <button type='button' className='main-btn'>
+        <button type='submit' className='main-btn'>
           Sign In
         </button>
       </form>

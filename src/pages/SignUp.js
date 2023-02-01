@@ -5,19 +5,25 @@ import { UserAuth } from '../context/AuthContext';
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmedPassword, setConfirmedPassword] = useState('');
+  const [wrongPassword, setWrongPassword] = useState(false);
   const [error, setError] = useState('')
   const { createUser } = UserAuth();
   const navigate = useNavigate()
-
+  const validPass = password.length>6 && confirmedPassword>6 && password === confirmedPassword
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    try {
-      await createUser(email, password);
-      navigate('/account')
-    } catch (e) {
-      setError(e.message);
-      console.log(e.message);
+    if(validPass){
+      try {
+        await createUser(email, password);
+        navigate('/account')
+      } catch (e) {
+        setError(e.message);
+        console.log(e.message);
+      }
+    }else{
+      setWrongPassword(true)
     }
   };
 
@@ -49,7 +55,15 @@ const Signup = () => {
             type='password'
           />
         </div>
-        <button type='button' className='main-btn'>
+        <div >
+          <label >{!wrongPassword ? <span>Confirm Password</span>  : <span>Passwords dont match, try again</span> } </label>
+          <input
+            onChange={(e) => setConfirmedPassword(e.target.value)}
+            placeholder='place for confirm password'
+            type='password'
+          />
+        </div>
+        <button type='submit' className='main-btn'>
           Sign Up
         </button>
       </form>

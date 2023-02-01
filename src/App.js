@@ -1,15 +1,15 @@
-import Menu from './components/Menu'
-import { AuthContextProvider} from "./context/AuthContext";
+import Menu from "./components/Menu";
+import { AuthContextProvider } from "./context/AuthContext";
 
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
     <AuthContextProvider>
       <div className="App">
-          <div className="container">
-            <Menu />
-          </div>
+        <div className="container">
+          <Menu />
+        </div>
       </div>
     </AuthContextProvider>
   );
