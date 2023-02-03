@@ -433,6 +433,18 @@ margin: 30px 0 50px 0;
   cursor: pointer;
   background-color: red;
 }
+.resetpass{
+  margin-top: 20px;
+}
+.resetpass button{
+  background: none;
+  border: none;
+  margin-left: 20px;
+  font-size: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+
+}
 .home-nouser{
   display: flex;
 flex-direction: column;

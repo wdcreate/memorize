@@ -8,7 +8,7 @@ const Signin = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { signIn } = UserAuth();
-  const { triggerResetEmail } = UserAuth();
+  const {loginResetEmail} = UserAuth();
   const { user } = UserAuth();
 
   const handleSubmit = async (e) => {
@@ -49,7 +49,12 @@ const Signin = () => {
           Sign In
         </button>
       </form>
-      
+      <div className='resetpass'>
+         <span>Forgot password?</span> 
+          <button type='button' onClick={()=>loginResetEmail(email)}>
+          Set new
+        </button>
+        </div>
     </div>
   );
 };
