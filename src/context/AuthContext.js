@@ -4,6 +4,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  sendPasswordResetEmail,
+  sendEmailVerification
 
 } from 'firebase/auth';
 import { auth } from '../firebase';
@@ -11,7 +13,6 @@ import { auth } from '../firebase';
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  //const userCurrent = auth.currentUser
 
   const [user, setUser] = useState({});
   
@@ -36,13 +37,27 @@ export const AuthContextProvider = ({ children }) => {
    const signIn = (email, password) =>  {
     return signInWithEmailAndPassword(auth, email, password)
    }
+   const triggerResetEmail = (email) => {
+    sendPasswordResetEmail(auth, email)
+    .then(() => {
+      console.log("Password reset email sent")
+      
+    })
+    .catch((error) => {
+      console.log(error.code);
+      console.log(error.message);
+    })}
 
+   const verifyEmail = ()=> sendEmailVerification(auth.currentUser)
+      .then(() => {
+        console.log('Done!')
+      });
   const logout = () => {
       return signOut(auth)
   }
 
   return (
-    <UserContext.Provider value={{ createUser, user, logout, signIn }}>
+    <UserContext.Provider value={{ createUser, user, logout, signIn, triggerResetEmail, verifyEmail }}>
       {children}
     </UserContext.Provider>
   );

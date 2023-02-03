@@ -10,7 +10,7 @@ const Signup = () => {
   const [error, setError] = useState('')
   const { createUser } = UserAuth();
   const navigate = useNavigate()
-  const validPass = password.length>6 && confirmedPassword>6 && password === confirmedPassword
+  const validPass = password.length>=6 && confirmedPassword>6 && password === confirmedPassword
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');

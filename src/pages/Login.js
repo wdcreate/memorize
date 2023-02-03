@@ -8,6 +8,7 @@ const Signin = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { signIn } = UserAuth();
+  const { triggerResetEmail } = UserAuth();
   const { user } = UserAuth();
 
   const handleSubmit = async (e) => {
@@ -24,14 +25,13 @@ const Signin = () => {
       //console.log(error)
     }
   };
-
   return (
     <div className='auth-form login-form'>
       <div >
         <h1 >Sign in to your account</h1>
         <p className='intro'>
           Don't have an account yet?{' '}
-          <Link to='/signup' className='underline'>
+          <Link to='/signup' >
             Sign up.
           </Link>
         </p>
@@ -49,6 +49,7 @@ const Signin = () => {
           Sign In
         </button>
       </form>
+      
     </div>
   );
 };

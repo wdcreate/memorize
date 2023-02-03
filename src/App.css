@@ -367,6 +367,87 @@ margin: 30px 0 50px 0;
     cursor: pointer;
     background-color: #799bff;
 }
+.account-settings{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.account-settings span{
+  font-size: 18px;
+  font-weight: 500;
+}
+.account-settings p{
+  font-size: 16px;
+  text-decoration: underline;
+  margin: 0;
+}
+.account-settings button.verified{
+  background-color: #a4fa9c;
+}
+.account-settings button{
+  color: #fff;
+  font-size: 16px;
+  width: 150px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  cursor: pointer;
+  background-color: #ff798b;
+}
+.verify-notification{
+  background: #ff798b;
+  padding: 20px 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 75px;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.verify-notification button{
+  margin-left: 20px;
+  color: #fff;
+  font-size: 16px;
+  width: 100px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  cursor: pointer;
+  background-color: red;
+}
+.home-nouser{
+  display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+margin-top: 100px;
+}
+.home-nouser p{
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.home-nouser .header-links a{
+  padding: 10px 30px;
+}
 .header-links{
   display: flex;
   align-items: center;

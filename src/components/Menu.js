@@ -11,16 +11,14 @@ import Layout from "./Layout";
 //import { SavedList } from "./SavedList";
 import { UserAuth } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
-//import { AuthContextProvider} from "../context/AuthContext";
-
-import { db} from "../firebase";
+import { db } from "../firebase";
 import {
-  query,
+  getDocs,
+ // query,
   collection,
-  onSnapshot,
+  //onSnapshot,
   addDoc,
-  //getDocs,
-  //where,
+  //where
 } from "firebase/firestore";
 import "./styles/Menu.css";
 
@@ -32,24 +30,27 @@ function Menu() {
   const [data, setData] = useState([]);
   const [warn, setWarn] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
-  //const user = auth.currentUser;
-  const {user} = UserAuth()
-
-useEffect(() => {
-  const q = query(collection(db, "langcards-db"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    let wordsArr = [];
+  const { user } = UserAuth();
+  
+  const fetchProduct = async () => {
+    const querySnapshot = await getDocs(collection(db, "langcards-db"));
+    const arr = [];
     querySnapshot.forEach((doc) => {
-      wordsArr.push({ ...doc.data(), id: doc.id });
+      arr.push({
+        ...doc.data(),
+        id: doc.id,
+      });
     });
-    setData(wordsArr);
-  });
-  return () => unsubscribe();
-}, []);
+    setData(arr);
+  };
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
 
   const onChangeWord = (event) => {
     setWord(event.target.value);
-    console.log(user.uid)
+    console.log(user.emailVerified);
   };
   const onChangeTranslate = (event) => {
     setTranslate(event.target.value);
@@ -67,6 +68,7 @@ useEffect(() => {
         word: word,
         translate: translate,
         note: note,
+        category: "category",
         author: user.uid,
       });
       setWord("");
@@ -99,58 +101,57 @@ useEffect(() => {
     }
   };
 
-  //<AuthContextProvider>
   return (
     <div className="content">
-        <Routes>
+      <Routes>
+        <Route
+          path="/"
+          element={<Layout onSearch={() => onSearchF()} data={data} />}
+        >
+          <Route index element={<Home  data={data} num={data.length} />}/> 
           <Route
-            path="/"
-            element={<Layout onSearch={() => onSearchF()} data={data} />}
-          >
-            <Route index element={<Home data={data} num={data.length} />} />
-            <Route
-              path="addcard"
-              element={
-                <AddCard
-                  onChangeWord={onChangeWord}
-                  onChangeNote={onChangeNote}
-                  onChangeTranslate={onChangeTranslate}
-                  onSubmit={onSubmit}
-                  word={word}
-                  translate={translate}
-                  note={note}
-                  warn={warn}
-                  resetFormAdd={resetFormAdd}
-                />
-              }
-            />
-            <Route
-              path="saved"
-              element={<Saved data={data} setData={setData} />}
-            />
-            <Route
-              path="search"
-              element={
-                <Search
-                  data={data}
-                  ons={onSearchF}
-                  filtered={filteredData}
-                  searchInput={searchInput}
-                />
-              }
-            />
-            <Route
-              path="account"
-              element={
-                <ProtectedRoute>
-                  <Account />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="login" element={<Login />} />
-          </Route>
-        </Routes>
+            path="addcard"
+            element={
+              <AddCard
+                onChangeWord={onChangeWord}
+                onChangeNote={onChangeNote}
+                onChangeTranslate={onChangeTranslate}
+                onSubmit={onSubmit}
+                word={word}
+                translate={translate}
+                note={note}
+                warn={warn}
+                resetFormAdd={resetFormAdd}
+              />
+            }
+          />
+          <Route
+            path="saved"
+            element={<Saved data={data} setData={setData} />}
+          />
+          <Route
+            path="search"
+            element={
+              <Search
+                data={data}
+                ons={onSearchF}
+                filtered={filteredData}
+                searchInput={searchInput}
+              />
+            }
+          />
+          <Route
+            path="account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+      </Routes>
       <div>
         <Outlet />
       </div>
@@ -158,4 +159,3 @@ useEffect(() => {
   );
 }
 export default Menu;
-   //</AuthContextProvider>

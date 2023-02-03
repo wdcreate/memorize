@@ -1,10 +1,12 @@
 import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 
 const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 function Home({ data, num }) {
   const [newArr, setNewArr] = useState(shuffle([...data]));
   const [i, setI] = useState(0);
+  const { user, verifyEmail } = UserAuth();
 
   const randomCard = useMemo(() => {
     if (!newArr || i < 0 || i >= newArr.length) return undefined;
@@ -22,10 +24,20 @@ function Home({ data, num }) {
 
   return (
     <div>
-      <div className="home-inner">
+      {!user ? <div className='home-nouser'>
+        <p>You can save words here</p>
+        <p>register new account or log in in your acccount</p>
+        <div className='header-links'>
+          <Link to="/login">
+        log in
+      </Link>
+      <Link to="/signup">
+        sign up
+      </Link></div>
+      </div> : <div className="home-inner">
         {num >= 1 && randomCard ? (
           <div className="home-stat">
-            <p className='saved-stat'>
+            <p className="saved-stat">
               Saved words: <span>{num}</span>
             </p>
             <div onClick={randomizeCard} className="home-random">
@@ -43,13 +55,24 @@ function Home({ data, num }) {
             {" "}
             <div className="oops-section">
               <img src="../assets/oops.png" alt="Oops..." />
-            <Link className="main-btn" to="/addcard">
-              Add first word
-            </Link>
+              <Link className="main-btn" to="/addcard">
+                Add first word
+              </Link>
             </div>
           </div>
         )}
-      </div>
+      {!user.emailVerified ? (
+        <div className="verify-notification">
+          <span>Please verify your account</span>
+          <button type="button" onClick={verifyEmail}>
+            Verify
+          </button>
+        </div>
+      ) : (
+        <span></span>
+      )}
+      </div>}
+      
     </div>
   );
 }
