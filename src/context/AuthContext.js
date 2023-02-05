@@ -7,7 +7,7 @@ import {
   sendPasswordResetEmail,
   sendEmailVerification,
   //reauthenticateWithCredential,
-  EmailAuthProvider,
+ // EmailAuthProvider,
   //updatePassword,
 } from "firebase/auth";
 import { auth } from "../firebase";

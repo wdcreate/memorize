@@ -18,7 +18,7 @@ import {
   collection,
   //onSnapshot,
   addDoc,
-  //where
+  where
 } from "firebase/firestore";
 import "./styles/Menu.css";
 
@@ -29,24 +29,41 @@ function Menu() {
   let [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState([]);
   const [warn, setWarn] = useState(false);
+   const [isLoading, setIsLoading] = useState(true);
   const [filteredData, setFilteredData] = useState([]);
   const { user } = UserAuth();
-  
+
   const fetchProduct = async () => {
-    const querySnapshot = await getDocs(collection(db, "langcards-db"));
-    const arr = [];
-    querySnapshot.forEach((doc) => {
-      arr.push({
-        ...doc.data(),
-        id: doc.id,
+
+      const querySnapshot = await getDocs(collection(db, "langcards-db"));
+      const arr = [];
+      querySnapshot.forEach((doc) => {
+        arr.push({
+          ...doc.data(),
+          id: doc.id,
+        });
       });
-    });
-    setData(arr);
-  };
+      setData(arr);
+      setIsLoading(false);
+  }
+  
+ 
 
   useEffect(() => {
-    fetchProduct();
+    if(user){
+      fetchProduct();
+    }else{
+      setData([])
+    }
   }, []);
+
+  useEffect(() => {
+    if(user){
+      fetchProduct();
+    }else{
+      setData([])
+    }  
+  }, [user]);
 
   const onChangeWord = (event) => {
     setWord(event.target.value);
@@ -100,6 +117,7 @@ function Menu() {
       setSearchInput("");
     }
   };
+  const HomeRoute = () => isLoading ? <div>Loading...</div> : <Home  data={data} num={data.length} /> 
 
   return (
     <div className="content">
@@ -108,7 +126,7 @@ function Menu() {
           path="/"
           element={<Layout onSearch={() => onSearchF()} data={data} />}
         >
-          <Route index element={<Home  data={data} num={data.length} />}/> 
+          <Route index element={<HomeRoute/>}/> 
           <Route
             path="addcard"
             element={
