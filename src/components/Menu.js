@@ -8,17 +8,18 @@ import Account from "../pages/Account";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Layout from "./Layout";
+import Loader from "./Loader";
 //import { SavedList } from "./SavedList";
 import { UserAuth } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import { db } from "../firebase";
 import {
   getDocs,
- // query,
+  query,
   collection,
   //onSnapshot,
   addDoc,
-  where
+  where,
 } from "firebase/firestore";
 import "./styles/Menu.css";
 
@@ -29,45 +30,47 @@ function Menu() {
   let [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState([]);
   const [warn, setWarn] = useState(false);
-   const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [filteredData, setFilteredData] = useState([]);
   const { user } = UserAuth();
 
   const fetchProduct = async () => {
-
-      const querySnapshot = await getDocs(collection(db, "langcards-db"));
-      const arr = [];
-      querySnapshot.forEach((doc) => {
-        arr.push({
-          ...doc.data(),
-          id: doc.id,
-        });
+    const ref = collection(db, "langcards-db");
+    const q = query(ref, where("author", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    const arr = [];
+    querySnapshot.forEach((doc) => {
+      arr.push({
+        ...doc.data(),
+        id: doc.id,
       });
-      setData(arr);
-      setIsLoading(false);
-  }
-  
- 
+    });
+    setData(arr);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    if(user){
+    if (user) {
       fetchProduct();
-    }else{
-      setData([])
+    } else {
+      setData([]);
+      setIsLoading(false);
+
     }
   }, []);
 
   useEffect(() => {
-    if(user){
+    if (user) {
       fetchProduct();
-    }else{
-      setData([])
-    }  
+    } else {
+      setData([]);
+      setIsLoading(false);
+
+    }
   }, [user]);
 
   const onChangeWord = (event) => {
     setWord(event.target.value);
-    console.log(user.emailVerified);
   };
   const onChangeTranslate = (event) => {
     setTranslate(event.target.value);
@@ -91,6 +94,7 @@ function Menu() {
       setWord("");
       setTranslate("");
       setNote("");
+      console.log(data)
     } else {
       setWarn(true);
     }
@@ -117,62 +121,67 @@ function Menu() {
       setSearchInput("");
     }
   };
-  const HomeRoute = () => isLoading ? <div>Loading...</div> : <Home  data={data} num={data.length} /> 
 
   return (
-    <div className="content">
-      <Routes>
-        <Route
-          path="/"
-          element={<Layout onSearch={() => onSearchF()} data={data} />}
-        >
-          <Route index element={<HomeRoute/>}/> 
-          <Route
-            path="addcard"
-            element={
-              <AddCard
-                onChangeWord={onChangeWord}
-                onChangeNote={onChangeNote}
-                onChangeTranslate={onChangeTranslate}
-                onSubmit={onSubmit}
-                word={word}
-                translate={translate}
-                note={note}
-                warn={warn}
-                resetFormAdd={resetFormAdd}
+    <div className="main-inner">
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="content">
+          <Routes>
+            <Route
+              path="/"
+              element={<Layout onSearch={() => onSearchF()} data={data} />}
+            >
+              <Route index element={<Home data={data} num={data.length} />} />
+              <Route
+                path="addcard"
+                element={
+                  <AddCard
+                    onChangeWord={onChangeWord}
+                    onChangeNote={onChangeNote}
+                    onChangeTranslate={onChangeTranslate}
+                    onSubmit={onSubmit}
+                    word={word}
+                    translate={translate}
+                    note={note}
+                    warn={warn}
+                    resetFormAdd={resetFormAdd}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="saved"
-            element={<Saved data={data} setData={setData} />}
-          />
-          <Route
-            path="search"
-            element={
-              <Search
-                data={data}
-                ons={onSearchF}
-                filtered={filteredData}
-                searchInput={searchInput}
+              <Route
+                path="saved"
+                element={<Saved data={data} setData={setData} />}
               />
-            }
-          />
-          <Route
-            path="account"
-            element={
-              <ProtectedRoute>
-                <Account />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="login" element={<Login />} />
-        </Route>
-      </Routes>
-      <div>
-        <Outlet />
-      </div>
+              <Route
+                path="search"
+                element={
+                  <Search
+                    data={data}
+                    ons={onSearchF}
+                    filtered={filteredData}
+                    searchInput={searchInput}
+                  />
+                }
+              />
+              <Route
+                path="account"
+                element={
+                  <ProtectedRoute>
+                    <Account />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="signup" element={<SignUp />} />
+              <Route path="login" element={<Login />} />
+            </Route>
+          </Routes>
+          <div>
+            <Outlet />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

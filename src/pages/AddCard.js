@@ -17,7 +17,6 @@ function AddCard(props) {
       </div>
     </div>
   );
-  
 }
  
 export default AddCard;
