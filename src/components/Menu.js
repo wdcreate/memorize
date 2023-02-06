@@ -14,12 +14,13 @@ import { UserAuth } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import { db } from "../firebase";
 import {
-  getDocs,
+  //getDocs,
   query,
   collection,
-  //onSnapshot,
+  onSnapshot,
   addDoc,
   where,
+  //querySnapshot
 } from "firebase/firestore";
 import "./styles/Menu.css";
 
@@ -37,16 +38,24 @@ function Menu() {
   const fetchProduct = async () => {
     const ref = collection(db, "langcards-db");
     const q = query(ref, where("author", "==", user.uid));
-    const querySnapshot = await getDocs(q);
-    const arr = [];
-    querySnapshot.forEach((doc) => {
-      arr.push({
-        ...doc.data(),
-        id: doc.id,
-      });
-    });
-    setData(arr);
-    setIsLoading(false);
+    const unsubscribe = onSnapshot(
+      q,
+      { includeMetadataChanges: true },
+      (querySnapshot) => {
+        const arr = [];
+        querySnapshot.forEach((doc) => {
+          arr.push({
+            ...doc.data(),
+            id: doc.id,
+          });
+        });
+        setData(arr);
+        setIsLoading(false);
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
   };
 
   useEffect(() => {
@@ -55,7 +64,6 @@ function Menu() {
     } else {
       setData([]);
       setIsLoading(false);
-
     }
   }, []);
 
@@ -65,7 +73,6 @@ function Menu() {
     } else {
       setData([]);
       setIsLoading(false);
-
     }
   }, [user]);
 
@@ -94,7 +101,7 @@ function Menu() {
       setWord("");
       setTranslate("");
       setNote("");
-      console.log(data)
+      console.log(data);
     } else {
       setWarn(true);
     }
