@@ -14,7 +14,7 @@ import { UserAuth } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import { db } from "../firebase";
 import {
-  //getDocs,
+  getDocs,
   query,
   collection,
   onSnapshot,
@@ -34,8 +34,12 @@ function Menu() {
   const [isLoading, setIsLoading] = useState(true);
   const [filteredData, setFilteredData] = useState([]);
   const { user } = UserAuth();
-
+  
   const fetchProduct = async () => {
+    if (!user) {
+      setData([]);
+      setIsLoading(false);
+    }
     const ref = collection(db, "langcards-db");
     const q = query(ref, where("author", "==", user.uid));
     const unsubscribe = onSnapshot(
@@ -56,24 +60,36 @@ function Menu() {
     return () => {
       unsubscribe();
     };
-  };
-
-  useEffect(() => {
-    if (user) {
-      fetchProduct();
-    } else {
+  }; /*
+  const fetchProducts = async () => {
+    const ref = collection(db, "langcards-db");
+    if (!user) {
       setData([]);
       setIsLoading(false);
+
+      return;
     }
+    const q = query(ref, where("author", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    const arr = [];
+    querySnapshot.forEach((doc) => {
+      arr.push({
+        ...doc.data(),
+        id: doc.id,
+      });
+    });
+    setData(arr);
+    setIsLoading(false);
+
+  };*/
+
+  useEffect(() => {
+    fetchProduct();
+
   }, []);
 
   useEffect(() => {
-    if (user) {
-      fetchProduct();
-    } else {
-      setData([]);
-      setIsLoading(false);
-    }
+    fetchProduct();
   }, [user]);
 
   const onChangeWord = (event) => {
