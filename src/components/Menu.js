@@ -60,28 +60,7 @@ function Menu() {
     return () => {
       unsubscribe();
     };
-  }; /*
-  const fetchProducts = async () => {
-    const ref = collection(db, "langcards-db");
-    if (!user) {
-      setData([]);
-      setIsLoading(false);
-
-      return;
-    }
-    const q = query(ref, where("author", "==", user.uid));
-    const querySnapshot = await getDocs(q);
-    const arr = [];
-    querySnapshot.forEach((doc) => {
-      arr.push({
-        ...doc.data(),
-        id: doc.id,
-      });
-    });
-    setData(arr);
-    setIsLoading(false);
-
-  };*/
+  }; 
 
   useEffect(() => {
     fetchProduct();

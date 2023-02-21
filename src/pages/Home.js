@@ -71,8 +71,7 @@ function Home({ data, num }) {
       ) : (
         <span></span>
       )}
-      </div>}
-      
+      </div>}   
     </div>
   );
 }

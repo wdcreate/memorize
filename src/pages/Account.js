@@ -36,8 +36,7 @@ const Account = () => {
           Verify
         </button> : <button type='button' className='verified' disabled >
           Verified
-        </button> 
-        
+        </button>     
       }
         </div>
       <button onClick={handleLogout} >
