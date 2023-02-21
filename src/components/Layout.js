@@ -1,5 +1,6 @@
 import { Outlet, NavLink } from "react-router-dom";
 import Header from "./Header";
+import "./styles/Layout.css"
 
 const Layout = ({searchBlock, onSearch, data}) => {
   return (

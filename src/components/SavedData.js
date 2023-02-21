@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "../pages/styles/SavedPage.css"
 
 export default function SavedData({id, word, translate, note, del, editData}) {
   const [isEditing, setEditing] = useState(false);
@@ -14,7 +14,6 @@ export default function SavedData({id, word, translate, note, del, editData}) {
     editData(id, newWord, newTranslate, newNote);
     setEditing(false);
   }
-  
   const editingTemplate = (
     <form className="saved-card" onSubmit={handleSubmit}>
       <div className="form-group">

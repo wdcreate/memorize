@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {UserAuth} from '../context/AuthContext';
+import "./styles/LoginPage.css"
 
 const Signin = () => {
   const [email, setEmail] = useState('');
@@ -9,7 +10,7 @@ const Signin = () => {
   const navigate = useNavigate();
   const { signIn } = UserAuth();
   const {loginResetEmail} = UserAuth();
-  const { user } = UserAuth();
+  //const { user } = UserAuth();
   const { googleAuth } = UserAuth();
 
   const handleSubmit = async (e) => {

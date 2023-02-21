@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
+import "./styles/LoginPage.css"
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -37,7 +38,7 @@ const Signup = () => {
         <h1>Sign up for a free account</h1>
         <p className="intro">
           Already have an account yet?{" "}
-          <Link to="/" className="underline">
+          <Link to="/" >
             Sign in.
           </Link>
         </p>

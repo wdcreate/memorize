@@ -7,6 +7,8 @@ import {
   doc,
   deleteDoc,
 } from "firebase/firestore";
+import "./styles/SavedPage.css"
+
 
 export default function Saved({ data, setData, }) {
   
@@ -44,7 +46,6 @@ const editData = async (id, newWord, newTranslate, newNote) => {
 
   return (
     <div>
-      <div className="sec-menu"></div>
       <div className="saved-inner">
         {data.length >= 1 ? (
           <div className="saved-list">{dataList}</div>

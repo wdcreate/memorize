@@ -1,28 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, Outlet } from "react-router-dom";
-import Home from "../pages/Home";
-import Saved from "../pages/Saved";
-import AddCard from "../pages/AddCard";
-import Search from "../pages/Search";
-import Account from "../pages/Account";
-import Login from "../pages/Login";
-import SignUp from "../pages/SignUp";
+import Home from "../pages/HomePage";
+import Saved from "../pages/SavedPage";
+import AddCard from "../pages/AddCardPage";
+import Search from "../pages/SearchPage";
+import Account from "../pages/AccountPage";
+import Login from "../pages/LoginPage";
+import SignUp from "../pages/SignUpPage";
 import Layout from "./Layout";
 import Loader from "./Loader";
-//import { SavedList } from "./SavedList";
 import { UserAuth } from "../context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import { db } from "../firebase";
 import {
-  getDocs,
   query,
   collection,
   onSnapshot,
   addDoc,
   where,
-  //querySnapshot
 } from "firebase/firestore";
-import "./styles/Menu.css";
 
 function Menu() {
   const [word, setWord] = useState("");

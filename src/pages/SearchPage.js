@@ -1,6 +1,7 @@
 import { React } from "react";
+import "./styles/SearchPage.css"
 
-function Search({ data, ons, del, filtered, searchInput }) {
+function Search({ ons, filtered, searchInput }) {
   return (
     <div className="search-page">
       <div className="sec-menu">

@@ -1,10 +1,8 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-//import { useEffect } from "react";
+import "./styles/Header.css"
 
-
-function Header(props) {
-  //const user = auth.currentUser;
+function Header() {
   let navigate = useNavigate();
   let location = useLocation();
   let sb = location.pathname.includes("/saved"  );
@@ -12,9 +10,6 @@ function Header(props) {
   let sBlock;
   let df;
   const {user} = UserAuth()
-
-
-
   if (sb || ss) {
     df = "header-inner df";
     sBlock = (
@@ -27,7 +22,6 @@ function Header(props) {
   } else {
     df = "header-inner";
   }
-
   return (
     <header className="header">
       <div className={df}>
@@ -47,13 +41,11 @@ function Header(props) {
        <div className='header-links'><Link to="/login">
         log in
       </Link>
-      
       <Link to="/signup">
         sign up
       </Link></div> : <Link className='account-link' to="/account">
         Account
       </Link>}
-      
       </div>
     </header>
   );

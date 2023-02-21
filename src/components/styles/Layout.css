@@ -12,6 +12,20 @@
     display: flex;
     justify-content: center;
 }
+.menu-inner{
+    width: 100%;
+    position: fixed;
+    height: 70px;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    -webkit-transform: translate(-50%);
+    -moz-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    -o-transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+}
 .menu{
     margin: 5px 0px;
     padding: 0;
@@ -46,5 +60,3 @@
     fill: #ffffff;
     stroke: rgb(0, 0, 0);
 }
-
-
