@@ -1,3 +1,5 @@
+@import "../../variables";
+
 .header {
   width: 100%;
   position: fixed;
@@ -6,7 +8,6 @@
   right: 0px;
   background-color: #f0f8ff;
   height: 58px;
-
   box-shadow: 0px 4px 10px 1px rgba(197, 197, 197, 0.46);
 }
 .header-inner {
@@ -22,22 +23,19 @@
   background-color: #f0f8ff;
   padding: 12px 0px;
   margin: 0 auto;
+  &.df {
+    justify-content: space-between;
+    .logo {
+      margin: 0;
+      transform: translate(0%);
+      -webkit-transform: translate(0%);
+      -moz-transform: translate(0%);
+      -ms-transform: translate(0%);
+      -o-transform: translate(0%);
+    }
+  }
 }
-.header .logo img {
-  width: 30px;
-  height: 30px;
-}
-.header-inner.df {
-  justify-content: space-between;
-}
-.header-inner.df .logo {
-  margin: 0;
-  transform: translate(0%);
-  -webkit-transform: translate(0%);
-  -moz-transform: translate(0%);
-  -ms-transform: translate(0%);
-  -o-transform: translate(0%);
-}
+
 .logo {
   margin: auto;
   transform: translate(-50%);
@@ -45,6 +43,10 @@
   -moz-transform: translate(-50%);
   -ms-transform: translate(-50%);
   -o-transform: translate(-50%);
+  img {
+    width: 30px;
+    height: 30px;
+  }
 }
 .back-btn {
   border: none;

@@ -2,8 +2,6 @@ import React from 'react';
 import App from './App'
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter} from "react-router-dom";
-//import './firebase'
-
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);

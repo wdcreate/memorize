@@ -7,7 +7,7 @@ import {
   doc,
   deleteDoc,
 } from "firebase/firestore";
-import "./styles/SavedPage.css"
+import "./styles/SavedPage.scss"
 
 
 export default function Saved({ data, setData, }) {

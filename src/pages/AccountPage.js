@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
-import "./styles/AccountPage.css"
+import "./styles/AccountPage.scss"
 
 const Account = () => {
   const { user, logout, triggerResetEmail, verifyEmail } = UserAuth();

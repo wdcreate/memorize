@@ -1,7 +1,7 @@
 import Menu from "./components/Menu";
 import { AuthContextProvider } from "./context/AuthContext";
 
-import "./App.css";
+import "./App.scss";
 
 function App() {
   return (

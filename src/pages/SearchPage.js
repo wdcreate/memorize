@@ -1,5 +1,5 @@
 import { React } from "react";
-import "./styles/SearchPage.css"
+import "./styles/SearchPage.scss"
 
 function Search({ ons, filtered, searchInput }) {
   return (

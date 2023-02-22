@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import "./styles/HomePage.css"
+import "./styles/HomePage.scss"
 
 const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 function Home({ data, num }) {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../pages/styles/SavedPage.css"
+import "../pages/styles/SavedPage.scss"
 
 export default function SavedData({id, word, translate, note, del, editData}) {
   const [isEditing, setEditing] = useState(false);

@@ -1,0 +1,102 @@
+@import "../../_variables.scss";
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    a {
+      color: #799bff;
+    }
+  }
+  form {
+    max-width: 550px;
+    width: 100%;
+    margin-top: 40px;
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      font-size: 16px;
+      input {
+        padding: 10px;
+        outline: none;
+        border: none;
+        border: 1px solid rgb(100, 100, 100);
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+        margin-bottom: 15px;
+        &:focus {
+          border: 2px solid #000;
+        }
+      }
+      label {
+        margin-bottom: 5px;
+      }
+    }
+    button {
+      padding: 12px 0;
+      border: none;
+      border-radius: 15px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      -ms-border-radius: 15px;
+      -o-border-radius: 15px;
+      cursor: pointer;
+      background-color: #799bff;
+    }
+  }
+}
+.resetpass button {
+  background: none;
+  border: none;
+  margin-left: 20px;
+  font-size: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.google-btn {
+  cursor: pointer;
+  margin-top: 20px;
+  width: 300px;
+  height: 42px;
+  background-color: #4285f4;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .google-icon-wrapper {
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: #fff;
+  }
+
+  .google-icon {
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 11px;
+    width: 18px;
+    height: 18px;
+  }
+  .btn-text {
+    margin: auto;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+  }
+  &:hover {
+    box-shadow: 0 0 6px #4285f4;
+  }
+  &:active {
+    background: #1669f2;
+  }
+}

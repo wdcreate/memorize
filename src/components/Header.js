@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import "./styles/Header.css"
+import "./styles/Header.scss"
 
 function Header() {
   let navigate = useNavigate();

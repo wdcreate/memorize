@@ -1,3 +1,4 @@
+@import "../../_variables.scss";
 .saved-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -6,21 +7,8 @@
   padding-bottom: 50px;
 }
 .saved-card {
-  background-image: linear-gradient(
-    to right,
-    #0052d4,
-    #1655da,
-    #2458e1,
-    #2f5ce7,
-    #385fee,
-    #3868f3,
-    #3a71f8,
-    #3d7afc,
-    #4189fe,
-    #4c97fe,
-    #5ca4fe,
-    #6fb1fc
-  );
+  background: $MAINCOLOR;
+  background: linear-gradient(to bottom, $MAINCOLOR 50%, $MAINCOLOR_HOVER 100%);
   color: #fff;
   padding: 20px 15px;
   margin-bottom: 15px;
@@ -31,21 +19,31 @@
   -o-border-radius: 15px;
   display: flex;
   justify-content: space-between;
+  .form-group {
+    input {
+      width: 90%;
+      padding: 8px;
+      margin-bottom: 5px;
+      background: initial;
+      border: none;
+      border-bottom: 1px solid #fff;
+      outline: none;
+      font-size: 16px;
+      color: #fff;
+      &:focus {
+        border-bottom: 1px solid rgb(255, 196, 0);
+      }
+    }
+  }
+  .btn-block {
+    display: flex;
+    flex-direction: column;
+  }
+  button {
+    margin-bottom: 5px;
+  }
 }
-.saved-card .form-group input {
-  width: 90%;
-  padding: 8px;
-  margin-bottom: 5px;
-  background: initial;
-  border: none;
-  border-bottom: 1px solid #fff;
-  outline: none;
-  font-size: 16px;
-  color: #fff;
-}
-.saved-card .form-group input:focus {
-  border-bottom: 1px solid rgb(255, 196, 0);
-}
+
 .form-btn {
   padding: 5px;
   outline: none;
@@ -56,19 +54,20 @@
   -moz-transition: all 0.3s;
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
+  &:hover {
+    border-radius: 5px;
+    background: rgb(103, 188, 245);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+  }
 }
-.form-btn:hover {
-  border-radius: 5px;
-  background: rgb(103, 188, 245);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-.form-btn img {
-  width: 20px;
-  height: 20px;
-}
+
 .saved-wrapper {
   list-style: none;
 }
@@ -90,13 +89,7 @@
   font-size: 14px;
   font-weight: 300;
 }
-.saved-card .btn-block {
-  display: flex;
-  flex-direction: column;
-}
-.saved-card button {
-  margin-bottom: 5px;
-}
+
 @media (max-width: 980px) {
   .saved-list {
     grid-template-columns: 1fr 1fr;

@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/AddCardPage.css"
+import "./styles/AddCardPage.scss"
 
 function AddCard(props) {
   return (

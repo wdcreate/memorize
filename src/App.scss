@@ -1,10 +1,11 @@
+@import './variables'; 
 .container {
   max-width: 1120px;
   padding: 50px 10px 50px 10px;
   margin: 0 auto;
 }
 .main-btn {
-  background: rgb(110, 117, 211);
+  background: $SECCOLOR;
   color: #fff;
   text-decoration: none;
   display: flex;
@@ -19,6 +20,14 @@
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  -o-transition: all .3s;
+  &:hover{
+    background: $SECCOLOR_HOVER;
+  }
 }
 .oops-section {
   padding-top: 70px;
@@ -26,12 +35,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  img {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 60px;
+  }
 }
-.oops-section img {
-  width: 300px;
-  height: 300px;
-  margin-bottom: 60px;
-}
+
 .header-links {
   display: flex;
   align-items: center;
