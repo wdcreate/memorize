@@ -1,33 +1,12 @@
 @import './variables'; 
+@import './mixin'; 
 .container {
   max-width: 1120px;
   padding: 50px 10px 50px 10px;
   margin: 0 auto;
 }
 .main-btn {
-  background: $SECCOLOR;
-  color: #fff;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 17px;
-  padding: 18px 0;
-  margin: 10px auto;
-  width: 300px;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-  transition: all .3s;
-  -webkit-transition: all .3s;
-  -moz-transition: all .3s;
-  -ms-transition: all .3s;
-  -o-transition: all .3s;
-  &:hover{
-    background: $SECCOLOR_HOVER;
-  }
+  @include main-button;
 }
 .oops-section {
   padding-top: 70px;

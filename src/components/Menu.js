@@ -92,7 +92,6 @@ function Menu() {
       setWord("");
       setTranslate("");
       setNote("");
-      console.log(data);
     } else {
       setWarn(true);
     }

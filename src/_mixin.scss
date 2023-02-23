@@ -1,0 +1,80 @@
+@import "./_variables";
+@mixin border-radius {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+@mixin transition {
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+@mixin font($size) {
+  font-size: $size;
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+@mixin flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin input-style {
+  @include font(16px);
+  outline: none;
+  width: 100%;
+  height: 3rem;
+  border: 1px solid $ACCENTCOLOR;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  color: #1d1d1f;
+  padding: 0.9rem;
+  text-align: left;
+  background-color: hsla(0, 0%, 100%, 0.8);
+  text-overflow: ellipsis;
+  @include transition;
+  @include border-radius;
+  &:focus {
+    border: 3px solid $ACCENTCOLOR_HOVER;
+  }
+}
+@mixin main-button {
+  @include flex;
+  @include font(17px);
+	padding: 18px 0;
+  margin: 10px auto;
+  width: 300px;
+  background: $SECCOLOR;
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+  @include border-radius;
+  @include transition;
+	cursor: pointer;
+  &:hover {
+    background: $SECCOLOR_HOVER;
+  }
+}
+@mixin sec-button {
+  @include flex;
+  @include font(15px);
+	padding: 10px 0;
+  margin: 10px 0;
+  background: $ACCENTCOLOR;
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+	border: none;
+  @include border-radius;
+  @include transition;
+		cursor: pointer;
+
+  &:hover {
+    background: $ACCENTCOLOR_HOVER;
+  }
+}

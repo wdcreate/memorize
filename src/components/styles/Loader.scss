@@ -2,12 +2,17 @@
 
 .loader-inner {
   position: absolute;
-  top: 33%;
+  background: $MAINCOLOR;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
@@ -46,7 +51,7 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: $MAINCOLOR;
+  background: $SECCOLOR;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 
