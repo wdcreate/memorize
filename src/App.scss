@@ -15,17 +15,15 @@
   align-items: center;
   justify-content: center;
   img {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     margin-bottom: 60px;
   }
 }
-
 .header-links {
   display: flex;
   align-items: center;
 }
-.account-link,
 .header-links a {
   display: block;
   padding: 5px 15px;
@@ -44,15 +42,14 @@
   color: inherit;
   background-color: #daeeff;
 }
-.account-link:hover,
 .header-links a:hover {
   background-color: #9fd0fa;
 }
 
 @media (max-width: 480px) {
   .oops-section img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     margin-bottom: 30px;
   }
 }

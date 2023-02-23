@@ -41,9 +41,8 @@
     -o-transition: all 0.3s;
     display: flex;
     align-items: center;
-    &.active svg {
-      fill: #ffffff;
-      stroke: rgb(0, 0, 0);
+    &.active svg path {
+      fill: $MAINCOLOR !important;
     }
   }
 }
