@@ -1,11 +1,15 @@
 import { Outlet, NavLink } from "react-router-dom";
 import Header from "./Header";
+import { UserAuth } from "../context/AuthContext";
 import "./styles/Layout.scss"
 
 const Layout = ({searchBlock, onSearch, data}) => {
+  const { noUser } = UserAuth();
+
   return (
     <>
       <Header sblock={searchBlock} onS ={onSearch} data={data}/>
+      {!noUser ? 
       <div className="menu-inner">
         <ul className="menu">
           <li>
@@ -24,7 +28,7 @@ const Layout = ({searchBlock, onSearch, data}) => {
             </NavLink>
           </li>
         </ul>
-      </div>
+      </div> : ''}
 
       <div>
         <Outlet />

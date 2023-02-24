@@ -173,6 +173,7 @@ function Menu() {
               <Route path="signup" element={<SignUp />} />
               <Route path="login" element={<Login />} />
             </Route>
+         
           </Routes>
           <div>
             <Outlet />

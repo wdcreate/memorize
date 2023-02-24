@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import GoogleButton  from '../components/GoogleButton';
 import {UserAuth} from '../context/AuthContext';
 import "./styles/LoginPage.scss"
 
@@ -10,31 +11,29 @@ const Signin = () => {
   const navigate = useNavigate();
   const { signIn } = UserAuth();
   const {loginResetEmail} = UserAuth();
-  //const { user } = UserAuth();
-  const { googleAuth } = UserAuth();
+  const {setNoUser } = UserAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('')
     try {
       await signIn(email, password)
-      navigate('/account')      
+      navigate('/account')
+      setNoUser(false)      
     } catch (e) {
       setError(e.message)
-      console.log(e.message)
+      console.log(error)
     }
   };
   return (
     <div className='auth-form login-form'>
       <div >
-        <h1 >Sign in to your account</h1>
-        <p className='intro'>
-          Don't have an account yet?{' '}
-          <Link to='/signup' >
-            Sign up.
-          </Link>
-        </p>
+        <h1 >Log in</h1>
       </div>
+     <GoogleButton />
+      <div className="or-block">
+        OR
+        </div>
       <form onSubmit={handleSubmit}>
         <div >
           <label >Email Address</label>
@@ -44,24 +43,16 @@ const Signin = () => {
           <label >Password</label>
           <input onChange={(e) => setPassword(e.target.value)} type='password' placeholder='place for password'/>
         </div>
-        <button type='submit' className='main-btn'>
+      <div className='resetpass'>
+          <button type='button' onClick={()=>loginResetEmail(email)}>
+          Forgot password?
+        </button>
+        </div>
+      <button type='submit' className='login-btn'>
           Sign In
         </button>
       </form>
-      <div className='resetpass'>
-         <span>Forgot password?</span> 
-          <button type='button' onClick={()=>loginResetEmail(email)}>
-          Set new
-        </button>
-        </div>
-        <div className="google-btn" onClick={() => googleAuth()}>
-        <div className="google-icon-wrapper">
-          <img className="google-icon" alt="logo" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
-        </div>
-        <p className="btn-text">
-          <b>Sign in with Google</b>
-        </p>
-      </div>
+
     </div>
   );
 };

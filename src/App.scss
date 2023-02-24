@@ -1,5 +1,12 @@
 @import './variables'; 
 @import './mixin'; 
+*{
+  box-sizing: border-box;
+}
+body {
+  margin: 0px;
+  padding: 0;
+}
 .container {
   max-width: 1120px;
   padding: 50px 10px 50px 10px;

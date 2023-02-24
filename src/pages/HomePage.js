@@ -7,7 +7,7 @@ const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 function Home({ data, num }) {
   const [newArr, setNewArr] = useState(shuffle([...data]));
   const [i, setI] = useState(0);
-  const { user, verifyEmail } = UserAuth();
+  const { user } = UserAuth();
 
   const randomCard = useMemo(() => {
     if (!newArr || i < 0 || i >= newArr.length) return undefined;
@@ -62,16 +62,7 @@ function Home({ data, num }) {
             </div>
           </div>
         )}
-      {!user.emailVerified ? (
-        <div className="verify-notification">
-          <span>Please verify your account</span>
-          <button type="button" onClick={verifyEmail}>
-            Verify
-          </button>
-        </div>
-      ) : (
-        <span></span>
-      )}
+
       </div>}   
     </div>
   );

@@ -1,4 +1,5 @@
 @import"../../_variables.scss";
+@import"../../_mixin.scss";
 .account-settings {
   display: flex;
   justify-content: space-between;
@@ -32,5 +33,16 @@
     &.verified {
       background-color: #a4fa9c;
     }
+  }
+}
+.notification{
+  margin: 0 -10px;
+  span{
+    margin-top: 10px;
+    @include font(16px);
+    text-align: center;
+    display: block;
+    padding: 10px;
+    color: #fff;
   }
 }

@@ -16,15 +16,16 @@ const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
+  const [noUser, setNoUser] = useState(false);
   const navigate = useNavigate()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        console.log(currentUser.uid);
       } else {
         setUser(null);
+        setNoUser(true);
       }
     });
     return () => {
@@ -43,19 +44,20 @@ export const AuthContextProvider = ({ children }) => {
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
+        console.log(credential)
         const token = credential.accessToken;
         // The signed-in user info.
         const userG = result.user;
         setUser(userG)
         navigate('/account')
+        setNoUser(false);
+
       })
       .catch((error) => {
         console.log(error.code);
         console.log(error.message);
         console.log(error.customData.email);
-        // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
-       
       });
   };
 
@@ -98,7 +100,8 @@ export const AuthContextProvider = ({ children }) => {
         triggerResetEmail,
         verifyEmail,
         loginResetEmail,
-        googleAuth
+        googleAuth, noUser, setNoUser
+
       }}
     >
       {children}
