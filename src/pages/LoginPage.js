@@ -36,12 +36,149 @@ const Signin = () => {
         </div>
       <form onSubmit={handleSubmit}>
         <div >
-          <label >Email Address</label>
-          <input onChange={(e) => setEmail(e.target.value)}  type='email' placeholder='place for email'/>
+          <label for="login-email" >Email Address</label>
+          <input onChange={(e) => setEmail(e.target.value)} placeholder="place for email" id='login-email'  type='email' />
         </div>
         <div >
-          <label >Password</label>
-          <input onChange={(e) => setPassword(e.target.value)} type='password' placeholder='place for password'/>
+          <label for="login-pass">Password</label>
+          <input onChange={(e) => setPassword(e.target.value)} placeholder="place for password
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          " id="login-pass" type='password' />
         </div>
       <div className='resetpass'>
           <button type='button' onClick={()=>loginResetEmail(email)}>
