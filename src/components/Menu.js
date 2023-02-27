@@ -87,6 +87,7 @@ function Menu() {
         translate: translate,
         note: note,
         category: "category",
+        date: new Date(),
         author: user.uid,
       });
       setWord("");

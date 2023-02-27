@@ -1,10 +1,26 @@
 @import "../../_variables.scss";
 @import "../../_mixin.scss";
+.saved-menu{
+ padding-top: 20px;
+ display: flex;
+ align-items: center;
+ .sort-btn{
+  outline: none;
+  background: none;
+  border: none;
+  @include flex;
+ }
+}
+#active-sorttype{
+  @include border-radius;
+  background: #e6e6e6;
+  padding: 3px;
+}
 .saved-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 10px;
-  padding-top: 30px;
+  padding-top: 20px;
   padding-bottom: 50px;
 }
 .saved-card {
