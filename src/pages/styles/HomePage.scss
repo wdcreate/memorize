@@ -36,28 +36,29 @@
   max-width: 550px;
   width: 100%;
   @include border-radius;
-  background: $MAINCOLOR;
-  background: linear-gradient(to bottom, $MAINCOLOR 50%, $MAINCOLOR_HOVER 100%);
+  overflow: hidden;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  padding: 40px 0;
   text-transform: lowercase;
-  color: #fff;
-  -webkit-box-shadow: 0px 0px 20px 5px rgba(148, 148, 148, 0.75);
-  -moz-box-shadow: 0px 0px 20px 5px rgba(148, 148, 148, 0.75);
-  box-shadow: 0px 0px 20px 5px rgba(148, 148, 148, 0.75);
+  @include box-shadow;
   margin: 30px auto 50px auto;
 }
 .randomword {
+  padding: 40px 10px;
   margin: 0;
-  margin-bottom: 70px;
   font-size: 30px;
   font-weight: 700;
+  color: #fff;
+  background: $MAINCOLOR;
+  background: linear-gradient(to bottom, $MAINCOLOR 80%, $SECCOLOR 100%);
 }
 .randomtranslate {
   margin: 0;
-  font-size: 10px;
+  padding: 30px 10px;
+  font-size: 20px;
   font-weight: 300;
+  font-style: italic;
+  cursor: pointer;
 }
 

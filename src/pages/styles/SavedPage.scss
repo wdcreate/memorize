@@ -1,17 +1,17 @@
 @import "../../_variables.scss";
 @import "../../_mixin.scss";
-.saved-menu{
- padding-top: 20px;
- display: flex;
- align-items: center;
- .sort-btn{
-  outline: none;
-  background: none;
-  border: none;
-  @include flex;
- }
+.saved-menu {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  .sort-btn {
+    outline: none;
+    background: none;
+    border: none;
+    @include flex;
+  }
 }
-#active-sorttype{
+#active-sorttype {
   @include border-radius;
   background: #e6e6e6;
   padding: 3px;
@@ -24,18 +24,31 @@
   padding-bottom: 50px;
 }
 .saved-card {
-  background: $MAINCOLOR;
-  background: linear-gradient(to bottom, $MAINCOLOR 50%, $MAINCOLOR_HOVER 100%);
-  color: #fff;
-  padding: 20px 15px;
   margin-bottom: 15px;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-  display: flex;
-  justify-content: space-between;
+  @include border-radius;
+  border: 1px solid $MAINCOLOR;
+  height: 200px;
+  overflow: hidden;
+  @include box-shadow;
+  @include transition;
+  &:hover {
+    border: 3px solid $MAINCOLOR;
+    box-shadow: none;
+  }
+  .top-sec {
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 15px 20px;
+    background: $MAINCOLOR;
+    border-bottom: 1px solid $SECCOLOR;
+    background: linear-gradient(
+      to bottom,
+      $MAINCOLOR 70%,
+      $SECCOLOR_HOVER 100%
+    );
+  }
   .form-group {
     input {
       width: 90%;
@@ -55,9 +68,8 @@
   }
   .btn-block {
     display: flex;
-    flex-direction: column;
     button {
-      margin-bottom: 5px;
+      margin-left: 5px;
       padding: 5px;
       outline: none;
       border: none;
@@ -68,8 +80,46 @@
         @include border-radius;
       }
       img {
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  &.edit-saved-card {
+    padding: 15px 20px;
+    background: $MAINCOLOR;
+    background: linear-gradient(
+      to bottom,
+      $MAINCOLOR 50%,
+      $MAINCOLOR_HOVER 100%
+    );
+    display: flex;
+    align-items: baseline;
+    box-shadow: none;
+    &:hover {
+      border: 1px solid $MAINCOLOR;
+    }
+    textarea{
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #fff;
+      resize: none;
+      color: #fff;
+      font-size: 16px;
+      width: 90%;
+      outline: none;
+      height: 65px;
+      &::-webkit-scrollbar {
+        width: 2px;
+      }
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: $ACCENTCOLOR;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: $ACCENTCOLOR_HOVER
       }
     }
   }
@@ -85,14 +135,16 @@
 .saved-info {
   display: flex;
   flex-direction: column;
+  padding: 15px 20px;
+  color: #000;
 }
 .saved-card-word {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   margin-bottom: 30px;
 }
 .saved-card-translate {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   margin-bottom: 10px;
 }

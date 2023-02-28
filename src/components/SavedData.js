@@ -15,7 +15,7 @@ export default function SavedData({id, word, translate, note, del, editData}) {
     setEditing(false);
   }
   const editingTemplate = (
-    <form className="saved-card" onSubmit={handleSubmit}>
+    <form className="saved-card edit-saved-card" onSubmit={handleSubmit}>
       <div className="form-group">
         <input
           id={id}
@@ -33,7 +33,7 @@ export default function SavedData({id, word, translate, note, del, editData}) {
           defaultValue={newTranslate || translate}
           onChange={(e)=>setNewTranslate(e.target.value)}
         />
-        <input
+        <textarea
           id={id}
           className="card-text"
           type="text"
@@ -58,18 +58,11 @@ export default function SavedData({id, word, translate, note, del, editData}) {
 
   const viewTemplate = (
     <div className="saved-card">
-      <div className="saved-info">
+      <div className="top-sec">
           <label className="saved-card-word" >
             {word}
           </label>
-          <label className="saved-card-translate" >
-            {translate}
-          </label>
-          <label className="saved-card-note" >
-            {note}
-          </label>
-        </div>
-        <div className="btn-block">
+          <div className="btn-block">
         <button
           type="button"
           className="form-btn"
@@ -85,6 +78,16 @@ export default function SavedData({id, word, translate, note, del, editData}) {
             <img src="../assets/del.svg" alt="Delete" />
               </button>
         </div>
+      </div>
+      <div className="saved-info">
+          <label className="saved-card-translate" >
+            {translate}
+          </label>
+          <label className="saved-card-note" >
+            {note}
+          </label>
+        </div>
+        
     </div>
   );
   return <div className="saved-wrapper" >{isEditing ? editingTemplate : viewTemplate}</div>;
