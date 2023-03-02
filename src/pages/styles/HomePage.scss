@@ -51,7 +51,7 @@
   font-weight: 700;
   color: #fff;
   background: $MAINCOLOR;
-  background: linear-gradient(to bottom, $MAINCOLOR 80%, $SECCOLOR 100%);
+  background: linear-gradient(to bottom, $MAINCOLOR 80%, $MAINCOLOR_HOVER 100%);
 }
 .randomtranslate {
   margin: 0;

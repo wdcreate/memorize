@@ -65,14 +65,13 @@ export default function Saved({ data, setData }) {
     }
   };
   let filtered;
+  const filterKeys = ['word', 'translate', 'note'];
+
   const onSearchF = (keyword) => {
-    filtered = data.filter((entry) =>
-      Object.values(entry).some(
-        (val) =>
-          typeof val === "string" &&
-          val.toLowerCase().includes(keyword.toLowerCase())
-      )
-    );
+    const lowerKeyword = keyword.toLowerCase();
+    filtered = data.filter((entry) => {
+        return filterKeys.some(key => entry[key].toLowerCase().includes(lowerKeyword));
+    });
     if (keyword.length > 0) {
       setFilteredData(filtered);
       setSearchInput(keyword);
@@ -82,8 +81,8 @@ export default function Saved({ data, setData }) {
     }
   };
   const dataChanges =()=>{
-    if(searchActive === true && searchInput.length>0){
-      if(filteredData.length>1){
+    if(searchActive === true && searchInput.length >= 2){
+      if(filteredData.length >= 1){
         return sortedData(filteredData)
       }else{
         return <div className="nodata">Nothing found</div>
