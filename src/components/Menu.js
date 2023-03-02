@@ -3,7 +3,6 @@ import { Route, Routes, Outlet } from "react-router-dom";
 import Home from "../pages/HomePage";
 import Saved from "../pages/SavedPage";
 import AddCard from "../pages/AddCardPage";
-import Search from "../pages/SearchPage";
 import Account from "../pages/AccountPage";
 import Login from "../pages/LoginPage";
 import SignUp from "../pages/SignUpPage";
@@ -24,11 +23,9 @@ function Menu() {
   const [word, setWord] = useState("");
   const [translate, setTranslate] = useState("");
   const [note, setNote] = useState("");
-  let [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState([]);
   const [warn, setWarn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [filteredData, setFilteredData] = useState([]);
   const { user } = UserAuth();
   
   const fetchProduct = async () => {
@@ -102,23 +99,7 @@ function Menu() {
     setTranslate("");
     setNote("");
   };
-  let filtered;
-  const onSearchF = (keyword) => {
-    filtered = data.filter((entry) =>
-      Object.values(entry).some(
-        (val) =>
-          typeof val === "string" &&
-          val.toLowerCase().includes(keyword.toLowerCase())
-      )
-    );
-    if (keyword.length > 0) {
-      setFilteredData(filtered);
-      setSearchInput(keyword);
-    } else {
-      setFilteredData("");
-      setSearchInput("");
-    }
-  };
+  
 
   return (
     <div className="main-inner">
@@ -129,7 +110,7 @@ function Menu() {
           <Routes>
             <Route
               path="/"
-              element={<Layout onSearch={() => onSearchF()} data={data} />}
+              element={<Layout />}
             >
               <Route index element={<Home data={data} num={data.length} />} />
               <Route
@@ -151,17 +132,6 @@ function Menu() {
               <Route
                 path="saved"
                 element={<Saved data={data} setData={setData} />}
-              />
-              <Route
-                path="search"
-                element={
-                  <Search
-                    data={data}
-                    ons={onSearchF}
-                    filtered={filteredData}
-                    searchInput={searchInput}
-                  />
-                }
               />
               <Route
                 path="account"

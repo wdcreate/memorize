@@ -3,12 +3,12 @@ import Header from "./Header";
 import { UserAuth } from "../context/AuthContext";
 import "./styles/Layout.scss"
 
-const Layout = ({searchBlock, onSearch, data}) => {
+const Layout = () => {
   const { noUser } = UserAuth();
 
   return (
     <>
-      <Header sblock={searchBlock} onS ={onSearch} data={data}/>
+      <Header />
       {!noUser ? 
       <div className="menu-inner">
         <ul className="menu">
