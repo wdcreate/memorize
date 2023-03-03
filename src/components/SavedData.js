@@ -8,11 +8,17 @@ export default function SavedData({id, word, translate, note, del, editData}) {
   const [newNote, setNewNote] = useState(note);
   function handleSubmit(e) {
     e.preventDefault();
-    if (!newWord.trim() || !newTranslate.trim()|| !newNote.trim()) {
+    if (!newWord.trim() || !newTranslate.trim()) {
       return;
     }
     editData(id, newWord, newTranslate, newNote);
     setEditing(false);
+  }
+  const removeEditing =()=>{
+    setEditing(false)
+    setNewNote(note)
+    setNewWord(word)
+    setNewTranslate(translate)
   }
   const editingTemplate = (
     <form className="saved-card edit-saved-card" onSubmit={handleSubmit}>
@@ -24,6 +30,7 @@ export default function SavedData({id, word, translate, note, del, editData}) {
           placeholder='word place'
           defaultValue={newWord || word}
           onChange={(e)=>setNewWord(e.target.value)}
+          required
         />
         <input
           id={id}
@@ -32,6 +39,7 @@ export default function SavedData({id, word, translate, note, del, editData}) {
           placeholder='translate place'
           defaultValue={newTranslate || translate}
           onChange={(e)=>setNewTranslate(e.target.value)}
+          required
         />
         <textarea
           id={id}
@@ -46,7 +54,7 @@ export default function SavedData({id, word, translate, note, del, editData}) {
         <button
           type="button"
           className="form-btn"
-          onClick={() => setEditing(false)}>
+          onClick={() => removeEditing()}>
       <img src="../assets/cancel.svg" alt="Cancel" />
         </button>
         <button type="submit" className="form-btn">

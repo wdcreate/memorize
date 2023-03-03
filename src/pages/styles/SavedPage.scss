@@ -98,6 +98,10 @@
       &:focus {
         border-bottom: 2px solid #fff;
       }
+      &::placeholder{
+        color: $SECCOLOR;
+        opacity: 1;
+      }
     }
   }
   .btn-block {
@@ -154,6 +158,10 @@
       }
       &::-webkit-scrollbar-thumb:hover {
         background: $ACCENTCOLOR_HOVER;
+      }
+      &::placeholder{
+        color: $SECCOLOR;
+        opacity: 1;
       }
     }
   }

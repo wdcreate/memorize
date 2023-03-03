@@ -1,4 +1,4 @@
-import Menu from "./components/Menu";
+import AppBody from "./components/AppBody";
 import { AuthContextProvider} from "./context/AuthContext";
 
 import "./App.scss";
@@ -9,7 +9,7 @@ function App() {
     <AuthContextProvider>
       <div className="App">
         <div className="container">
-       <Menu /> 
+       <AppBody /> 
         </div>
       </div>
     </AuthContextProvider>

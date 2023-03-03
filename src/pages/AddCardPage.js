@@ -11,12 +11,16 @@ function AddCard(props) {
             value={props.word}
             type="text"
             placeholder="write your word"
+            required
+
           />
           <input
             onChange={props.onChangeTranslate}
             value={props.translate}
             type="text"
             placeholder="write translate"
+            required
+
           />
           <textarea
             onChange={props.onChangeNote}
