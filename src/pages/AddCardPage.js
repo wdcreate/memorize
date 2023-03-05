@@ -27,6 +27,14 @@ function AddCard(props) {
             value={props.note}
             placeholder="place for your notes"
           ></textarea>
+           <input
+            onChange={props.onChangeCategory}
+            value={props.category}
+            type="text"
+            placeholder="write category"
+            required
+
+          />
           <div className="btn-block">
             <button type="submit">Save</button>
             <button onClick={props.resetFormAdd} type="reset">

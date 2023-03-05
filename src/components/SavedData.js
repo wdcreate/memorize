@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import "../pages/styles/SavedPage.scss"
 
-export default function SavedData({id, word, translate, note, del, editData}) {
+export default function SavedData({id, word, translate, note, category, del, editData}) {
   const [isEditing, setEditing] = useState(false);
   const [newWord, setNewWord] = useState(word);
   const [newTranslate, setNewTranslate] = useState(translate);
   const [newNote, setNewNote] = useState(note);
+  const [newCategory, setNewCategory] = useState(category);
   function handleSubmit(e) {
     e.preventDefault();
     if (!newWord.trim() || !newTranslate.trim()) {
       return;
     }
-    editData(id, newWord, newTranslate, newNote);
+    editData(id, newWord, newTranslate, newNote, newCategory);
     setEditing(false);
   }
   const removeEditing =()=>{
@@ -19,6 +20,7 @@ export default function SavedData({id, word, translate, note, del, editData}) {
     setNewNote(note)
     setNewWord(word)
     setNewTranslate(translate)
+    setNewCategory(category)
   }
   const editingTemplate = (
     <form className="saved-card edit-saved-card" onSubmit={handleSubmit}>
@@ -48,6 +50,14 @@ export default function SavedData({id, word, translate, note, del, editData}) {
           placeholder='note place'
           defaultValue={newNote || note}
           onChange={(e)=>setNewNote(e.target.value)}
+        />
+         <input
+          id={id}
+          className="card-text"
+          type="text"
+          placeholder='category place'
+          defaultValue={newCategory || category}
+          onChange={(e)=>setNewCategory(e.target.value)}
         />
       </div>
       <div className="btn-group">
@@ -95,7 +105,9 @@ export default function SavedData({id, word, translate, note, del, editData}) {
             {note}
           </label>
         </div>
-        
+        <label className="saved-card-category" >
+            {category}
+          </label>
     </div>
   );
   return <div className="saved-wrapper" >{isEditing ? editingTemplate : viewTemplate}</div>;

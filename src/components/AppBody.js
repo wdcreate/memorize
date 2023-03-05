@@ -19,10 +19,11 @@ import {
   where,
 } from "firebase/firestore";
 
-function Menu() {
+function AppBody() {
   const [word, setWord] = useState("");
   const [translate, setTranslate] = useState("");
   const [note, setNote] = useState("");
+  const [category, setCategory] = useState("");
   const [data, setData] = useState([]);
   const [warn, setWarn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -73,6 +74,9 @@ function Menu() {
   const onChangeNote = (event) => {
     setNote(event.target.value);
   };
+  const onChangeCategory = (event) => {
+    setCategory(event.target.value);
+  };
   const onSubmit = async (e) => {
     e.preventDefault();
     let rw = word.replace(/\s/g, "");
@@ -83,13 +87,14 @@ function Menu() {
         word: word,
         translate: translate,
         note: note,
-        category: "category",
+        category: category,
         date: new Date(),
         author: user.uid,
       });
       setWord("");
       setTranslate("");
       setNote("");
+      setCategory("")
     } else {
       setWarn(true);
     }
@@ -98,6 +103,7 @@ function Menu() {
     setWord("");
     setTranslate("");
     setNote("");
+    setCategory("")
   };
   
 
@@ -120,10 +126,12 @@ function Menu() {
                     onChangeWord={onChangeWord}
                     onChangeNote={onChangeNote}
                     onChangeTranslate={onChangeTranslate}
+                    onChangeCategory={onChangeCategory}
                     onSubmit={onSubmit}
                     word={word}
                     translate={translate}
                     note={note}
+                    category={category}
                     warn={warn}
                     resetFormAdd={resetFormAdd}
                   />
@@ -154,4 +162,4 @@ function Menu() {
     </div>
   );
 }
-export default Menu;
+export default AppBody;

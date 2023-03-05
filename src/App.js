@@ -1,6 +1,5 @@
 import AppBody from "./components/AppBody";
 import { AuthContextProvider} from "./context/AuthContext";
-
 import "./App.scss";
 
 function App() {

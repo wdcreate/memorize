@@ -9,17 +9,19 @@ export default function Saved({ data, setData }) {
   const [sortType, setSortType] = useState(1);
   let [searchInput, setSearchInput] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [filteredCategData, setFilteredCategData] = useState([]);
+  const [filterMode, setFilterMode] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
-  const editData = async (id, newWord, newTranslate, newNote) => {
+  const editData = async (id, newWord, newTranslate, newNote, newCategory) => {
     const editedDataList = await Promise.all(
       data.map(async (card) => {
         let newFields = {
           word: newWord,
           translate: newTranslate,
           note: newNote,
+          category: newCategory,
           date: new Date(),
         };
-
         if (id === card.id) {
           return { ...card, ...newFields };
         }
@@ -44,13 +46,14 @@ export default function Saved({ data, setData }) {
             word={card.word}
             translate={card.translate}
             note={card.note}
+            category={card.category}
             editData={editData}
             del={deletePost}
           />
         ));
     } else {
       return baseData
-       .sort((a, b) => a.date - b.date)
+        .sort((a, b) => a.date - b.date)
         .map((card) => (
           <SavedData
             id={card.id}
@@ -58,6 +61,7 @@ export default function Saved({ data, setData }) {
             word={card.word}
             translate={card.translate}
             note={card.note}
+            category={card.category}
             editData={editData}
             del={deletePost}
           />
@@ -65,13 +69,22 @@ export default function Saved({ data, setData }) {
     }
   };
   let filtered;
-  const filterKeys = ['word', 'translate', 'note'];
-
+  const filterKeys = ["word", "translate", "note"];
   const onSearchF = (keyword) => {
     const lowerKeyword = keyword.toLowerCase();
-    filtered = data.filter((entry) => {
-        return filterKeys.some(key => entry[key].toLowerCase().includes(lowerKeyword));
-    });
+    if (filterMode) {
+      filtered = filteredCategData.filter((entry) => {
+        return filterKeys.some((key) =>
+          entry[key].toLowerCase().includes(lowerKeyword)
+        );
+      });
+    } else {
+      filtered = data.filter((entry) => {
+        return filterKeys.some((key) =>
+          entry[key].toLowerCase().includes(lowerKeyword)
+        );
+      });
+    }
     if (keyword.length > 0) {
       setFilteredData(filtered);
       setSearchInput(keyword);
@@ -80,17 +93,38 @@ export default function Saved({ data, setData }) {
       setSearchInput("");
     }
   };
-  const dataChanges =()=>{
-    if(searchActive === true && searchInput.length >= 2){
-      if(filteredData.length >= 1){
-        return sortedData(filteredData)
-      }else{
-        return <div className="nodata">Nothing found</div>
+
+  const dataChanges = () => {
+    if (searchActive === true && searchInput.length >= 2) {
+      if (filteredData.length >= 1) {
+        return sortedData(filteredData);
+      } else {
+        return <div className="nodata">Nothing found</div>;
       }
-    }else{
-      return sortedData(data) 
+    } else if (filterMode) {
+      return sortedData(filteredCategData);
+    } else {
+      return sortedData(data);
     }
-  }
+  };
+  const filterByCategory = (categ) => {
+    setFilterMode(true);
+    if (categ === "all") {
+      filtered = data;
+    } else {
+      filtered = data.filter((entry) => {
+        return entry.category.toLowerCase().includes(categ);
+      });
+    }
+    setFilteredCategData(filtered);
+    console.log(filteredCategData);
+    console.log(filterMode);
+  };
+  const handleSelect = (value) => {
+    filterByCategory(value);
+    setSearchActive(false);
+    setSearchInput("");
+  };
   return (
     <div>
       <div className="saved-inner">
@@ -114,6 +148,17 @@ export default function Saved({ data, setData }) {
                 >
                   <img src="./assets/sortold.svg" alt="Sort by date" />
                 </button>
+              </div>
+              <div className="filter">
+                <select
+                  defaultValue={"all"}
+                  onChange={(e) => handleSelect(e.target.value)}
+                >
+                  {[...new Set(data.map((hs) => hs.category))].map((sn) => (
+                    <option key={sn}>{sn}</option>
+                  ))}
+                  <option value="all">All categories</option>
+                </select>
               </div>
               <div className="search-block">
                 <input

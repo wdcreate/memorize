@@ -65,6 +65,7 @@
   overflow: hidden;
   @include box-shadow;
   @include transition;
+  position: relative;
   &:hover {
     border: 3px solid $MAINCOLOR;
     box-shadow: none;
@@ -124,7 +125,7 @@
     }
   }
   &.edit-saved-card {
-    padding: 15px 20px;
+    padding: 10px 20px;
     background: $MAINCOLOR;
     background: linear-gradient(
       to bottom,
@@ -132,7 +133,7 @@
       $MAINCOLOR_HOVER 100%
     );
     display: flex;
-    align-items: baseline;
+    align-items: flex-start;
     box-shadow: none;
     &:hover {
       border: 1px solid $MAINCOLOR;
@@ -146,7 +147,7 @@
       font-size: 16px;
       width: 90%;
       outline: none;
-      height: 65px;
+      height: 50px;
       &::-webkit-scrollbar {
         width: 2px;
       }
@@ -164,6 +165,7 @@
         opacity: 1;
       }
     }
+   
   }
 }
 .form-btn {
@@ -193,6 +195,16 @@
 .saved-card-note {
   font-size: 14px;
   font-weight: 300;
+}
+.saved-card-category {
+  font-size: 14px;
+  background-color: $ACCENTCOLOR;
+  color: #fff;
+  font-weight: 300;
+  padding: 5px 10px;
+position: absolute;
+top: 80px;
+right: 0;
 }
 
 @media (max-width: 980px) {
