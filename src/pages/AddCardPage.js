@@ -33,6 +33,7 @@ function AddCard(props) {
             type="text"
             placeholder="write category"
             required
+            maxlength="20"
 
           />
           <div className="btn-block">

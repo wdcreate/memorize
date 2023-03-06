@@ -117,8 +117,6 @@ export default function Saved({ data, setData }) {
       });
     }
     setFilteredCategData(filtered);
-    console.log(filteredCategData);
-    console.log(filterMode);
   };
   const handleSelect = (value) => {
     filterByCategory(value);
@@ -157,7 +155,7 @@ export default function Saved({ data, setData }) {
                   {[...new Set(data.map((hs) => hs.category))].map((sn) => (
                     <option key={sn}>{sn}</option>
                   ))}
-                  <option value="all">All categories</option>
+                  <option value="all">All</option>
                 </select>
               </div>
               <div className="search-block">
