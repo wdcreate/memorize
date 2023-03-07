@@ -10,9 +10,21 @@
     max-width: 500px;
     & > * {
       margin-bottom: 10px;
-    }
+    }/*
+    .color-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      input[type="color"] {
+        width: 60px;
+        height: 30px;
+        padding: 0;
+        margin-bottom: 0;
+        border: none;
+      }
+    }*/
   }
-  textarea{
+  textarea {
     @include input-style;
     height: 100px;
     resize: none;
@@ -26,10 +38,10 @@
     align-items: center;
     button {
       @include sec-button;
-      &[type="submit"]{
+      &[type="submit"] {
         width: 65%;
       }
-      &[type="reset"]{
+      &[type="reset"] {
         width: 30%;
       }
     }

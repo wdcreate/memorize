@@ -58,7 +58,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
           placeholder='category place'
           defaultValue={newCategory || category}
           onChange={(e)=>setNewCategory(e.target.value)}
-          maxlength="20"
+          maxLength="20"
 
         />
       </div>
