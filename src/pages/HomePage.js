@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
+import MainScreen from "../components/MainScreen";
 import "./styles/HomePage.scss"
 
 const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
@@ -38,17 +39,7 @@ function Home({ data, num }) {
 
   return (
     <div>
-      {!user ? <div className='home-nouser'>
-        <p>You can save words here</p>
-        <p>register new account or log in in your acccount</p>
-        <div className='header-links'>
-          <Link to="/login">
-        log in
-      </Link>
-      <Link to="/signup">
-        sign up
-      </Link></div>
-      </div> : <div className="home-inner">
+      {!user ? <MainScreen/> : <div className="home-inner">
         {num >= 1 && randomCard ? (
           <div className="home-stat">
             <p className="saved-stat">
