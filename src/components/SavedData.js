@@ -107,9 +107,10 @@ export default function SavedData({id, word, translate, note, category, del, edi
             {note}
           </label>
         </div>
+        {category ? 
         <label className="saved-card-category" >
             {category}
-          </label>
+          </label> : ''}
     </div>
   );
   return <div className="saved-wrapper" >{isEditing ? editingTemplate : viewTemplate}</div>;

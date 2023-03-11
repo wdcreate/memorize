@@ -6,7 +6,9 @@
   align-items: center;
   h1{
     text-align: center;
-    @include font(30px)
+    @include font(30px);
+    font-family: $HEADFONT;
+    font-weight: 500;
   }
   form {
     max-width: 550px;
@@ -18,8 +20,11 @@
       input {
         @include input-style;
       }
+      label span,
       label {
         margin-bottom: 5px;
+        font-family: $HEADFONT;
+        font-weight: 300;
       }
     }
     .login-btn {
@@ -28,6 +33,7 @@
       margin-top: 50px;
     }
   }
+  
 }
 .resetpass {
   button {
@@ -39,50 +45,8 @@
     margin-top: 20px;
     text-align: left;
     @include font(15px);
-    font-weight: 700;
-  }
-}
-.google-btn {
-  cursor: pointer;
-  margin-top: 20px;
-  max-width: 550px;
-  width: 100%;
-  height: 42px;
-  background-color: #4285f4;
-  border-radius: 2px;
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row !important;
-  align-items: center;
-  .google-icon-wrapper {
-    margin-top: 1px;
-    margin-left: 1px;
-    width: 40px;
-    height: 40px;
-    border-radius: 2px;
-    background-color: #fff;
-  }
+    font-weight: 500;
 
-  .google-icon {
-    position: absolute;
-    margin-top: 11px;
-    margin-left: 11px;
-    width: 18px;
-    height: 18px;
-  }
-  .btn-text {
-    margin: auto;
-    color: #fff;
-    font-size: 16px;
-    letter-spacing: 0.2px;
-    padding: 0 20px;
-  }
-  &:hover {
-    box-shadow: 0 0 6px #4285f4;
-  }
-  &:active {
-    background: #1669f2;
   }
 }
 .or-block{

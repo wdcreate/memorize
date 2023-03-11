@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700;900&family=Open+Sans:wght@400;500;700&display=swap');
 @import "./variables";
 @import "./mixin";
 * {
   box-sizing: border-box;
-}
+  font-family: $TEXTFONT;
+  }
 body {
   margin: 0px;
   padding: 0;

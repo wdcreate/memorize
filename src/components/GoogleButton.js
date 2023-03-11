@@ -1,4 +1,6 @@
 import { UserAuth } from "../context/AuthContext";
+import "./styles/GoogleButton.scss"
+
 
 const GoogleButton = (props) => {
   const { googleAuth } = UserAuth();

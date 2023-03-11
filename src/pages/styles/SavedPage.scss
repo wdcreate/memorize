@@ -14,6 +14,7 @@
 .nodata{
   @include font(16px);
   text-align: center;
+  font-weight: 500;
   padding: 20px 0;
 }
 .saved-nav {
@@ -28,6 +29,7 @@
       border-radius: 10px;
       background: $ACCENTCOLOR;
       color: #fff;
+      font-weight: 700;
       height: 33px;
       outline: none;
       -webkit-border-radius: 10px;
@@ -48,7 +50,7 @@
       @include input-style;
       height: 1.5rem;
       margin-bottom: 0;
-
+      font-weight: 700;
     }
     .search {
       display: flex;
@@ -204,21 +206,27 @@
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 30px;
+  font-family: $HEADFONT;
+
 }
 .saved-card-translate {
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 10px;
+  font-family: $HEADFONT;
+
 }
 .saved-card-note {
   font-size: 14px;
   font-weight: 300;
+  font-style: italic;
 }
 .saved-card-category {
   font-size: 14px;
   background-color: $ACCENTCOLOR;
   color: #fff;
   font-weight: 300;
+  text-transform: lowercase;
   padding: 5px 10px;
 position: absolute;
 top: 80px;

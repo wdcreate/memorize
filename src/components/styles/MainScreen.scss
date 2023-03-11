@@ -29,9 +29,11 @@
   display: flex;
   flex-direction: column;
   h1 {
+    font-weight: 900;
     @include font(45px);
     text-align: center;
     margin-bottom: 15%;
+    font-family: $HEADFONT;
     @media (max-width: 980px) {
       @include font(35px);
     }
@@ -49,7 +51,6 @@
       width: 200px;
       @media (max-width: 480px) {
         width: 150px;
-        
       }
       img {
         transform: rotate(180deg);
@@ -95,7 +96,7 @@
       margin-left: 5px;
       cursor: pointer;
       @include transition;
-      &:hover{
+      &:hover {
         text-decoration: underline;
       }
     }
