@@ -41,7 +41,7 @@
   color: #1d1d1f;
   padding: 0.9rem;
   text-align: left;
-  background-color: hsla(0, 0%, 100%, 0.8);
+  background-color: hsl(0, 0%, 100%);
   text-overflow: ellipsis;
   @include transition;
   @include border-radius;

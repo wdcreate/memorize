@@ -27,7 +27,6 @@ const Signup = () => {
         setNoUser(false);
       } catch (e) {
         setError(e.message);
-        console.log(error);
       }
     } else {
       setWrongPassword(true);
@@ -50,6 +49,7 @@ const Signup = () => {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="place for email"
+            required
           />
         </div>
         <div>
@@ -58,6 +58,7 @@ const Signup = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="place for password"
             type="password"
+            required
           />
         </div>
         <div>
@@ -72,10 +73,10 @@ const Signup = () => {
             onChange={(e) => setConfirmedPassword(e.target.value)}
             placeholder="place for confirm password"
             type="password"
+            required
           />
         </div>
-
-        
+        {error ? <div className="error-notification">Account with this email already exist</div> : ""}        
         <button type="submit" className="login-btn">
           Sign Up
         </button>

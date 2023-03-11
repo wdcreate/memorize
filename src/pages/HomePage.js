@@ -30,7 +30,6 @@ function Home({ data, num }) {
   const handleTranslate = () => {
     if(showTranslate === false){
       setShowTranslate(true)
-      
     }else{
       setShowTranslate(false)
 

@@ -20,7 +20,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
     setNewNote(note)
     setNewWord(word)
     setNewTranslate(translate)
-    setNewCategory(category)
+    setNewCategory(category.toLowerCase())
   }
   const editingTemplate = (
     <form className="saved-card edit-saved-card" onSubmit={handleSubmit}>

@@ -87,7 +87,7 @@ function AppBody() {
         word: word,
         translate: translate,
         note: note,
-        category: category,
+        category: category.toLowerCase(),
         date: new Date(),
         author: user.uid,
       });

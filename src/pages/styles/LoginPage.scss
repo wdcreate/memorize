@@ -9,6 +9,7 @@
     @include font(30px);
     font-family: $HEADFONT;
     font-weight: 500;
+    margin-top: 50px;
   }
   form {
     max-width: 550px;
@@ -46,7 +47,6 @@
     text-align: left;
     @include font(15px);
     font-weight: 500;
-
   }
 }
 .or-block{

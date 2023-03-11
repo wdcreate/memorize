@@ -24,8 +24,8 @@ export const AuthContextProvider = ({ children }) => {
       if (currentUser) {
         setUser(currentUser);
       } else {
-        setUser(null);
         setNoUser(true);
+        setUser(null);
       }
     });
     return () => {
@@ -42,11 +42,8 @@ export const AuthContextProvider = ({ children }) => {
   const googleAuth = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        console.log(credential)
         const token = credential.accessToken;
-        // The signed-in user info.
         const userG = result.user;
         setUser(userG)
         navigate('/account')
@@ -54,9 +51,7 @@ export const AuthContextProvider = ({ children }) => {
 
       })
       .catch((error) => {
-        console.log(error.code);
-        console.log(error.message);
-        console.log(error.customData.email);
+        //console.log(error.message);
         const credential = GoogleAuthProvider.credentialFromError(error);
       });
   };
@@ -67,7 +62,6 @@ export const AuthContextProvider = ({ children }) => {
         alert("Password reset email sent! Please check your email");
       })
       .catch((error) => {
-        console.log(error.code);
         console.log(error.message);
       });
   };
@@ -77,7 +71,6 @@ export const AuthContextProvider = ({ children }) => {
         alert("Password reset email sent! Please check your email");
       })
       .catch((error) => {
-        console.log(error.code);
         console.log(error.message);
       });
   };

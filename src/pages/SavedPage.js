@@ -113,7 +113,7 @@ export default function Saved({ data, setData }) {
       filtered = data;
     } else {
       filtered = data.filter((entry) => {
-        return entry.category.toLowerCase().includes(categ);
+        return entry.category.toLowerCase().includes(categ.toLowerCase());
       });
     }
     setFilteredCategData(filtered);
@@ -152,7 +152,7 @@ export default function Saved({ data, setData }) {
                   defaultValue={"all"}
                   onChange={(e) => handleSelect(e.target.value)}
                 >
-                  {[...new Set(data.map((hs) => hs.category))].map((sn) => (
+                  {[...new Set(data.map((hs) => hs.category.toLowerCase()))].map((sn) => (
                     <option key={sn}>{sn}</option>
                   ))}
                   <option value="all">All</option>
