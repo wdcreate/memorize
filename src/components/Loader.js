@@ -4,7 +4,7 @@ import "./styles/Loader.scss"
 const Loader= () => {
   return (
     <div className='loader-inner'>
-      <img src="./logo.png" alt="logo" className="loader-logo"/>
+      <img src="./logo.svg" alt="logo" className="loader-logo"/>
       <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>    </div>
   );
 };

@@ -38,7 +38,7 @@ function Header() {
             <img src="./assets/left-arrow.svg" alt="Back" />
           </button>
           <Link className="logo" to="/">
-            <img src="./logo.png" alt="Englio" />
+            <img src="./logo-main.svg" alt="memorizeme" />
           </Link>
           <div>
         {!user ? (
@@ -73,7 +73,7 @@ function Header() {
       </div>        </div>
       ) : (
         <div className="header-inner header-nu">
-          <img src="./logo.png" className="logo-nu" alt="Englio" />
+          <img src="./logo-main.svg" className="logo-nu" alt="memorizeme" />
           {navNU()}
         </div>
       )}
