@@ -1,0 +1,32 @@
+@import "../../_variables.scss";
+@import "../../_mixin.scss";
+
+.aboutpage{
+    article{
+        max-width: 900px;
+        margin: 0 auto;
+    }
+   h1{
+    text-align: center;
+    @include font(30px);
+    font-family: $HEADFONT;
+    font-weight: 500;
+    margin-top: 50px;
+   } 
+   h2{
+    @include font(25px);
+    font-family: $HEADFONT;
+    margin: 10px 0;
+   }
+   p{
+    @include font(16px);
+    line-height: 1.8;
+   }
+   ul{
+    padding: 0 0 0 20px;
+    li{
+        margin-bottom: 10px;
+    }
+   }
+
+}

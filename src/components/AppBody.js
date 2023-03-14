@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Routes, Outlet } from "react-router-dom";
 import Home from "../pages/HomePage";
 import Saved from "../pages/SavedPage";
+import AboutPage from "../pages/AboutPage";
 import AddCard from "../pages/AddCardPage";
 import Account from "../pages/AccountPage";
 import Login from "../pages/LoginPage";
@@ -151,6 +152,7 @@ function AppBody() {
               />
               <Route path="signup" element={<SignUp />} />
               <Route path="login" element={<Login />} />
+              <Route path="about" element={<AboutPage />} />
             </Route>
          
           </Routes>
