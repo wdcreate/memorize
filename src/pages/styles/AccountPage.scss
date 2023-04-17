@@ -46,3 +46,9 @@
     color: #fff;
   }
 }
+.logout-btn{
+  @include sec-button;
+  width: 200px;
+  margin: 10px auto;
+  margin-top: 40px;
+}
