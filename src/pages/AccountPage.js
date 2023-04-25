@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import "./styles/AccountPage.scss";
@@ -6,8 +6,8 @@ import "./styles/AccountPage.scss";
 const Account = () => {
   const { user, logout, triggerResetEmail, verifyEmail } = UserAuth();
   const navigate = useNavigate();
-  const [notify, setNotify] = useState('');
-  const [color, setColor] = useState('');
+  const [notify, setNotify] = useState("");
+  const [color, setColor] = useState("");
   const handleLogout = async () => {
     try {
       await logout();
@@ -16,31 +16,33 @@ const Account = () => {
       console.log(e.message);
     }
   };
-  const notificationStyle = {background : `${color}`}
-  const ver = ()=>{
-    setNotify('Please check email')
-    setColor('green')
-    verifyEmail()
-  }
-  const resetEmail = ()=>{
-    setNotify('Please check email')
-    setColor('green')
-    triggerResetEmail()
-  }
+  const notificationStyle = { background: `${color}` };
+  const ver = () => {
+    setNotify("Please check email");
+    setColor("green");
+    verifyEmail();
+  };
+  const resetEmail = () => {
+    setNotify("Please check email");
+    setColor("green");
+    triggerResetEmail();
+  };
   useEffect(() => {
-    if(!user.emailVerified){
-      setNotify('Please verify your account')
-      setColor('red')
+    if (!user.emailVerified) {
+      setNotify("Please verify your account");
+      setColor("red");
     }
   }, []);
-  
 
   return (
-    <div>
-      {notify ? 
-      <div className="notification" style={notificationStyle}>
-        <span>{notify}</span>
-      </div> : ''}
+    <div className="accountpage">
+      {notify ? (
+        <div className="notification" style={notificationStyle}>
+          <span>{notify}</span>
+        </div>
+      ) : (
+        ""
+      )}
       <h1>Account</h1>
       <div className="account-settings">
         <span>User Email:</span>
@@ -64,7 +66,9 @@ const Account = () => {
           </button>
         )}
       </div>
-      <button className="logout-btn" onClick={handleLogout}>Logout</button>
+      <button className="logout-btn" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 };
