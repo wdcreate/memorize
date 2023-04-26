@@ -127,7 +127,7 @@ export default function Saved({ data, setData }) {
     <div>
       <div className="saved-inner">
         {data.length >= 1 ? (
-          <div className="saved-wrapper">
+          <div className="savedpage-wrapper">
             <div className="saved-nav">
               <div className="saved-menu">
                 <button
