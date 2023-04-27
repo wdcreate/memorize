@@ -50,7 +50,7 @@ function Header() {
               <Link className="account-link" to="/account">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  style={{ width: "30", height: "30", fill: "#000" }}
+                  style={{ width: "30", height: "30", fill: "#f7d5b1" }}
                   viewBox="0 0 24 24"
                 >
                   <g id="SVGRepo_bgCarrier" style={{ strokeWidth: "0" }}></g>

@@ -21,14 +21,23 @@
   justify-content: center;
   align-items: center;
   list-style-type: none;
-  background-color: #f8f8f8;
-  width: 70%;
+  background-color: $BODYCOLOR2;
+  width: 50%;
   min-width: 310px;
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+  @media(max-width: 1000px){
+    width: 70%;
+  }
+  @media(max-width: 650px){
+    width: 85%;
+  }
+  @media(max-width: 400px){
+    width: 70%;
+  }
   a {
     color: inherit;
     cursor: pointer;
@@ -43,7 +52,7 @@
     display: flex;
     align-items: center;
     &.active svg path {
-      fill: $MAINCOLOR !important;
+      fill: $COLOR2 !important;
     }
   }
 }

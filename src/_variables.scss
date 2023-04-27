@@ -1,63 +1,17 @@
+$BODYCOLOR: #2c3950;
+$BODYCOLOR2: #4B4F6D;
+$FONTCOLOR: #f7d5b1;
+$COLOR2: #f7b672;
+
+
+
+
 $MAINCOLOR: #da291c;
 $MAINCOLOR_HOVER: #bd0017;
 $SECCOLOR: #ffba00;
 $SECCOLOR_HOVER: #ffba00;
-$ACCENTCOLOR: #264f36;
-$ACCENTCOLOR_HOVER: #266840;
+$ACCENTCOLOR: #000;
+$ACCENTCOLOR_HOVER: #1c3638;
 
 $HEADFONT: 'Lato', sans-serif;
 $TEXTFONT: 'Open Sans', serif;
-/*
-
-.alert {
-  border: 1px solid $border-dark;
-}
-
-nav {
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  li { display: inline-block; }
-
-  a {
-    display: block;
-    padding: 6px 12px;
-    text-decoration: none;
-  }
-}
-.enlarge {
-  font-size: 14px;
-  transition: {
-    property: font-size;
-    duration: 4s;
-    delay: 2s;
-  }
-
-  &:hover { font-size: 36px; }
-}
-
-.accordion {
-  max-width: 600px;
-  margin: 4rem auto;
-  width: 90%;
-  font-family: "Raleway", sans-serif;
-  background: #f4f4f4;
-
-  &__copy {
-    display: none;
-    padding: 1rem 1.5rem 2rem 1.5rem;
-    color: gray;
-    line-height: 1.6;
-    font-size: 14px;
-    font-weight: 500;
-
-    &--open {
-      display: block;
-    }
-  }
-}
-
-*/

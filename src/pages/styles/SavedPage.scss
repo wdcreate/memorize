@@ -9,6 +9,7 @@
     background: none;
     border: none;
     @include flex;
+    cursor: pointer;
   }
 }
 .nodata {
@@ -70,8 +71,12 @@
   }
 }
 #active-sorttype {
-  @include border-radius;
-  background: #fff;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  background: $ACCENTCOLOR;
   padding: 3px;
 }
 
@@ -87,23 +92,23 @@
   }
   @media (max-width: 650px) {
     grid-template-columns: 1fr;
-    height: 400px;
+    /*height: 400px;
     overflow-y: scroll;
     overflow-x: hidden;
     position: absolute;
     right: 0;
     left: 0;
-    bottom: 15%;
+    bottom: 15%;*/
   }
   .saved-wrapper {
     list-style: none;
-    @media (max-width: 650px) {
+    /*@media (max-width: 650px) {
       margin-top: -93px;
     
       &:first-child {
         margin-top: 0;
       }
-    }
+    }*/
   }
 } 
 .saved-card {

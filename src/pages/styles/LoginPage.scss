@@ -8,6 +8,8 @@
     text-align: center;
     @include font(30px);
     font-family: $HEADFONT;
+    color: $FONTCOLOR;
+
     font-weight: 500;
     margin-top: 50px;
   }
@@ -23,6 +25,7 @@
       }
       label span,
       label {
+        color: $FONTCOLOR;
         margin-bottom: 5px;
         font-family: $HEADFONT;
         font-weight: 300;
@@ -34,7 +37,6 @@
       margin-top: 50px;
     }
   }
-  
 }
 .resetpass {
   button {

@@ -4,7 +4,6 @@
 .brb-content{
     .btn-block {
         @include flex;
-    
         .google-icon-spec {
           background: #fff;
           @include mainscreen-btn;
@@ -36,8 +35,11 @@
         align-items: center;
         justify-content: center;
         @include font(15px);
+        p{
+          color: $FONTCOLOR;
+        }
         a {
-          color: $ACCENTCOLOR;
+          color: $COLOR2;
           text-decoration: none;
           margin-left: 5px;
           cursor: pointer;

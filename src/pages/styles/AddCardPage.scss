@@ -10,19 +10,7 @@
     max-width: 500px;
     & > * {
       margin-bottom: 10px;
-    }/*
-    .color-block {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      input[type="color"] {
-        width: 60px;
-        height: 30px;
-        padding: 0;
-        margin-bottom: 0;
-        border: none;
-      }
-    }*/
+    }
   }
   textarea {
     @include input-style;
