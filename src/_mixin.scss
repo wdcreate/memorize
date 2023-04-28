@@ -45,12 +45,9 @@
   text-overflow: ellipsis;
   @include transition;
   @include border-radius;
-  &:focus {
-    border: 3px solid $ACCENTCOLOR_HOVER;
-  }
-  &::placeholder{
-    color: #000;
-
+  &:focus  {
+    border: 3px solid $COLOR2;
+    background: rgba($color:  $FONTCOLOR, $alpha: 0.7);
   }
 }
 @mixin main-button {
@@ -59,8 +56,8 @@
 	padding: 18px 0;
   margin: 10px auto;
   width: 300px;
-  background: $SECCOLOR;
-  color: #fff;
+  background: $FONTCOLOR;
+  color: $BODYCOLOR2;
   text-decoration: none;
   outline: none;
   @include border-radius;
@@ -69,7 +66,7 @@
 	cursor: pointer;
   font-weight: 700;
   &:hover {
-    background: $SECCOLOR_HOVER;
+    background: $COLOR2;
   }
 }
 @mixin sec-button {

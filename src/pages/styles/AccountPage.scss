@@ -1,8 +1,11 @@
 @import"../../_variables.scss";
 @import"../../_mixin.scss";
 .accountpage{
+  color: $FONTCOLOR;
   h1{
     text-align: center;
+    color: $COLOR2;
+
   }
 }
 .account-settings {

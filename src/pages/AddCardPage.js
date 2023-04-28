@@ -6,43 +6,47 @@ function AddCard(props) {
     <div>
       <div className="add-inner">
         <form onSubmit={props.onSubmit}>
-          <input
-            onChange={props.onChangeWord}
-            value={props.word}
-            type="text"
-            placeholder="write your word"
-            required
-          />
-          <input
-            onChange={props.onChangeTranslate}
-            value={props.translate}
-            type="text"
-            placeholder="write translate"
-            required
-          />
-          <textarea
-            onChange={props.onChangeNote}
-            value={props.note}
-            placeholder="place for your notes"
-          ></textarea>
-          <input
-            onChange={props.onChangeCategory}
-            value={props.category}
-            type="text"
-            placeholder="write category"
-            required
-            maxLength="20"
-          />
-          {/* 
-         <div className="color-block">
-          <label>Choose card color:</label>
-           <input
-            type="color"
-            defaultValue="#bd0017"
-          />
+          <div className="inputGroup">
+            <input
+              id="word"
+              onChange={props.onChangeWord}
+              value={props.word}
+              type="text"
+              required
+            />
+            <label htmlFor="word">Place for Word</label>
           </div>
-         */}
-
+          <div className="inputGroup">
+            <input
+              id="translate"
+              onChange={props.onChangeTranslate}
+              value={props.translate}
+              type="text"
+              required
+            />
+            <label htmlFor="translate">Place for Translate</label>
+          </div>
+          <div className="inputGroup">
+            <textarea
+              id="note"
+              onChange={props.onChangeNote}
+              value={props.note}
+              placeholder=""
+              required
+            ></textarea>
+            <label htmlFor="note">Place for Notes</label>
+          </div>
+          <div className="inputGroup">
+            <input
+              onChange={props.onChangeCategory}
+              value={props.category}
+              type="text"
+              required
+              maxLength="20"
+              id="category"
+            />
+            <label htmlFor="category">Place for Category</label>
+          </div>
           <div className="btn-block">
             <button type="submit">Save</button>
             <button onClick={props.resetFormAdd} type="reset">
