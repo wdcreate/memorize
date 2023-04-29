@@ -43,7 +43,7 @@
   text-transform: lowercase;
   @include box-shadow;
   margin: 30px auto 50px auto;
-  background: #fff;
+  background: $FONTCOLOR;
 }
 .randomword {
   padding: 40px 10px;
