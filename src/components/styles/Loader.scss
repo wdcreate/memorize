@@ -2,7 +2,7 @@
 
 .loader-inner {
   position: absolute;
-  background: $MAINCOLOR;
+  background: $BODYCOLOR;
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -22,67 +22,82 @@
   width: 150px;
   height: 150px;
   margin-bottom: 30px;
-  background: $SECCOLOR;
+  background: $MAINCOLOR;
   padding: 30px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
-}
-.lds-ellipsis {
-  display: inline-block;
+  box-shadow: 0px 0px 20px 5px $SECCOLOR;
+} 
+.loader {
   position: relative;
-  width: 80px;
-  height: 80px;
-  div:nth-child(1) {
-    left: 8px;
-    animation: lds-ellipsis1 0.6s infinite;
-  }
-  div:nth-child(2) {
-    left: 8px;
-    animation: lds-ellipsis2 0.6s infinite;
-  }
-  div:nth-child(3) {
-    left: 32px;
-    animation: lds-ellipsis2 0.6s infinite;
-  }
-  div:nth-child(4) {
-    left: 56px;
-    animation: lds-ellipsis3 0.6s infinite;
-  }
-}
-.lds-ellipsis div {
-  position: absolute;
-  top: 33px;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: $SECCOLOR;
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  height: 150px;
+  width: 150px;
+  border-bottom: 5px dotted $SECCOLOR;
+  box-sizing: border-box;
+  animation: drawLine 3s linear infinite;
+  -webkit-animation: drawLine 3s linear infinite;
 }
 
-@keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
+.loader:before {
+  content: "";
+  position: absolute;
+  left: calc(100% + 14px);
+  bottom: -6px;
+  width: 13px;
+  height: 80px;
+  border-radius: 20px 20px 50px 50px;
+  -webkit-border-radius: 20px 20px 50px 50px;
+  -moz-border-radius: 20px 20px 50px 50px;
+  -ms-border-radius: 20px 20px 50px 50px;
+  -o-border-radius: 20px 20px 50px 50px;
+  background-repeat: no-repeat;
+  background-image: linear-gradient($SECCOLOR 3px, transparent 0),
+    linear-gradient(45deg, rgba(0, 0, 0, 0.02) 49%, white 51%),
+    linear-gradient(315deg, rgba(0, 0, 0, 0.02) 49%, white 51%),
+    linear-gradient(
+      to bottom,
+      #ffffff 10%,
+      $SECCOLOR 10%,
+      $SECCOLOR 90%,
+      #ffffff 90%
+    );
+  background-size: 3px 5px, 7px 7px, 7px 7px, 13px 70px;
+  background-position: center bottom, left 70px, right 70px, left top;
+  animation: pencilRot 3s linear infinite;
+  transform: rotate(25deg);
+  -webkit-transform: rotate(25deg);
+  -moz-transform: rotate(25deg);
+  -ms-transform: rotate(25deg);
+  -o-transform: rotate(25deg);
+  -webkit-animation: pencilRot 3s linear infinite;
+}
+
+@keyframes drawLine {
+  0%,
   100% {
-    transform: scale(1);
+    width: 0px;
+  }
+  45%,
+  55% {
+    width: 100px;
   }
 }
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
+
+@keyframes pencilRot {
+  0%,
+  45% {
+    bottom: -6px;
+    left: calc(100% + 9px);
+    transform: rotate(25deg);
   }
+
+  55%,
   100% {
-    transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(24px, 0);
+    bottom: -12px;
+    left: calc(100% + 20px);
+    transform: rotate(220deg);
   }
 }

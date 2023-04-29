@@ -16,8 +16,8 @@
   }
 }
 .saved-stat {
-  background: $MAINCOLOR;
-  background: linear-gradient(to bottom, $MAINCOLOR 50%, $MAINCOLOR_HOVER 100%);
+  background: $MAINCOLOR_HOVER;
+  //background: linear-gradient(to bottom, $MAINCOLOR 50%, $MAINCOLOR_HOVER 100%);
   color: #fff;
   padding: 20px;
   @include border-radius;

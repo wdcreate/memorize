@@ -1,11 +1,12 @@
-import React from 'react';
-import "./styles/Loader.scss"
+import React from "react";
+import "./styles/Loader.scss";
 
-const Loader= () => {
+const Loader = () => {
   return (
-    <div className='loader-inner'>
-      <img src="./assets/m.png" alt="logo" className="loader-logo"/>
-      <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>    </div>
+    <div className="loader-inner">
+      <img src="./assets/m.png" alt="logo" className="loader-logo" />
+      <div class="loader"></div>
+    </div>
   );
 };
 

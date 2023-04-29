@@ -157,6 +157,7 @@ export default function Saved({ data, setData }) {
                   ))}
                   <option value="all">All</option>
                 </select>
+                <span class="arrow"></span>
               </div>
               <div className="search-block">
                 <input
