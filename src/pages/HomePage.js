@@ -41,18 +41,17 @@ function Home({ data, num }) {
       {!user ? <MainScreen/> : <div className="home-inner">
         {num >= 1 && randomCard ? (
           <div className="home-stat">
-            <p className="saved-stat">
-              Saved words: <span>{num}</span>
-            </p>
+            <Link className="saved-stat" to="/saved">
+              Saved words: <span>{num}</span>              <img src="../assets/left-arrow.svg" alt="to saved" />
+
+              </Link>
+          
             <div  className="home-random">
               <div className="hr-card">
                 <p onClick={randomizeCard} className="randomword">{randomCard.word}</p>
                 <p onClick={handleTranslate} style={!showTranslate ? {textShadow: '0 0 13px #000', color: 'transparent'} : {color:'#000'}} className="randomtranslate">{randomCard.translate}</p>
               </div>
             </div>
-            <Link className="home-btn main-btn" to="/saved">
-              See all
-            </Link>
           </div>
         ) : (
           <div>
