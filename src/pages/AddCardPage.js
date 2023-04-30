@@ -13,6 +13,8 @@ function AddCard(props) {
               value={props.word}
               type="text"
               required
+              maxLength="25"
+
             />
             <label htmlFor="word">Place for Word</label>
           </div>
@@ -23,6 +25,8 @@ function AddCard(props) {
               value={props.translate}
               type="text"
               required
+              maxLength="40"
+
             />
             <label htmlFor="translate">Place for Translate</label>
           </div>
@@ -33,6 +37,7 @@ function AddCard(props) {
               value={props.note}
               placeholder=""
               required
+              maxLength="300"
             ></textarea>
             <label htmlFor="note">Place for Notes</label>
           </div>

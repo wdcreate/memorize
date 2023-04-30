@@ -183,8 +183,15 @@
     width: 95%;
   }
   &:hover {
-    border: 3px solid $MAINCOLOR;
+    border: 3px solid $MAINCOLOR_HOVER;
     box-shadow: none;
+    .top-sec{
+        background: linear-gradient(
+          to top,
+          $MAINCOLOR 20%,
+          $MAINCOLOR_HOVER 100%,
+        );
+    }
   }
 
   .top-sec {
@@ -199,6 +206,8 @@
       $MAINCOLOR 70%,
       $MAINCOLOR_HOVER 100%
     );
+    @include transition;
+   
   }
   .form-group {
     display: flex;
@@ -329,24 +338,7 @@
   padding: 15px 20px;
   color: #000;
 }
-.saved-card-word {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  font-family: $HEADFONT;
-}
-.saved-card-translate {
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  font-family: $HEADFONT;
-}
-.saved-card-note {
-  font-size: 14px;
-  font-weight: 300;
-  font-style: italic;
-  height: 40px;
-  overflow-y: auto;
+.saved-card-word,.saved-card-note,.saved-card-translate{
   &::-webkit-scrollbar {
     width: 2px;
   }
@@ -359,6 +351,27 @@
   &::-webkit-scrollbar-thumb:hover {
     background: $ACCENTCOLOR_HOVER;
   }
+  overflow-y: auto;
+  word-break: break-all;
+height: 40px;
+}
+.saved-card-word {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: $HEADFONT;
+  word-break: break-all;
+}
+.saved-card-translate {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-family: $HEADFONT;
+}
+.saved-card-note {
+  font-size: 14px;
+  font-weight: 300;
+  font-style: italic;
 }
 .saved-card-category {
   text-transform: lowercase;
@@ -368,7 +381,7 @@
   font-weight: 300;
   padding: 5px 10px 5px 20px;
   position: absolute;
-  top: 80px;
+  top: 64px;
   right: 0;
   border-radius: 20px 0px 0px 20px;
   -webkit-border-radius: 20px 0px 0px 20px;

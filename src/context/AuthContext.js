@@ -8,6 +8,7 @@ import {
   sendEmailVerification,
   signInWithPopup,
   GoogleAuthProvider,
+  updateProfile
 } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { auth, provider } from "../firebase";
@@ -32,8 +33,21 @@ export const AuthContextProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
-  const createUser = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+
+
+  const updateUsername = async(username) =>  {
+    updateProfile(auth.currentUser,{
+      displayName: username
+    })
+    await auth.currentUser.reload();
+  };
+  const createUser = async(email, password, username) =>  {
+    const result = await createUserWithEmailAndPassword(auth, email, password,username)
+    updateProfile(auth.currentUser,{
+      displayName: username
+    })
+    await auth.currentUser.reload();
+    return result;
   };
 
   const signIn = (email, password) => {
@@ -46,7 +60,7 @@ export const AuthContextProvider = ({ children }) => {
         const token = credential.accessToken;
         const userG = result.user;
         setUser(userG)
-        navigate('/')
+        navigate('/addcard')
         setNoUser(false);
 
       })
@@ -86,6 +100,7 @@ export const AuthContextProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
+        updateUsername,
         createUser,
         user,
         logout,

@@ -1,5 +1,17 @@
 @import "../../_variables.scss";
 @import "../../_mixin.scss";
+.welcome{
+  font-size: 20px;
+  color: $FONTCOLOR;
+  text-align: center;
+  margin: 20px 0;
+  span{
+    margin-left: 30px;
+    color: $COLOR2;
+    font-weight: 500;
+    font-size: 22px;
+  }
+}
 .home-nouser {
   display: flex;
   flex-direction: column;
@@ -124,12 +136,27 @@
   overflow: hidden;
   text-transform: lowercase;
   @include box-shadow;
+  @include transition;
+
   background: $FONTCOLOR;
   @media (max-width: 768px) {
     margin: 0px auto;
   }
+  &:hover{
+    box-shadow: none;
+    .randomword{
+      background: linear-gradient(
+        to top,
+        $MAINCOLOR 20%,
+        $MAINCOLOR_HOVER 100%,
+      );
+    }
+  }
 }
 .randomword {
+  @include transition;
+
+  word-break: break-all;
   cursor: context-menu;
   padding: 40px 10px;
   margin: 0;
@@ -141,6 +168,7 @@
   background: linear-gradient(to bottom, $MAINCOLOR 80%, $MAINCOLOR_HOVER 100%);
 }
 .randomtranslate {
+  word-break: break-all;
   margin: 0;
   padding: 30px 10px;
   font-size: 20px;

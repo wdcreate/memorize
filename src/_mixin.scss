@@ -12,11 +12,11 @@
   box-shadow: 0px 0px 10px 5px rgba(148, 148, 148, 0.75);
 }
 @mixin transition {
-  transition: all 0.2s;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -o-transition: all 0.2s;
+  transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -ms-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
 }
 @mixin font($size) {
   font-size: $size;

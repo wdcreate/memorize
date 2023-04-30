@@ -33,6 +33,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
           defaultValue={newWord || word}
           onChange={(e)=>setNewWord(e.target.value)}
           required
+          maxLength="25"
         />
         <input
           id={id}
@@ -42,6 +43,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
           defaultValue={newTranslate || translate}
           onChange={(e)=>setNewTranslate(e.target.value)}
           required
+          maxLength="40"
         />
         <textarea
           id={id}
@@ -50,6 +52,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
           placeholder='note place'
           defaultValue={newNote || note}
           onChange={(e)=>setNewNote(e.target.value)}
+          maxLength="300"
         />
          <input
           id={id}
@@ -59,7 +62,6 @@ export default function SavedData({id, word, translate, note, category, del, edi
           defaultValue={newCategory || category}
           onChange={(e)=>setNewCategory(e.target.value)}
           maxLength="20"
-
         />
       </div>
       <div className="btn-group">

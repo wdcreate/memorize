@@ -7,6 +7,7 @@ import "./styles/LoginPage.scss";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [wrongPassword, setWrongPassword] = useState(false);
   const [error, setError] = useState("");
@@ -22,11 +23,12 @@ const Signup = () => {
     setError("");
     if (validPass) {
       try {
-        await createUser(email, password);
+        await createUser(email, password, username);
         navigate("/account");
         setNoUser(false);
       } catch (e) {
         setError(e.message);
+        console.log(e)
       }
     } else {
       setWrongPassword(true);
@@ -43,6 +45,15 @@ const Signup = () => {
         OR
         </div>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>Username</label>
+          <input
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            placeholder="place for username"
+            required
+          />
+        </div>
         <div>
           <label>Email Address</label>
           <input
@@ -76,7 +87,7 @@ const Signup = () => {
             required
           />
         </div>
-        {error ? <div className="error-notification">Account with this email already exist</div> : ""}        
+        {error ? <div className="error-notification">{error}</div> : ""}        
         <button type="submit" className="login-btn">
           Sign Up
         </button>
