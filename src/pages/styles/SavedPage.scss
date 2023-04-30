@@ -190,7 +190,6 @@
   .top-sec {
     color: #fff;
     display: flex;
-    justify-content: space-between;
     align-items: baseline;
     padding: 15px 20px;
     background: $MAINCOLOR;
@@ -233,6 +232,7 @@
   }
   .btn-block {
     display: flex;
+    margin-left: auto;
     button {
       margin-left: 5px;
       padding: 5px;
@@ -345,6 +345,20 @@
   font-size: 14px;
   font-weight: 300;
   font-style: italic;
+  height: 40px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $ACCENTCOLOR;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $ACCENTCOLOR_HOVER;
+  }
 }
 .saved-card-category {
   text-transform: lowercase;
