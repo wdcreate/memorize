@@ -29,75 +29,25 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+  animation: spinning82341 4s linear infinite;
+  -webkit-animation: spinning82341 2s linear infinite;
   box-shadow: 0px 0px 20px 5px $SECCOLOR;
+
 } 
-.loader {
+.loader{
   position: relative;
   height: 150px;
   width: 150px;
-  border-bottom: 5px dotted $SECCOLOR;
-  box-sizing: border-box;
-  animation: drawLine 3s linear infinite;
-  -webkit-animation: drawLine 3s linear infinite;
 }
+@keyframes spinning82341 {
+  0% {
+    box-shadow: 0px 0px 20px 5px $SECCOLOR;
+    background: $MAINCOLOR;
+    
+  }
+  50% {
+    background: $MAINCOLOR_HOVER;
+    box-shadow: 0px 0px 20px 5px $COLOR2;
 
-.loader:before {
-  content: "";
-  position: absolute;
-  left: calc(100% + 14px);
-  bottom: -6px;
-  width: 13px;
-  height: 80px;
-  border-radius: 20px 20px 50px 50px;
-  -webkit-border-radius: 20px 20px 50px 50px;
-  -moz-border-radius: 20px 20px 50px 50px;
-  -ms-border-radius: 20px 20px 50px 50px;
-  -o-border-radius: 20px 20px 50px 50px;
-  background-repeat: no-repeat;
-  background-image: linear-gradient($SECCOLOR 3px, transparent 0),
-    linear-gradient(45deg, rgba(0, 0, 0, 0.02) 49%, white 51%),
-    linear-gradient(315deg, rgba(0, 0, 0, 0.02) 49%, white 51%),
-    linear-gradient(
-      to bottom,
-      #ffffff 10%,
-      $SECCOLOR 10%,
-      $SECCOLOR 90%,
-      #ffffff 90%
-    );
-  background-size: 3px 5px, 7px 7px, 7px 7px, 13px 70px;
-  background-position: center bottom, left 70px, right 70px, left top;
-  animation: pencilRot 3s linear infinite;
-  transform: rotate(25deg);
-  -webkit-transform: rotate(25deg);
-  -moz-transform: rotate(25deg);
-  -ms-transform: rotate(25deg);
-  -o-transform: rotate(25deg);
-  -webkit-animation: pencilRot 3s linear infinite;
 }
-
-@keyframes drawLine {
-  0%,
-  100% {
-    width: 0px;
-  }
-  45%,
-  55% {
-    width: 100px;
-  }
-}
-
-@keyframes pencilRot {
-  0%,
-  45% {
-    bottom: -6px;
-    left: calc(100% + 9px);
-    transform: rotate(25deg);
-  }
-
-  55%,
-  100% {
-    bottom: -12px;
-    left: calc(100% + 20px);
-    transform: rotate(220deg);
-  }
 }
