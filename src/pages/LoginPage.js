@@ -50,6 +50,7 @@ const Signin = () => {
             id="login-pass"
             type="password"
             required
+            autoComplete="off"
           />
         </div>
         {error ? <div className="error-notification">Please write correct email or password</div> : ""}

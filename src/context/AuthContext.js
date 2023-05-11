@@ -17,13 +17,15 @@ const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  const [noUser, setNoUser] = useState(false);
+  const [noUser, setNoUser] = useState(true);
   const navigate = useNavigate()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
+        setNoUser(false);
+
       } else {
         setNoUser(true);
         setUser(null);

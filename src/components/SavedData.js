@@ -69,10 +69,10 @@ export default function SavedData({id, word, translate, note, category, del, edi
           type="button"
           className="form-btn"
           onClick={() => removeEditing()}>
-      <img src="../assets/cancel.svg" alt="Cancel" />
+      <img src={require("../assets/cancel.svg").default} alt="Cancel" />
         </button>
         <button type="submit" className="form-btn">
-        <img src="../assets/check.svg" alt="Save" />
+        <img src={require("../assets/check.svg").default} alt="Save" />
         </button>
       </div>
     </form>
@@ -90,14 +90,14 @@ export default function SavedData({id, word, translate, note, category, del, edi
           className="form-btn"
           onClick={() => setEditing(true)}
           >
-            <img src="../assets/edit.svg" alt="Edit" />
+            <img src={require("../assets/edit.svg").default} alt="Edit" />
           </button>
           <button
                 onClick={() => del(id)}
                 type="button"
                 className="delete-btn form-btn"
               >
-            <img src="../assets/del.svg" alt="Delete" />
+            <img src={require("../assets/del.svg").default} alt="Delete" />
               </button>
         </div>
       </div>

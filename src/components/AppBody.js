@@ -28,12 +28,13 @@ function AppBody() {
   const [data, setData] = useState([]);
   const [warn, setWarn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { user } = UserAuth();
-  
+  const { user, noUser } = UserAuth();
+
   const fetchProduct = async () => {
-    if (!user) {
+    if (noUser) {
       setData([]);
       setIsLoading(false);
+      return
     }
     const ref = collection(db, "langcards-db");
     const q = query(ref, where("author", "==", user.uid));
@@ -55,11 +56,10 @@ function AppBody() {
     return () => {
       unsubscribe();
     };
-  }; 
+  };
 
   useEffect(() => {
     fetchProduct();
-
   }, []);
 
   useEffect(() => {
@@ -95,7 +95,7 @@ function AppBody() {
       setWord("");
       setTranslate("");
       setNote("");
-      setCategory("")
+      setCategory("");
     } else {
       setWarn(true);
     }
@@ -104,9 +104,8 @@ function AppBody() {
     setWord("");
     setTranslate("");
     setNote("");
-    setCategory("")
+    setCategory("");
   };
-  
 
   return (
     <div className="main-inner">
@@ -115,10 +114,7 @@ function AppBody() {
       ) : (
         <div className="content">
           <Routes>
-            <Route
-              path="/"
-              element={<Layout />}
-            >
+            <Route path="/" element={<Layout />}>
               <Route index element={<Home data={data} num={data.length} />} />
               <Route
                 path="addcard"
@@ -154,7 +150,6 @@ function AppBody() {
               <Route path="login" element={<Login />} />
               <Route path="about" element={<AboutPage />} />
             </Route>
-         
           </Routes>
           <div>
             <Outlet />

@@ -35,10 +35,10 @@ function Header() {
               navigate(-1);
             }}
           >
-            <img src="./assets/left-arrow.svg" alt="Back" />
+            <img src={require("../assets/left-arrow.svg").default} alt="Back" />
           </button>
           <Link className="logo" to="/">
-            <img src="./assets/m.png" alt="memorizeme" />
+            <img src={require("../assets/m.png")} alt="memorizeme" />
           </Link>
           <div>
             {!user ? (
@@ -63,7 +63,7 @@ function Header() {
                 </svg>
                 {!user.emailVerified ? (
                   <div className="vernotify">
-                    <img src="./assets/alert.svg" alt="alert" />
+                    <img src={require("../assets/alert.svg").default} alt="alert" />
                   </div>
                 ) : (
                   <span></span>
@@ -75,7 +75,7 @@ function Header() {
       ) : (
         <div className="header-inner header-nu">
           <Link className="logo" to="/">
-            <img src="./assets/m.png" alt="memorizeme" />
+            <img src={require("../assets/m.png")} alt="memorizeme" />
           </Link>{" "}
           {navNU()}
         </div>

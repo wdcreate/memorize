@@ -136,7 +136,7 @@ export default function Saved({ data, setData }) {
                   className="sort-btn sort-new "
                   id={sortType === 1 ? "active-sorttype" : ""}
                 >
-                  <img src="./assets/sortnew.svg" alt="Sort by date" />
+                  <img src={require("../assets/sortnew.svg").default} alt="Sort by date" />
                 </button>
                 <button
                   type="button"
@@ -144,7 +144,7 @@ export default function Saved({ data, setData }) {
                   className="sort-btn sort-old"
                   id={sortType === 2 ? "active-sorttype" : ""}
                 >
-                  <img src="./assets/sortold.svg" alt="Sort by date" />
+                  <img src={require("../assets/sortold.svg" ).default}alt="Sort by date" />
                 </button>
               </div>
               <div className="filter">
@@ -205,7 +205,7 @@ export default function Saved({ data, setData }) {
           </div>
         ) : (
           <div className="oops-section">
-            <img src="../assets/oops.png" alt="Oops..." />
+            <img src={require("../assets/oops.png")} alt="Oops..." />
             <Link className="main-btn" to="/addcard">
               Add first word
             </Link>

@@ -9,7 +9,7 @@ function ButtonRegBlock() {
       <div className="btn-block">
         <GoogleButton sizeSmall={sizeSmall} />
         <Link to="/signup">
-          <img src="./assets/mail.svg" alt="" />
+          <img src={require("../assets/mail.svg").default} alt="" />
         </Link>
       </div>
       <div className="btm">

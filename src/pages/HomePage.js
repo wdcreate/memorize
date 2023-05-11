@@ -9,7 +9,7 @@ function Home({ data, num }) {
   const [newArr, setNewArr] = useState(shuffle([...data]));
   const [i, setI] = useState(0);
   const [showTranslate, setShowTranslate] = useState(false);
-  const { user } = UserAuth();
+  const { user,noUser } = UserAuth();
 
   const randomCard = useMemo(() => {
     if (!newArr || i < 0 || i >= newArr.length) return undefined;
@@ -36,7 +36,7 @@ function Home({ data, num }) {
 
   return (
     <div>
-      {!user ? (
+      {noUser ? (
         <MainScreen />
       ) : (
         <div className="home-inner">
@@ -47,7 +47,7 @@ function Home({ data, num }) {
                 TOTAL SAVED: <span>{num}</span>{" "}
                 <div className="btm">
                 <p>Check all</p>
-                <img src="../assets/left-arrow.svg" alt="to saved" />
+                <img src={require("../assets/left-arrow.svg").default} alt="to saved" />
                 </div>
               </Link>
 
@@ -74,7 +74,7 @@ function Home({ data, num }) {
             <div>
               {" "}
               <div className="oops-section">
-                <img src="../assets/oops.png" alt="Oops..." />
+                <img src={require("../assets/oops.png")} alt="Oops..." />
                 <Link className="main-btn" to="/addcard">
                   Add first word
                 </Link>

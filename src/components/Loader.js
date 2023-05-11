@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <div className="loader-inner">
       <div className="loader">
-        <img src="./assets/m.png" alt="logo" className="loader-logo" />
+        <img src={require("../assets/m.png")} alt="logo" className="loader-logo" />
       </div>
     </div>
   );

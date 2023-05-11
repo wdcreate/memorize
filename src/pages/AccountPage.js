@@ -72,7 +72,7 @@ const Account = () => {
               onChange={(e) => setNewUsername(e.target.value)}
             />
             <button type="button" onClick={() => changeUsername()}>
-            <img src="../assets/left-arrow.svg" alt="save" />
+            <img src={require("../assets/left-arrow.svg").default} alt="save" />
             </button>
           </div>
         ) : (

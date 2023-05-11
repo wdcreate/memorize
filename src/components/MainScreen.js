@@ -5,7 +5,7 @@ import "./styles/MainScreen.scss"
 function MainScreen() {
   return <div className="mainscreen">
 		<div className="mainscreen-img">
-			<img src="./assets/mainscreen1.png" alt="Main Screen" />
+			<img src={require("../assets/mainscreen1.png")} alt="Main Screen" />
 		</div>
 		<div className="mainscreen-content">
 				<h1>Explore and collect <br />your new words</h1>

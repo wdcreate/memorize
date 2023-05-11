@@ -70,6 +70,7 @@ const Signup = () => {
             placeholder="place for password"
             type="password"
             required
+            autoComplete="off"
           />
         </div>
         <div>
@@ -85,6 +86,7 @@ const Signup = () => {
             placeholder="place for confirm password"
             type="password"
             required
+            autoComplete="off"
           />
         </div>
         {error ? <div className="error-notification">{error}</div> : ""}        
