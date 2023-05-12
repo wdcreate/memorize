@@ -31,7 +31,7 @@ function AppBody() {
   const { user, noUser } = UserAuth();
 
   const fetchProduct = async () => {
-    if (noUser) {
+    if (!user) {
       setData([]);
       setIsLoading(false);
       return

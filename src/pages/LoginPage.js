@@ -18,7 +18,7 @@ const Signin = () => {
     setError("");
     try {
       await signIn(email, password);
-      navigate("/addcard");
+      navigate("/");
       setNoUser(false);
     } catch (e) {
       setError(e.message);
