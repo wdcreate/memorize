@@ -62,7 +62,7 @@ export const AuthContextProvider = ({ children }) => {
         const token = credential.accessToken;
         const userG = result.user;
         setUser(userG)
-        navigate('/')
+        navigate('/addcard')
         setNoUser(false);
 
       })
