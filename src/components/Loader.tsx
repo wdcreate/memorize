@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/Loader.scss";
 
-const Loader = () => {
+const Loader:React.FC = () => {
   return (
     <div className="loader-inner">
       <div className="loader">

@@ -28,7 +28,7 @@ function AppBody() {
   const [data, setData] = useState([]);
   const [warn, setWarn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { user, noUser } = UserAuth();
+  const { user } = UserAuth();
 
   const fetchProduct = async () => {
     if (!user) {

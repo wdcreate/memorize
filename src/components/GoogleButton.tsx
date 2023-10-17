@@ -1,13 +1,14 @@
+import React from 'react';
 import { UserAuth } from "../context/AuthContext";
 import "./styles/GoogleButton.scss"
 
 
-const GoogleButton = (props) => {
+const GoogleButton = (sizeSmall:boolean) => {
   const { googleAuth } = UserAuth();
 
   return (
     <div>
-      {props.sizeSmall ? (
+      {sizeSmall ? (
         <div className="google-btn-spec" onClick={() => googleAuth()}>
         <div className="google-icon-spec">
           <img

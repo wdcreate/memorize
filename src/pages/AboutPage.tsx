@@ -1,3 +1,4 @@
+import React from 'react';
 import ButtonRegBlock from "../components/ButtonRegBlock"
 import "./styles/AboutPage.scss";
 
@@ -39,7 +40,6 @@ function AboutPage() {
       </article>
       <h1>Explore and collect <br />your new words</h1>
       <ButtonRegBlock/>
-
     </div>
   );
 }

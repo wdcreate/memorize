@@ -1,5 +1,6 @@
+import React from 'react';
 import {Link} from 'react-router-dom';
-import ButtonRegBlock from "../components/ButtonRegBlock"
+import ButtonRegBlock from "./ButtonRegBlock"
 import "./styles/MainScreen.scss"
 
 function MainScreen() {

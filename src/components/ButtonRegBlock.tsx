@@ -1,9 +1,10 @@
+import React from 'react';
 import GoogleButton from "./GoogleButton";
 import { Link } from "react-router-dom";
 import "./styles/ButtonRegBlock.scss";
 
 function ButtonRegBlock() {
-  const sizeSmall = true;
+  const sizeSmall:boolean = true;
   return (
     <div className="brb-content">
       <div className="btn-block">

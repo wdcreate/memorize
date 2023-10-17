@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "../pages/styles/SavedPage.scss"
 
-export default function SavedData({id, word, translate, note, category, del, editData}) {
+export default function SavedData({ id, word, translate, note, category, del, editData }) {
   const [isEditing, setEditing] = useState(false);
   const [newWord, setNewWord] = useState(word);
   const [newTranslate, setNewTranslate] = useState(translate);
   const [newNote, setNewNote] = useState(note);
   const [newCategory, setNewCategory] = useState(category);
+  
   function handleSubmit(e) {
     e.preventDefault();
     if (!newWord.trim() || !newTranslate.trim()) {
@@ -15,7 +16,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
     editData(id, newWord, newTranslate, newNote, newCategory);
     setEditing(false);
   }
-  const removeEditing =()=>{
+  const removeEditing = () => {
     setEditing(false)
     setNewNote(note)
     setNewWord(word)
@@ -31,7 +32,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
           type="text"
           placeholder='word place'
           defaultValue={newWord || word}
-          onChange={(e)=>setNewWord(e.target.value)}
+          onChange={(e) => setNewWord(e.target.value)}
           required
           maxLength="25"
         />
@@ -41,7 +42,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
           type="text"
           placeholder='translate place'
           defaultValue={newTranslate || translate}
-          onChange={(e)=>setNewTranslate(e.target.value)}
+          onChange={(e) => setNewTranslate(e.target.value)}
           required
           maxLength="40"
         />
@@ -51,16 +52,16 @@ export default function SavedData({id, word, translate, note, category, del, edi
           type="text"
           placeholder='note place'
           defaultValue={newNote || note}
-          onChange={(e)=>setNewNote(e.target.value)}
+          onChange={(e) => setNewNote(e.target.value)}
           maxLength="300"
         />
-         <input
+        <input
           id={id}
           className="card-text"
           type="text"
           placeholder='category place'
           defaultValue={newCategory || category}
-          onChange={(e)=>setNewCategory(e.target.value)}
+          onChange={(e) => setNewCategory(e.target.value)}
           maxLength="20"
         />
       </div>
@@ -69,10 +70,10 @@ export default function SavedData({id, word, translate, note, category, del, edi
           type="button"
           className="form-btn"
           onClick={() => removeEditing()}>
-      <img src={require("../assets/cancel.svg").default} alt="Cancel" />
+          <img src={require("../assets/cancel.svg").default} alt="Cancel" />
         </button>
         <button type="submit" className="form-btn">
-        <img src={require("../assets/check.svg").default} alt="Save" />
+          <img src={require("../assets/check.svg").default} alt="Save" />
         </button>
       </div>
     </form>
@@ -81,38 +82,38 @@ export default function SavedData({id, word, translate, note, category, del, edi
   const viewTemplate = (
     <div className="saved-card">
       <div className="top-sec">
-          <label className="saved-card-word" >
-            {word}
-          </label>
-          <div className="btn-block">
-        <button
-          type="button"
-          className="form-btn"
-          onClick={() => setEditing(true)}
+        <label className="saved-card-word" >
+          {word}
+        </label>
+        <div className="btn-block">
+          <button
+            type="button"
+            className="form-btn"
+            onClick={() => setEditing(true)}
           >
             <img src={require("../assets/edit.svg").default} alt="Edit" />
           </button>
           <button
-                onClick={() => del(id)}
-                type="button"
-                className="delete-btn form-btn"
-              >
+            onClick={() => del(id)}
+            type="button"
+            className="delete-btn form-btn"
+          >
             <img src={require("../assets/del.svg").default} alt="Delete" />
-              </button>
+          </button>
         </div>
       </div>
       <div className="saved-info">
-          <label className="saved-card-translate" >
-            {translate}
-          </label>
-          <label className="saved-card-note" >
-            {note}
-          </label>
-        </div>
-        {category ? 
+        <label className="saved-card-translate" >
+          {translate}
+        </label>
+        <label className="saved-card-note" >
+          {note}
+        </label>
+      </div>
+      {category ?
         <label className="saved-card-category" >
-            {category}
-          </label> : ''}
+          {category}
+        </label> : ''}
     </div>
   );
   return <div className="saved-wrapper" >{isEditing ? editingTemplate : viewTemplate}</div>;
