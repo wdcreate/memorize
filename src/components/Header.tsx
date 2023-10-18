@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import "./styles/Header.scss";
@@ -5,11 +6,11 @@ import "./styles/Header.scss";
 function Header() {
   let navigate = useNavigate();
   let location = useLocation();
-  let logpage = location.pathname.includes("/login");
-  let regpage = location.pathname.includes("/signup");
+  let logpage: boolean = location.pathname.includes("/login");
+  let regpage: boolean = location.pathname.includes("/signup");
   const { user, noUser } = UserAuth();
 
-  const navNU = () => {
+  const navNU = ():React.JSX.Element | undefined => {
     if (logpage) {
       return (
         <Link className="header-nu-link" to="/signup">
@@ -63,7 +64,10 @@ function Header() {
                 </svg>
                 {!user.emailVerified ? (
                   <div className="vernotify">
-                    <img src={require("../assets/alert.svg").default} alt="alert" />
+                    <img
+                      src={require("../assets/alert.svg").default}
+                      alt="alert"
+                    />
                   </div>
                 ) : (
                   <span></span>

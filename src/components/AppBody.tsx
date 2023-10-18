@@ -19,30 +19,33 @@ import {
   addDoc,
   where,
 } from "firebase/firestore";
+import { ICardMain } from "../types/cardTypes";
 
 function AppBody() {
-  const [word, setWord] = useState("");
-  const [translate, setTranslate] = useState("");
-  const [note, setNote] = useState("");
-  const [category, setCategory] = useState("");
-  const [data, setData] = useState([]);
-  const [warn, setWarn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [word, setWord] = useState<string>("");
+  const [translate, setTranslate] = useState<string>("");
+  const [note, setNote] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
+  const [data, setData] = useState<ICardMain[]>([]);
+  const [warn, setWarn] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const { user } = UserAuth();
 
-  const fetchProduct = async () => {
+  const fetchProduct = async (): Promise<(() => void) | undefined> => {
     if (!user) {
       setData([]);
       setIsLoading(false);
-      return
+      return;
     }
+
     const ref = collection(db, "langcards-db");
     const q = query(ref, where("author", "==", user.uid));
     const unsubscribe = onSnapshot(
       q,
       { includeMetadataChanges: true },
       (querySnapshot) => {
-        const arr = [];
+        const arr: any = [];
         querySnapshot.forEach((doc) => {
           arr.push({
             ...doc.data(),
@@ -66,20 +69,34 @@ function AppBody() {
     fetchProduct();
   }, [user]);
 
-  const onChangeWord = (event) => {
+  const onChangeWord = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setWord(event.target.value);
   };
-  const onChangeTranslate = (event) => {
+
+  const onChangeTranslate = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setTranslate(event.target.value);
   };
-  const onChangeNote = (event) => {
+
+  const onChangeNote = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ): void => {
     setNote(event.target.value);
   };
-  const onChangeCategory = (event) => {
+
+  const onChangeCategory = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setCategory(event.target.value);
   };
-  const onSubmit = async (e) => {
-    e.preventDefault();
+
+  const onSubmit = async (
+    event:  React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    event.preventDefault();
     let rw = word.replace(/\s/g, "");
     let rt = translate.replace(/\s/g, "");
     if (rw.length >= 1 && rt.length >= 1) {
@@ -101,7 +118,8 @@ function AppBody() {
       setWarn(true);
     }
   };
-  const resetFormAdd = () => {
+
+  const resetFormAdd = (): void => {
     setWord("");
     setTranslate("");
     setNote("");

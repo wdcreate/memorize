@@ -1,35 +1,50 @@
 import React, { useState } from "react";
-import "../pages/styles/SavedPage.scss"
-import { ICardBase } from "../types/cardTypes";
+import "../pages/styles/SavedPage.scss";
+import { ICardBase, ICardNew } from "../types/cardTypes";
 
-interface ISavedData extends ICardBase{
-  del: any,
-  editData: any
+interface ISavedData extends ICardBase {
+  del: (id: string) => Promise<void>;
+  editData: (item: ICardNew) => Promise<void>;
 }
 
-export default function SavedData({ id, word, translate, note, category, del, editData }:ISavedData) {
+export default function SavedData({
+  id,
+  word,
+  translate,
+  note,
+  category,
+  del,
+  editData,
+}: ISavedData) {
   const [isEditing, setEditing] = useState(false);
   const [newWord, setNewWord] = useState(word);
   const [newTranslate, setNewTranslate] = useState(translate);
   const [newNote, setNewNote] = useState(note);
   const [newCategory, setNewCategory] = useState(category);
-  
-  function handleSubmit(e) {
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     if (!newWord.trim() || !newTranslate.trim()) {
       return;
     }
-    editData(id, newWord, newTranslate, newNote, newCategory);
+    const item = {
+      newWord: newWord,
+      id: id,
+      newTranslate: newTranslate,
+      newNote: newNote,
+      newCategory: newCategory,
+    };
+    editData(item);
     setEditing(false);
   }
 
   const removeEditing = () => {
-    setEditing(false)
-    setNewNote(note)
-    setNewWord(word)
-    setNewTranslate(translate)
-    setNewCategory(category.toLowerCase())
-  }
+    setEditing(false);
+    setNewNote(note);
+    setNewWord(word);
+    setNewTranslate(translate);
+    setNewCategory(category.toLowerCase());
+  };
 
   const editingTemplate = (
     <form className="saved-card edit-saved-card" onSubmit={handleSubmit}>
@@ -38,7 +53,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
           id={id}
           className="card-text"
           type="text"
-          placeholder='word place'
+          placeholder="word place"
           defaultValue={newWord || word}
           onChange={(e) => setNewWord(e.target.value)}
           required
@@ -48,7 +63,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
           id={id}
           className="card-text"
           type="text"
-          placeholder='translate place'
+          placeholder="translate place"
           defaultValue={newTranslate || translate}
           onChange={(e) => setNewTranslate(e.target.value)}
           required
@@ -57,8 +72,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
         <textarea
           id={id}
           className="card-text"
-          type="text"
-          placeholder='note place'
+          placeholder="note place"
           defaultValue={newNote || note}
           onChange={(e) => setNewNote(e.target.value)}
           maxLength={300}
@@ -67,7 +81,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
           id={id}
           className="card-text"
           type="text"
-          placeholder='category place'
+          placeholder="category place"
           defaultValue={newCategory || category}
           onChange={(e) => setNewCategory(e.target.value)}
           maxLength={20}
@@ -77,7 +91,8 @@ export default function SavedData({ id, word, translate, note, category, del, ed
         <button
           type="button"
           className="form-btn"
-          onClick={() => removeEditing()}>
+          onClick={() => removeEditing()}
+        >
           <img src={require("../assets/cancel.svg").default} alt="Cancel" />
         </button>
         <button type="submit" className="form-btn">
@@ -90,9 +105,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
   const viewTemplate = (
     <div className="saved-card">
       <div className="top-sec">
-        <label className="saved-card-word" >
-          {word}
-        </label>
+        <label className="saved-card-word">{word}</label>
         <div className="btn-block">
           <button
             type="button"
@@ -111,18 +124,19 @@ export default function SavedData({ id, word, translate, note, category, del, ed
         </div>
       </div>
       <div className="saved-info">
-        <label className="saved-card-translate" >
-          {translate}
-        </label>
-        <label className="saved-card-note" >
-          {note}
-        </label>
+        <label className="saved-card-translate">{translate}</label>
+        <label className="saved-card-note">{note}</label>
       </div>
-      {category ?
-        <label className="saved-card-category" >
-          {category}
-        </label> : ''}
+      {category ? (
+        <label className="saved-card-category">{category}</label>
+      ) : (
+        ""
+      )}
     </div>
   );
-  return <div className="saved-wrapper" >{isEditing ? editingTemplate : viewTemplate}</div>;
+  return (
+    <div className="saved-wrapper">
+      {isEditing ? editingTemplate : viewTemplate}
+    </div>
+  );
 }

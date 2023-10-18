@@ -12,7 +12,7 @@ type SavedPageType = {
 };
 
 export default function Saved({ data, setData }: SavedPageType) {
-  const [sortType, setSortType] = useState<1|2>(1);
+  const [sortType, setSortType] = useState<1 | 2>(1);
   let [searchInput, setSearchInput] = useState<string>("");
   const [filteredData, setFilteredData] = useState<ICardMain[]>([]);
   const [filteredCategData, setFilteredCategData] = useState<ICardMain[]>([]);
@@ -25,7 +25,7 @@ export default function Saved({ data, setData }: SavedPageType) {
     newTranslate,
     newNote,
     newCategory,
-  }: ICardNew):Promise<void> => {
+  }: ICardNew): Promise<void> => {
     const editedDataList = await Promise.all(
       data.map(async (card: ICardMain) => {
         let newFields = {
@@ -45,7 +45,7 @@ export default function Saved({ data, setData }: SavedPageType) {
     setData(editedDataList);
   };
 
-  const deletePost = async (id: string):Promise<void> => {
+  const deletePost = async (id: string): Promise<void> => {
     await deleteDoc(doc(db, "langcards-db", id));
   };
 
@@ -86,16 +86,16 @@ export default function Saved({ data, setData }: SavedPageType) {
   let filtered;
   const filterKeys: string[] = ["word", "translate", "note"];
 
-  const onSearchF = (keyword: string):void => {
+  const onSearchF = (keyword: string): void => {
     const lowerKeyword = keyword.toLowerCase();
     if (filterMode) {
-      filtered = filteredCategData.filter((entry:any) => {
+      filtered = filteredCategData.filter((entry: any) => {
         return filterKeys.some((key) =>
           entry[key].toLowerCase().includes(lowerKeyword)
         );
       });
     } else {
-      filtered = data.filter((entry:any) => {
+      filtered = data.filter((entry: any) => {
         return filterKeys.some((key) =>
           entry[key].toLowerCase().includes(lowerKeyword)
         );
@@ -123,7 +123,7 @@ export default function Saved({ data, setData }: SavedPageType) {
       return sortedData(data);
     }
   };
-  const filterByCategory = (categ: string):void => {
+  const filterByCategory = (categ: string): void => {
     setFilterMode(true);
     if (categ === "all") {
       filtered = data;
@@ -134,7 +134,7 @@ export default function Saved({ data, setData }: SavedPageType) {
     }
     setFilteredCategData(filtered);
   };
-  const handleSelect = (value: string):void => {
+  const handleSelect = (value: string): void => {
     filterByCategory(value);
     setSearchActive(false);
     setSearchInput("");

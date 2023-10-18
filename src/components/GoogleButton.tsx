@@ -6,7 +6,7 @@ type gbType = {
   sizeSmall?: boolean;
 };
 
-const GoogleButton = ({ sizeSmall }: gbType) => {
+const GoogleButton:React.FC = ({ sizeSmall }: gbType) => {
   const { googleAuth } = UserAuth();
 
   return (

@@ -15,7 +15,7 @@ const Signup = () => {
   const { setNoUser } = UserAuth();
   const navigate = useNavigate();
 
-  const validPass = password.length >= 6 && confirmedPassword.length > 6 && password === confirmedPassword;
+  const validPass:boolean = password.length >= 6 && confirmedPassword.length > 6 && password === confirmedPassword;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();

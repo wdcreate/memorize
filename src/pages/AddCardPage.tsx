@@ -7,12 +7,12 @@ interface IAddCardProp {
   note: string;
   category: string;
   warn: boolean;
-  resetFormAdd: any;
-  onSubmit: React.FormEventHandler<HTMLFormElement>;
-  onChangeWord: React.ChangeEventHandler<HTMLInputElement>;
-  onChangeTranslate: React.ChangeEventHandler<HTMLInputElement>;
-  onChangeNote: React.ChangeEventHandler<HTMLTextAreaElement>;
-  onChangeCategory: React.ChangeEventHandler<HTMLInputElement>;
+  resetFormAdd:  () => void;
+  onSubmit: (event:  React.FormEvent<HTMLFormElement>)=>Promise<void>;
+  onChangeWord: (event: React.ChangeEvent<HTMLInputElement> )=> void;
+  onChangeTranslate: (event: React.ChangeEvent<HTMLInputElement> )=> void;
+  onChangeNote: (event: React.ChangeEvent<HTMLTextAreaElement> )=> void;
+  onChangeCategory: (event: React.ChangeEvent<HTMLInputElement> )=> void;
 }
 
 function AddCard(props: IAddCardProp) {

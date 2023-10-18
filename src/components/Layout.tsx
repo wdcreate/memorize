@@ -4,7 +4,7 @@ import Header from "./Header";
 import { UserAuth } from "../context/AuthContext";
 import "./styles/Layout.scss";
 
-const Layout = () => {
+const Layout:React.FC = () => {
   const { noUser } = UserAuth();
 
   return (

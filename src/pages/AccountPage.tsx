@@ -7,40 +7,48 @@ const Account = () => {
   const { user, logout, triggerResetEmail, verifyEmail, updateUsername } =
     UserAuth();
   const navigate = useNavigate();
-  const [notify, setNotify] = useState("");
-  const [color, setColor] = useState("");
-  const [editNU, setEditNU] = useState(false);
-  const [newUsername, setNewUsername] = useState(user.displayName);
-  const changeUsername = () => {
+  
+  const [notify, setNotify] = useState<string>("");
+  const [color, setColor] = useState<string>("");
+  const [editNU, setEditNU] = useState<boolean>(false);
+  const [newUsername, setNewUsername] = useState<string>(user.displayName);
+
+  const changeUsername = (): void => {
     try {
-      console.log(newUsername);
       if (newUsername.length >= 1) {
         updateUsername(newUsername);
-        setEditNU(false)
+        setEditNU(false);
       }
     } catch (e) {
-      console.log(e.message);
+      if (e instanceof Error) {
+       // console.log(e.message);
+      }
     }
   };
-  const handleLogout = async () => {
+
+  const handleLogout = async ():Promise<void> => {
     try {
       await logout();
       navigate("/");
     } catch (e) {
-      console.log(e.message);
+      //console.log(e.message);
     }
   };
+
   const notificationStyle = { background: `${color}` };
-  const ver = () => {
+
+  const ver = ():void => {
     setNotify("Please check email");
     setColor("green");
     verifyEmail();
   };
-  const resetEmail = () => {
+
+  const resetEmail = ():void => {
     setNotify("Please check email");
     setColor("green");
     triggerResetEmail();
   };
+
   useEffect(() => {
     if (!user.emailVerified) {
       setNotify("Please verify your account");
@@ -60,7 +68,7 @@ const Account = () => {
       <h1>Account</h1>
       <div className="account-settings">
         <span>Username:</span>
-        <p> {(user && user.displayName)|| newUsername}</p>
+        <p> {(user && user.displayName) || newUsername}</p>
       </div>
       <div className="account-settings">
         <span>Change username:</span>
@@ -72,7 +80,10 @@ const Account = () => {
               onChange={(e) => setNewUsername(e.target.value)}
             />
             <button type="button" onClick={() => changeUsername()}>
-            <img src={require("../assets/left-arrow.svg").default} alt="save" />
+              <img
+                src={require("../assets/left-arrow.svg").default}
+                alt="save"
+              />
             </button>
           </div>
         ) : (
