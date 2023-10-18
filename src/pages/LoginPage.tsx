@@ -5,15 +5,15 @@ import { UserAuth } from "../context/AuthContext";
 import "./styles/LoginPage.scss";
 
 const Signin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const navigate = useNavigate();
   const { signIn } = UserAuth();
   const { loginResetEmail } = UserAuth();
   const { setNoUser } = UserAuth();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>):Promise<void> => {
     e.preventDefault();
     setError("");
     try {
@@ -21,7 +21,9 @@ const Signin = () => {
       navigate("/addcard");
       setNoUser(false);
     } catch (e) {
-      setError(e.message);
+      if (e instanceof Error) {
+        setError(e.message);
+      }
     }
   };
   return (
@@ -29,7 +31,7 @@ const Signin = () => {
       <div>
         <h1>Log in</h1>
       </div>
-      <GoogleButton />
+      <GoogleButton sizeSmall={false}/>
       <div className="or-block">OR</div>
       <form onSubmit={handleSubmit}>
         <div>
@@ -53,7 +55,13 @@ const Signin = () => {
             autoComplete="off"
           />
         </div>
-        {error ? <div className="error-notification">Please write correct email or password</div> : ""}
+        {error ? (
+          <div className="error-notification">
+            Please write correct email or password
+          </div>
+        ) : (
+          ""
+        )}
         <div className="resetpass">
           <button type="button" onClick={() => loginResetEmail(email)}>
             Forgot password?

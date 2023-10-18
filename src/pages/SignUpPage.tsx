@@ -5,20 +5,19 @@ import { UserAuth } from "../context/AuthContext";
 import "./styles/LoginPage.scss";
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [confirmedPassword, setConfirmedPassword] = useState("");
-  const [wrongPassword, setWrongPassword] = useState(false);
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string | null>("");
+  const [confirmedPassword, setConfirmedPassword] = useState<string>("");
+  const [wrongPassword, setWrongPassword] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
   const { createUser } = UserAuth();
   const { setNoUser } = UserAuth();
   const navigate = useNavigate();
-  const validPass =
-    password.length >= 6 &&
-    confirmedPassword > 6 &&
-    password === confirmedPassword;
-  const handleSubmit = async (e) => {
+
+  const validPass = password.length >= 6 && confirmedPassword.length > 6 && password === confirmedPassword;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setError("");
     if (validPass) {
@@ -27,8 +26,9 @@ const Signup = () => {
         navigate("/account");
         setNoUser(false);
       } catch (e) {
-        setError(e.message);
-        console.log(e)
+        if (e instanceof Error) {
+          setError(e.message);
+        }
       }
     } else {
       setWrongPassword(true);

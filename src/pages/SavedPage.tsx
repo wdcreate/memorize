@@ -3,18 +3,31 @@ import { Link } from "react-router-dom";
 import SavedData from "../components/SavedData";
 import { db } from "../firebase";
 import { updateDoc, doc, deleteDoc } from "firebase/firestore";
+import { ICardMain, ICardNew } from "../types/cardTypes";
 import "./styles/SavedPage.scss";
 
-export default function Saved({ data, setData }) {
-  const [sortType, setSortType] = useState(1);
-  let [searchInput, setSearchInput] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
-  const [filteredCategData, setFilteredCategData] = useState([]);
-  const [filterMode, setFilterMode] = useState(false);
-  const [searchActive, setSearchActive] = useState(false);
-  const editData = async (id, newWord, newTranslate, newNote, newCategory) => {
+type SavedPageType = {
+  data: ICardMain[];
+  setData: React.Dispatch<React.SetStateAction<ICardMain[]>>;
+};
+
+export default function Saved({ data, setData }: SavedPageType) {
+  const [sortType, setSortType] = useState<1|2>(1);
+  let [searchInput, setSearchInput] = useState<string>("");
+  const [filteredData, setFilteredData] = useState<ICardMain[]>([]);
+  const [filteredCategData, setFilteredCategData] = useState<ICardMain[]>([]);
+  const [filterMode, setFilterMode] = useState<boolean>(false);
+  const [searchActive, setSearchActive] = useState<boolean>(false);
+
+  const editData = async ({
+    id,
+    newWord,
+    newTranslate,
+    newNote,
+    newCategory,
+  }: ICardNew):Promise<void> => {
     const editedDataList = await Promise.all(
-      data.map(async (card) => {
+      data.map(async (card: ICardMain) => {
         let newFields = {
           word: newWord,
           translate: newTranslate,
@@ -32,13 +45,14 @@ export default function Saved({ data, setData }) {
     setData(editedDataList);
   };
 
-  const deletePost = async (id) => {
+  const deletePost = async (id: string):Promise<void> => {
     await deleteDoc(doc(db, "langcards-db", id));
   };
-  const sortedData = (baseData) => {
+
+  const sortedData = (baseData: ICardMain[]): React.JSX.Element[] => {
     if (sortType === 1) {
       return baseData
-        .sort((a, b) => b.date - a.date)
+        .sort((a, b) => +b.date - +a.date)
         .map((card) => (
           <SavedData
             id={card.id}
@@ -53,7 +67,7 @@ export default function Saved({ data, setData }) {
         ));
     } else {
       return baseData
-        .sort((a, b) => a.date - b.date)
+        .sort((a, b) => +a.date - +b.date)
         .map((card) => (
           <SavedData
             id={card.id}
@@ -68,18 +82,20 @@ export default function Saved({ data, setData }) {
         ));
     }
   };
+
   let filtered;
-  const filterKeys = ["word", "translate", "note"];
-  const onSearchF = (keyword) => {
+  const filterKeys: string[] = ["word", "translate", "note"];
+
+  const onSearchF = (keyword: string):void => {
     const lowerKeyword = keyword.toLowerCase();
     if (filterMode) {
-      filtered = filteredCategData.filter((entry) => {
+      filtered = filteredCategData.filter((entry:any) => {
         return filterKeys.some((key) =>
           entry[key].toLowerCase().includes(lowerKeyword)
         );
       });
     } else {
-      filtered = data.filter((entry) => {
+      filtered = data.filter((entry:any) => {
         return filterKeys.some((key) =>
           entry[key].toLowerCase().includes(lowerKeyword)
         );
@@ -89,12 +105,12 @@ export default function Saved({ data, setData }) {
       setFilteredData(filtered);
       setSearchInput(keyword);
     } else {
-      setFilteredData("");
+      setFilteredData([]);
       setSearchInput("");
     }
   };
 
-  const dataChanges = () => {
+  const dataChanges = (): React.JSX.Element | React.JSX.Element[] => {
     if (searchActive === true && searchInput.length >= 2) {
       if (filteredData.length >= 1) {
         return sortedData(filteredData);
@@ -107,18 +123,18 @@ export default function Saved({ data, setData }) {
       return sortedData(data);
     }
   };
-  const filterByCategory = (categ) => {
+  const filterByCategory = (categ: string):void => {
     setFilterMode(true);
     if (categ === "all") {
       filtered = data;
     } else {
-      filtered = data.filter((entry) => {
+      filtered = data.filter((entry: ICardMain) => {
         return entry.category.toLowerCase().includes(categ.toLowerCase());
       });
     }
     setFilteredCategData(filtered);
   };
-  const handleSelect = (value) => {
+  const handleSelect = (value: string):void => {
     filterByCategory(value);
     setSearchActive(false);
     setSearchInput("");
@@ -136,7 +152,10 @@ export default function Saved({ data, setData }) {
                   className="sort-btn sort-new "
                   id={sortType === 1 ? "active-sorttype" : ""}
                 >
-                  <img src={require("../assets/sortnew.svg").default} alt="Sort by date" />
+                  <img
+                    src={require("../assets/sortnew.svg").default}
+                    alt="Sort by date"
+                  />
                 </button>
                 <button
                   type="button"
@@ -144,7 +163,10 @@ export default function Saved({ data, setData }) {
                   className="sort-btn sort-old"
                   id={sortType === 2 ? "active-sorttype" : ""}
                 >
-                  <img src={require("../assets/sortold.svg" ).default}alt="Sort by date" />
+                  <img
+                    src={require("../assets/sortold.svg").default}
+                    alt="Sort by date"
+                  />
                 </button>
               </div>
               <div className="filter">
@@ -152,7 +174,11 @@ export default function Saved({ data, setData }) {
                   defaultValue={"all"}
                   onChange={(e) => handleSelect(e.target.value)}
                 >
-                  {[...new Set(data.map((hs) => hs.category.toLowerCase()))].map((sn) => (
+                  {[
+                    ...new Set(
+                      data.map((hs: ICardMain) => hs.category.toLowerCase())
+                    ),
+                  ].map((sn) => (
                     <option key={sn}>{sn}</option>
                   ))}
                   <option value="all">All</option>
@@ -191,7 +217,7 @@ export default function Saved({ data, setData }) {
                       <path
                         style={{
                           fillRule: "evenodd",
-                          cliRule: "evenodd",
+                          // cliRule: "evenodd",
                           fill: "#fff",
                         }}
                         d="M7.25007 2.38782C8.54878 2.0992 10.1243 2 12 2C13.8757 2 15.4512 2.0992 16.7499 2.38782C18.06 2.67897 19.1488 3.176 19.9864 4.01358C20.824 4.85116 21.321 5.94002 21.6122 7.25007C21.9008 8.54878 22 10.1243 22 12C22 13.8757 21.9008 15.4512 21.6122 16.7499C21.321 18.06 20.824 19.1488 19.9864 19.9864C19.1488 20.824 18.06 21.321 16.7499 21.6122C15.4512 21.9008 13.8757 22 12 22C10.1243 22 8.54878 21.9008 7.25007 21.6122C5.94002 21.321 4.85116 20.824 4.01358 19.9864C3.176 19.1488 2.67897 18.06 2.38782 16.7499C2.0992 15.4512 2 13.8757 2 12C2 10.1243 2.0992 8.54878 2.38782 7.25007C2.67897 5.94002 3.176 4.85116 4.01358 4.01358C4.85116 3.176 5.94002 2.67897 7.25007 2.38782ZM9 11.5C9 10.1193 10.1193 9 11.5 9C12.8807 9 14 10.1193 14 11.5C14 12.8807 12.8807 14 11.5 14C10.1193 14 9 12.8807 9 11.5ZM11.5 7C9.01472 7 7 9.01472 7 11.5C7 13.9853 9.01472 16 11.5 16C12.3805 16 13.202 15.7471 13.8957 15.31L15.2929 16.7071C15.6834 17.0976 16.3166 17.0976 16.7071 16.7071C17.0976 16.3166 17.0976 15.6834 16.7071 15.2929L15.31 13.8957C15.7471 13.202 16 12.3805 16 11.5C16 9.01472 13.9853 7 11.5 7Z"

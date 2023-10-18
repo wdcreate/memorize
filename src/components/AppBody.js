@@ -91,6 +91,7 @@ function AppBody() {
         category: category.toLowerCase(),
         date: new Date(),
         author: user.uid,
+        id: new Date().getTime(),
       });
       setWord("");
       setTranslate("");

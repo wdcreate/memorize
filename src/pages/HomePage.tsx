@@ -3,20 +3,27 @@ import { Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import MainScreen from "../components/MainScreen";
 import "./styles/HomePage.scss";
+import { ICardMain } from "../types/cardTypes";
 
-const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
-function Home({ data, num }) {
-  const [newArr, setNewArr] = useState(shuffle([...data]));
-  const [i, setI] = useState(0);
-  const [showTranslate, setShowTranslate] = useState(false);
-  const { user,noUser } = UserAuth();
+type HomeType = {
+  data: ICardMain[];
+  num: number;
+};
 
-  const randomCard = useMemo(() => {
+const shuffle = (arr: ICardMain[]) => arr.sort(() => Math.random() - 0.5);
+
+function Home({ data, num }: HomeType) {
+  const [newArr, setNewArr] = useState<ICardMain[]>(shuffle([...data]));
+  const [i, setI] = useState<number>(0);
+  const [showTranslate, setShowTranslate] = useState<boolean>(false);
+  const { user, noUser } = UserAuth();
+
+  const randomCard = useMemo((): ICardMain | undefined => {
     if (!newArr || i < 0 || i >= newArr.length) return undefined;
     return newArr[i];
   }, [newArr, i]);
 
-  const randomizeCard = () => {
+  const randomizeCard = (): void => {
     if (i < newArr.length - 1) {
       setI(i + 1);
       setShowTranslate(false);
@@ -26,7 +33,8 @@ function Home({ data, num }) {
       setShowTranslate(false);
     }
   };
-  const handleTranslate = () => {
+  
+  const handleTranslate = (): void => {
     if (showTranslate === false) {
       setShowTranslate(true);
     } else {
@@ -40,14 +48,19 @@ function Home({ data, num }) {
         <MainScreen />
       ) : (
         <div className="home-inner">
-          <div className="welcome">Hello, <span>{user.displayName}</span>!</div>
+          <div className="welcome">
+            Hello, <span>{user.displayName}</span>!
+          </div>
           {num >= 1 && randomCard ? (
             <div className="home-stat">
               <Link className="saved-stat" to="/saved">
                 TOTAL SAVED: <span>{num}</span>{" "}
                 <div className="btm">
-                <p>Check all</p>
-                <img src={require("../assets/left-arrow.svg").default} alt="to saved" />
+                  <p>Check all</p>
+                  <img
+                    src={require("../assets/left-arrow.svg").default}
+                    alt="to saved"
+                  />
                 </div>
               </Link>
 

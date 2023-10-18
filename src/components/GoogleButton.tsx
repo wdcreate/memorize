@@ -1,23 +1,26 @@
-import React from 'react';
+import React from "react";
 import { UserAuth } from "../context/AuthContext";
-import "./styles/GoogleButton.scss"
+import "./styles/GoogleButton.scss";
 
+type gbType = {
+  sizeSmall?: boolean;
+};
 
-const GoogleButton = (sizeSmall:boolean) => {
+const GoogleButton = ({ sizeSmall }: gbType) => {
   const { googleAuth } = UserAuth();
 
   return (
     <div>
       {sizeSmall ? (
         <div className="google-btn-spec" onClick={() => googleAuth()}>
-        <div className="google-icon-spec">
-          <img
-            className="google-icon"
-            alt="logo"
-            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-          />
+          <div className="google-icon-spec">
+            <img
+              className="google-icon"
+              alt="logo"
+              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+            />
+          </div>
         </div>
-      </div>
       ) : (
         <div className="google-btn" onClick={() => googleAuth()}>
           <div className="google-icon-wrapper">

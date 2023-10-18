@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "../pages/styles/SavedPage.scss"
+import { ICardBase } from "../types/cardTypes";
 
-export default function SavedData({ id, word, translate, note, category, del, editData }) {
+interface ISavedData extends ICardBase{
+  del: any,
+  editData: any
+}
+
+export default function SavedData({ id, word, translate, note, category, del, editData }:ISavedData) {
   const [isEditing, setEditing] = useState(false);
   const [newWord, setNewWord] = useState(word);
   const [newTranslate, setNewTranslate] = useState(translate);
@@ -16,6 +22,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
     editData(id, newWord, newTranslate, newNote, newCategory);
     setEditing(false);
   }
+
   const removeEditing = () => {
     setEditing(false)
     setNewNote(note)
@@ -23,6 +30,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
     setNewTranslate(translate)
     setNewCategory(category.toLowerCase())
   }
+
   const editingTemplate = (
     <form className="saved-card edit-saved-card" onSubmit={handleSubmit}>
       <div className="form-group">
@@ -34,7 +42,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
           defaultValue={newWord || word}
           onChange={(e) => setNewWord(e.target.value)}
           required
-          maxLength="25"
+          maxLength={25}
         />
         <input
           id={id}
@@ -44,7 +52,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
           defaultValue={newTranslate || translate}
           onChange={(e) => setNewTranslate(e.target.value)}
           required
-          maxLength="40"
+          maxLength={40}
         />
         <textarea
           id={id}
@@ -53,7 +61,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
           placeholder='note place'
           defaultValue={newNote || note}
           onChange={(e) => setNewNote(e.target.value)}
-          maxLength="300"
+          maxLength={300}
         />
         <input
           id={id}
@@ -62,7 +70,7 @@ export default function SavedData({ id, word, translate, note, category, del, ed
           placeholder='category place'
           defaultValue={newCategory || category}
           onChange={(e) => setNewCategory(e.target.value)}
-          maxLength="20"
+          maxLength={20}
         />
       </div>
       <div className="btn-group">
