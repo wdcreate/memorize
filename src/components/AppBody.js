@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Outlet } from "react-router-dom";
+import { Route, Routes, Outlet, Navigate } from "react-router-dom";
 import Home from "../pages/HomePage";
 import Saved from "../pages/SavedPage";
 import AboutPage from "../pages/AboutPage";
@@ -19,6 +19,7 @@ import {
   addDoc,
   where,
 } from "firebase/firestore";
+import NotFoundPage from "../pages/NotFoundPage";
 
 function AppBody() {
   const [word, setWord] = useState("");
@@ -116,6 +117,10 @@ function AppBody() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home data={data} num={data.length} />} />
+              <Route path="*" element={<Navigate to="notfound" replace />} />
+
+              <Route path="notfound" element={<NotFoundPage />} />
+
               <Route
                 path="addcard"
                 element={
