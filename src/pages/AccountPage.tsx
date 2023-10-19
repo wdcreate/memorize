@@ -7,11 +7,11 @@ const Account = () => {
   const { user, logout, triggerResetEmail, verifyEmail, updateUsername } =
     UserAuth();
   const navigate = useNavigate();
-  
+
   const [notify, setNotify] = useState<string>("");
   const [color, setColor] = useState<string>("");
   const [editNU, setEditNU] = useState<boolean>(false);
-  const [newUsername, setNewUsername] = useState<string>(user.displayName);
+  const [newUsername, setNewUsername] = useState<string>("");
 
   const changeUsername = (): void => {
     try {
@@ -21,12 +21,12 @@ const Account = () => {
       }
     } catch (e) {
       if (e instanceof Error) {
-       // console.log(e.message);
+        // console.log(e.message);
       }
     }
   };
 
-  const handleLogout = async ():Promise<void> => {
+  const handleLogout = async (): Promise<void> => {
     try {
       await logout();
       navigate("/");
@@ -37,23 +37,29 @@ const Account = () => {
 
   const notificationStyle = { background: `${color}` };
 
-  const ver = ():void => {
+  const ver = (): void => {
     setNotify("Please check email");
     setColor("green");
     verifyEmail();
   };
 
-  const resetEmail = ():void => {
+  const resetEmail = (): void => {
     setNotify("Please check email");
     setColor("green");
     triggerResetEmail();
   };
 
   useEffect(() => {
-    if (!user.emailVerified) {
+    if (user) {
+      if (user.displayName) {
+        setNewUsername(user.displayName);
+      }
+    }
+    if (!user?.emailVerified) {
       setNotify("Please verify your account");
       setColor("red");
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -104,7 +110,7 @@ const Account = () => {
       </div>
       <div className="account-settings">
         <span>Account Verification:</span>
-        {!user.emailVerified ? (
+        {!user?.emailVerified ? (
           <button type="button" onClick={ver}>
             Verify
           </button>

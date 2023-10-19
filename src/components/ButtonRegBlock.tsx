@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 import "./styles/ButtonRegBlock.scss";
 
 function ButtonRegBlock() {
-  const sizeSmall:boolean = true;
   return (
     <div className="brb-content">
       <div className="btn-block">
-        <GoogleButton sizeSmall={sizeSmall} />
+        <GoogleButton sizeSmall={true} />
         <Link to="/signup">
           <img src={require("../assets/mail.svg").default} alt="" />
         </Link>

@@ -63,10 +63,12 @@ function AppBody() {
 
   useEffect(() => {
     fetchProduct();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     fetchProduct();
+    // eslint-disable-next-line
   }, [user]);
 
   const onChangeWord = (
@@ -99,7 +101,7 @@ function AppBody() {
     event.preventDefault();
     let rw = word.replace(/\s/g, "");
     let rt = translate.replace(/\s/g, "");
-    if (rw.length >= 1 && rt.length >= 1) {
+    if (user && rw.length >= 1 && rt.length >= 1) {
       setWarn(false);
       await addDoc(collection(db, "langcards-db"), {
         word: word,

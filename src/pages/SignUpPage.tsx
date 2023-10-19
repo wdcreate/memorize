@@ -7,7 +7,7 @@ import "./styles/LoginPage.scss";
 const Signup = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [username, setUsername] = useState<string | null>("");
+  const [username, setUsername] = useState<string>("");
   const [confirmedPassword, setConfirmedPassword] = useState<string>("");
   const [wrongPassword, setWrongPassword] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -15,7 +15,7 @@ const Signup = () => {
   const { setNoUser } = UserAuth();
   const navigate = useNavigate();
 
-  const validPass:boolean = password.length >= 6 && confirmedPassword.length > 6 && password === confirmedPassword;
+  const validPass:boolean = password.length >= 6 && password === confirmedPassword;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();

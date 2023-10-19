@@ -3,10 +3,10 @@ import { UserAuth } from "../context/AuthContext";
 import "./styles/GoogleButton.scss";
 
 type gbType = {
-  sizeSmall?: boolean;
+  sizeSmall?: boolean | undefined;
 };
 
-const GoogleButton:React.FC = ({ sizeSmall }: gbType) => {
+const GoogleButton = ({ sizeSmall }: gbType) => {
   const { googleAuth } = UserAuth();
 
   return (

@@ -49,7 +49,7 @@ function Home({ data, num }: HomeType) {
       ) : (
         <div className="home-inner">
           <div className="welcome">
-            Hello, <span>{user.displayName}</span>!
+            Hello, <span>{user?.displayName}</span>!
           </div>
           {num >= 1 && randomCard ? (
             <div className="home-stat">
