@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Outlet } from "react-router-dom";
+import { Route, Routes, Outlet, Navigate } from "react-router-dom";
 import Home from "../pages/HomePage";
 import Saved from "../pages/SavedPage";
 import AboutPage from "../pages/AboutPage";
@@ -20,6 +20,7 @@ import {
   where,
 } from "firebase/firestore";
 import { ICardMain } from "../types/cardTypes";
+import NotFoundPage from "../pages/NotFoundPage";
 
 function AppBody() {
   const [word, setWord] = useState<string>("");
@@ -71,9 +72,7 @@ function AppBody() {
     // eslint-disable-next-line
   }, [user]);
 
-  const onChangeWord = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const onChangeWord = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setWord(event.target.value);
   };
 
@@ -96,7 +95,7 @@ function AppBody() {
   };
 
   const onSubmit = async (
-    event:  React.FormEvent<HTMLFormElement>
+    event: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     event.preventDefault();
     let rw = word.replace(/\s/g, "");
@@ -136,6 +135,8 @@ function AppBody() {
         <div className="content">
           <Routes>
             <Route path="/" element={<Layout />}>
+            <Route path="*" element={<Navigate to="notfound" replace />} />
+              <Route path="notfound" element={<NotFoundPage />} />
               <Route index element={<Home data={data} num={data.length} />} />
               <Route
                 path="addcard"

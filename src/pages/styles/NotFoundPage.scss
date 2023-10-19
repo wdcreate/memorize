@@ -1,0 +1,22 @@
+@import "../../_variables.scss";
+@import "../../_mixin.scss";
+
+.notfoundpage{
+  padding-top: 100px;
+  height: 60vh;
+  margin: auto;
+  @include flex;
+  flex-direction: column;
+  img{
+    margin-bottom: 50px;
+    @media (max-width: 650px) {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  a{
+    @include font(23px);
+    color: $FONTCOLOR;
+  }
+}
