@@ -7,7 +7,7 @@ import {
   sendPasswordResetEmail,
   sendEmailVerification,
   signInWithPopup,
-  GoogleAuthProvider,
+ // GoogleAuthProvider,
   updateProfile
 } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
@@ -43,6 +43,7 @@ export const AuthContextProvider = ({ children }) => {
     })
     await auth.currentUser.reload();
   };
+
   const createUser = async(email, password, username) =>  {
     const result = await createUserWithEmailAndPassword(auth, email, password,username)
     updateProfile(auth.currentUser,{
@@ -55,11 +56,12 @@ export const AuthContextProvider = ({ children }) => {
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+
   const googleAuth = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
+       // const credential = GoogleAuthProvider.credentialFromResult(result);
+        //const token = credential.accessToken;
         const userG = result.user;
         setUser(userG)
         navigate('/addcard')
@@ -68,7 +70,7 @@ export const AuthContextProvider = ({ children }) => {
       })
       .catch((error) => {
         //console.log(error.message);
-        const credential = GoogleAuthProvider.credentialFromError(error);
+        //const credential = GoogleAuthProvider.credentialFromError(error);
       });
   };
 
@@ -81,6 +83,7 @@ export const AuthContextProvider = ({ children }) => {
         console.log(error.message);
       });
   };
+
   const loginResetEmail = (emailForm) => {
     sendPasswordResetEmail(auth, emailForm)
       .then(() => {
@@ -95,6 +98,7 @@ export const AuthContextProvider = ({ children }) => {
     sendEmailVerification(auth.currentUser).then(() => {
       console.log("Done!");
     });
+    
   const logout = () => {
     return signOut(auth);
   };

@@ -61,10 +61,12 @@ function AppBody() {
 
   useEffect(() => {
     fetchProduct();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     fetchProduct();
+    // eslint-disable-next-line
   }, [user]);
 
   const onChangeWord = (event) => {
