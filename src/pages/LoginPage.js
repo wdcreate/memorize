@@ -29,7 +29,7 @@ const Signin = () => {
       <div>
         <h1>Log in</h1>
       </div>
-      <GoogleButton />
+      <GoogleButton/>
       <div className="or-block">OR</div>
       <form onSubmit={handleSubmit}>
         <div>

@@ -7,13 +7,14 @@ const Account = () => {
   const { user, logout, triggerResetEmail, verifyEmail, updateUsername } =
     UserAuth();
   const navigate = useNavigate();
+
   const [notify, setNotify] = useState("");
   const [color, setColor] = useState("");
   const [editNU, setEditNU] = useState(false);
   const [newUsername, setNewUsername] = useState(user.displayName);
+
   const changeUsername = () => {
     try {
-      console.log(newUsername);
       if (newUsername.length >= 1) {
         updateUsername(newUsername);
         setEditNU(false)
@@ -22,6 +23,7 @@ const Account = () => {
       console.log(e.message);
     }
   };
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -30,17 +32,21 @@ const Account = () => {
       console.log(e.message);
     }
   };
+
   const notificationStyle = { background: `${color}` };
+
   const ver = () => {
     setNotify("Please check email");
     setColor("green");
     verifyEmail();
   };
+
   const resetEmail = () => {
     setNotify("Please check email");
     setColor("green");
     triggerResetEmail();
   };
+  
   useEffect(() => {
     if (!user.emailVerified) {
       setNotify("Please verify your account");

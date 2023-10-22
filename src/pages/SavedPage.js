@@ -12,6 +12,7 @@ export default function Saved({ data, setData }) {
   const [filteredCategData, setFilteredCategData] = useState([]);
   const [filterMode, setFilterMode] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+
   const editData = async (id, newWord, newTranslate, newNote, newCategory) => {
     const editedDataList = await Promise.all(
       data.map(async (card) => {
@@ -35,6 +36,7 @@ export default function Saved({ data, setData }) {
   const deletePost = async (id) => {
     await deleteDoc(doc(db, "langcards-db", id));
   };
+
   const sortedData = (baseData) => {
     if (sortType === 1) {
       return baseData
@@ -68,8 +70,11 @@ export default function Saved({ data, setData }) {
         ));
     }
   };
+
   let filtered;
+
   const filterKeys = ["word", "translate", "note"];
+
   const onSearchF = (keyword) => {
     const lowerKeyword = keyword.toLowerCase();
     if (filterMode) {
@@ -107,6 +112,7 @@ export default function Saved({ data, setData }) {
       return sortedData(data);
     }
   };
+
   const filterByCategory = (categ) => {
     setFilterMode(true);
     if (categ === "all") {
@@ -118,11 +124,13 @@ export default function Saved({ data, setData }) {
     }
     setFilteredCategData(filtered);
   };
+
   const handleSelect = (value) => {
     filterByCategory(value);
     setSearchActive(false);
     setSearchInput("");
   };
+
   return (
     <div>
       <div className="saved-inner">
@@ -144,7 +152,7 @@ export default function Saved({ data, setData }) {
                   className="sort-btn sort-old"
                   id={sortType === 2 ? "active-sorttype" : ""}
                 >
-                  <img src={require("../assets/sortold.svg" ).default}alt="Sort by date" />
+                  <img src={require("../assets/sortold.svg").default} alt="Sort by date" />
                 </button>
               </div>
               <div className="filter">

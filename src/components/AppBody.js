@@ -29,7 +29,7 @@ function AppBody() {
   const [data, setData] = useState([]);
   const [warn, setWarn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { user, noUser } = UserAuth();
+  const { user } = UserAuth();
 
   const fetchProduct = async () => {
     if (!user) {
@@ -70,15 +70,26 @@ function AppBody() {
   const onChangeWord = (event) => {
     setWord(event.target.value);
   };
+
   const onChangeTranslate = (event) => {
     setTranslate(event.target.value);
   };
+
   const onChangeNote = (event) => {
     setNote(event.target.value);
   };
+
   const onChangeCategory = (event) => {
     setCategory(event.target.value);
   };
+
+  const resetFormAdd = () => {
+    setWord("");
+    setTranslate("");
+    setNote("");
+    setCategory("");
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     let rw = word.replace(/\s/g, "");
@@ -93,19 +104,10 @@ function AppBody() {
         date: new Date(),
         author: user.uid,
       });
-      setWord("");
-      setTranslate("");
-      setNote("");
-      setCategory("");
+      resetFormAdd()
     } else {
       setWarn(true);
     }
-  };
-  const resetFormAdd = () => {
-    setWord("");
-    setTranslate("");
-    setNote("");
-    setCategory("");
   };
 
   return (

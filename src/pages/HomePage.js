@@ -5,6 +5,7 @@ import MainScreen from "../components/MainScreen";
 import "./styles/HomePage.scss";
 
 const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+
 function Home({ data, num }) {
   const [newArr, setNewArr] = useState(shuffle([...data]));
   const [i, setI] = useState(0);
@@ -26,6 +27,7 @@ function Home({ data, num }) {
       setShowTranslate(false);
     }
   };
+
   const handleTranslate = () => {
     if (showTranslate === false) {
       setShowTranslate(true);
@@ -50,7 +52,6 @@ function Home({ data, num }) {
                 <img src={require("../assets/left-arrow.svg").default} alt="to saved" />
                 </div>
               </Link>
-
               <div className="home-random">
                 <div className="hr-card">
                   <p onClick={randomizeCard} className="randomword">

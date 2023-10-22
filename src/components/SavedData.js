@@ -7,6 +7,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
   const [newTranslate, setNewTranslate] = useState(translate);
   const [newNote, setNewNote] = useState(note);
   const [newCategory, setNewCategory] = useState(category);
+
   function handleSubmit(e) {
     e.preventDefault();
     if (!newWord.trim() || !newTranslate.trim()) {
@@ -15,6 +16,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
     editData(id, newWord, newTranslate, newNote, newCategory);
     setEditing(false);
   }
+
   const removeEditing =()=>{
     setEditing(false)
     setNewNote(note)
@@ -22,6 +24,7 @@ export default function SavedData({id, word, translate, note, category, del, edi
     setNewTranslate(translate)
     setNewCategory(category.toLowerCase())
   }
+  
   const editingTemplate = (
     <form className="saved-card edit-saved-card" onSubmit={handleSubmit}>
       <div className="form-group">

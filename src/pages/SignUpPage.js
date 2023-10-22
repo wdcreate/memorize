@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import  GoogleButton from '../components/GoogleButton';
+import GoogleButton from '../components/GoogleButton';
 import { UserAuth } from "../context/AuthContext";
 import "./styles/LoginPage.scss";
 
@@ -11,13 +11,13 @@ const Signup = () => {
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [wrongPassword, setWrongPassword] = useState(false);
   const [error, setError] = useState("");
+
   const { createUser } = UserAuth();
   const { setNoUser } = UserAuth();
   const navigate = useNavigate();
-  const validPass =
-    password.length >= 6 &&
-    confirmedPassword > 6 &&
-    password === confirmedPassword;
+
+  const validPass = password.length >= 6 && password === confirmedPassword;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -41,9 +41,9 @@ const Signup = () => {
         <h1>Create Account</h1>
       </div>
       <GoogleButton />
-         <div className="or-block">
+      <div className="or-block">
         OR
-        </div>
+      </div>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username</label>
@@ -89,7 +89,7 @@ const Signup = () => {
             autoComplete="off"
           />
         </div>
-        {error ? <div className="error-notification">{error}</div> : ""}        
+        {error ? <div className="error-notification">{error}</div> : ""}
         <button type="submit" className="login-btn">
           Sign Up
         </button>
